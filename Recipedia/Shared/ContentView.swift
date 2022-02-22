@@ -9,11 +9,26 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        ZStack {
-            Color.orange.edgesIgnoringSafeArea(.all)
-            RoundedRectangle(cornerRadius: 10).frame(width: 50, height: 50).foregroundColor(.white)
+        HStack() {
+            VStack {
+                RoundedRectangle(cornerRadius: 10).frame(width: 50, height: 50).foregroundColor(.white)
+                RoundedRectangle(cornerRadius: 10).frame(width: 50, height: 50).foregroundColor(.white)
+                RoundedRectangle(cornerRadius: 10).frame(width: 50, height: 50).foregroundColor(.white)
+            }
+            VStack {
+                RoundedRectangle(cornerRadius: 10).frame(width: 50, height: 50).foregroundColor(.white)
+                RoundedRectangle(cornerRadius: 10).frame(width: 50, height: 50).foregroundColor(.white)
+                RoundedRectangle(cornerRadius: 10).frame(width: 50, height: 50).foregroundColor(.white)
+            }
+            VStack {
+                RoundedRectangle(cornerRadius: 10).frame(width: 50, height: 50).foregroundColor(.white)
+                RoundedRectangle(cornerRadius: 10).frame(width: 50, height: 50).foregroundColor(.white)
+                RoundedRectangle(cornerRadius: 10).frame(width: 50, height: 50).foregroundColor(.white)
+            }
         }
-        
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+        .background(/*@START_MENU_TOKEN@*//*@PLACEHOLDER=View@*/Color.orange/*@END_MENU_TOKEN@*/)
+        .ignoresSafeArea(.all)
     }
 }
 

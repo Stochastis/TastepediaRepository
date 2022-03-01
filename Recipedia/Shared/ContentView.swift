@@ -16,16 +16,11 @@ struct ContentView: View {
                         VStack {
                             ForEach(0 ..< 3) { item in
                                 Button(action: {
-                                    print("Button 1 Pressed")
-                                }) {
-                                    Text("Woa")
-                                        .frame(width: 50, height: 50)
-                                        .font(.system(size: 18))
-                                        .overlay(
-                                            RoundedRectangle(cornerRadius: 10)
-                                                .foregroundColor(/*@START_MENU_TOKEN@*/.white/*@END_MENU_TOKEN@*/)
-                                        )
-                                }
+                                    print("Pressed Button")
+                                }, label: {
+                                    RoundedRectangle(cornerRadius: 10).frame(width: 50, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/).foregroundColor(.white)
+                                        .overlay(Image("ChickenIcon").resizable())
+                                })
                                 .padding(.bottom, 1.0)
                             }
                         }
@@ -43,6 +38,7 @@ struct ContentView: View {
         }
         
     }
+    var foodIconNames: Array = ["drop", "hare", "tortoise", "ant", "ladybug", "leaf"]
 }
 
 struct ContentView_Previews: PreviewProvider {

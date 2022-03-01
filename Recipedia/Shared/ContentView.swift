@@ -12,11 +12,11 @@ struct ContentView: View {
         ZStack {
             VStack {
                 HStack() {
-                    ForEach(/*@START_MENU_TOKEN@*/0 ..< 5/*@END_MENU_TOKEN@*/) { item in
+                    ForEach(/*@START_MENU_TOKEN@*/0 ..< 5/*@END_MENU_TOKEN@*/) { i in
                         VStack {
-                            ForEach(0 ..< 3) { item in
+                            ForEach(0 ..< 3) { j in
                                 Button(action: {
-                                    print("Pressed Button")
+                                    print(String(i) + ", " + String(j))
                                 }, label: {
                                     RoundedRectangle(cornerRadius: 10).frame(width: 50, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/).foregroundColor(.white)
                                         .overlay(Image("ChickenIcon").resizable())

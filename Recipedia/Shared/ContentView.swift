@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    var foodIconNames: Array = ["drop", "hare", "tortoise", "ant", "ladybug", "leaf"]
+    
     var body: some View {
         ZStack {
             VStack {
@@ -38,7 +41,6 @@ struct ContentView: View {
         }
         
     }
-    var foodIconNames: Array = ["drop", "hare", "tortoise", "ant", "ladybug", "leaf"]
 }
 
 struct ContentView_Previews: PreviewProvider {

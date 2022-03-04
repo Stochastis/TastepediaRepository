@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     
     var foodIconNames: Array = ["drop", "hare", "tortoise", "ant", "ladybug", "leaf"]
-    @StateObject var model = RecipeSearch()
+    @StateObject var model = RecipeSearchViewModel()
     
     var body: some View {
         ZStack {
@@ -33,7 +33,7 @@ struct ContentView: View {
                 }
                 Spacer()
                 Button(action: {
-                    print("Title: \(String(describing: model.title))")
+                    print("Title")
                 }, label: {
                     Text("API Call Test")
                 })

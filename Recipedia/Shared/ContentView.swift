@@ -14,6 +14,7 @@ struct ContentView: View {
     var body: some View {
         ZStack {
             VStack {
+                Spacer()
                 HStack() {
                     ForEach(/*@START_MENU_TOKEN@*/0 ..< 5/*@END_MENU_TOKEN@*/) { i in
                         VStack {
@@ -29,6 +30,14 @@ struct ContentView: View {
                         }
                     }
                 }
+                Spacer()
+                Button(action: {
+                    print("DEBUG")
+                }, label: {
+                    Text("API Call Test")
+                })
+                Spacer()
+                
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
             .background(Color.orange)

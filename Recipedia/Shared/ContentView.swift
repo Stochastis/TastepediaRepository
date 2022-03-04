@@ -33,7 +33,7 @@ struct ContentView: View {
                 }
                 Spacer()
                 Button(action: {
-                    print("Title")
+                    print("Some Text " + String(model.model.likes ?? 1234321))
                 }, label: {
                     Text("API Call Test")
                 })
@@ -48,6 +48,8 @@ struct ContentView: View {
                 Text("Enter some ingredients:")
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+        }.onAppear() {
+            model.findRecipes()
         }
         
     }

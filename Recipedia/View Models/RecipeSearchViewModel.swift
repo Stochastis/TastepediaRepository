@@ -9,7 +9,7 @@ import Foundation
 
 class RecipeSearchViewModel: ObservableObject {
     
-    var model = RecipeSearchElement()
+    var model = [RecipeSearchElement]()
     
     func findRecipes() {
         print("Sup")
@@ -20,7 +20,7 @@ class RecipeSearchViewModel: ObservableObject {
                 if data == nil {
                     print("No data recieved.")
                 }
-                self.model = try! JSONDecoder().decode(RecipeSearchElement.self, from: data!)
+                self.model = try! JSONDecoder().decode([RecipeSearchElement].self, from: data!)
             }
         }.resume()
         

@@ -33,7 +33,7 @@ struct ContentView: View {
                 }
                 Spacer()
                 Button(action: {
-                    print("Some Text " + String(model.model.likes ?? 1234321))
+                    print("Some Text " + String(model.model[0].likes ?? 1234321))
                 }, label: {
                     Text("API Call Test")
                 })

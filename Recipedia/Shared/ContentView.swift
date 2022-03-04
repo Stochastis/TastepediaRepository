@@ -10,13 +10,14 @@ import SwiftUI
 struct ContentView: View {
     
     var foodIconNames: Array = ["drop", "hare", "tortoise", "ant", "ladybug", "leaf"]
+    @StateObject var model = RecipeSearch()
     
     var body: some View {
         ZStack {
             VStack {
                 Spacer()
                 HStack() {
-                    ForEach(/*@START_MENU_TOKEN@*/0 ..< 5/*@END_MENU_TOKEN@*/) { i in
+                    ForEach(0 ..< 5) { i in
                         VStack {
                             ForEach(0 ..< 3) { j in
                                 Button(action: {
@@ -32,7 +33,7 @@ struct ContentView: View {
                 }
                 Spacer()
                 Button(action: {
-                    print("DEBUG")
+                    print("Title: \(String(describing: model.title))")
                 }, label: {
                     Text("API Call Test")
                 })

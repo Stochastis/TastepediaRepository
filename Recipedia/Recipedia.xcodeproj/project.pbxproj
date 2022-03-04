@@ -14,6 +14,7 @@
 		BC95F0E627BB0DB70057F68F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC95F0D127BB0DB70057F68F /* Assets.xcassets */; };
 		BC95F0E727BB0DB70057F68F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC95F0D127BB0DB70057F68F /* Assets.xcassets */; };
 		BCAB55E927D1A6DA00334443 /* RecipeSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCAB55E827D1A6DA00334443 /* RecipeSearch.swift */; };
+		BCAB55F027D1AA8100334443 /* RecipeSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCAB55EF27D1AA8100334443 /* RecipeSearchViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		BC95F0E027BB0DB70057F68F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BC95F0E127BB0DB70057F68F /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		BCAB55E827D1A6DA00334443 /* RecipeSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSearch.swift; sourceTree = "<group>"; };
+		BCAB55EF27D1AA8100334443 /* RecipeSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSearchViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +51,7 @@
 		BC95F0C927BB0DB60057F68F = {
 			isa = PBXGroup;
 			children = (
+				BCAB55EE27D1AA4A00334443 /* View Models */,
 				BCAB55E727D1A63C00334443 /* Models */,
 				BC95F0CE27BB0DB60057F68F /* Shared */,
 				BC95F0D827BB0DB70057F68F /* iOS */,
@@ -99,6 +102,14 @@
 				BCAB55E827D1A6DA00334443 /* RecipeSearch.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		BCAB55EE27D1AA4A00334443 /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				BCAB55EF27D1AA8100334443 /* RecipeSearchViewModel.swift */,
+			);
+			path = "View Models";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -198,6 +209,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCAB55F027D1AA8100334443 /* RecipeSearchViewModel.swift in Sources */,
 				BC95F0E427BB0DB70057F68F /* ContentView.swift in Sources */,
 				BCAB55E927D1A6DA00334443 /* RecipeSearch.swift in Sources */,
 				BC95F0E227BB0DB70057F68F /* RecipediaApp.swift in Sources */,

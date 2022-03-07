@@ -48,13 +48,13 @@ struct ContentView: View {
                 Spacer()
                 Spacer()
                 Button(action: {
-                    print("Recipe Title: " + String(model.model[1].title ?? "Test"))
+                    print("Recipe Title: " + String(model.model[0].title ?? "Test"))
                 }, label: {
                     Text("API Call Test")
                 })
                 Spacer()
             }
-        }.onAppear() {
+        }.onAppear(){
             model.findRecipes()
         }
         

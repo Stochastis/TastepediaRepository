@@ -10,7 +10,7 @@ import SwiftUI
 struct ContentView: View {
     
     var foodIconNames: Array = ["drop", "hare", "tortoise", "ant", "ladybug", "leaf"]
-    @StateObject var model = RecipeSearchViewModel()
+    @StateObject var model = RecipeSearchViewModel() // Create a View Model to interact with the API
     
     var body: some View {
         ZStack {
@@ -32,12 +32,6 @@ struct ContentView: View {
                     }
                 }
                 Spacer()
-                Button(action: {
-                    print("Some Text " + String(model.model[0].likes ?? 1234321))
-                }, label: {
-                    Text("API Call Test")
-                })
-                Spacer()
                 
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
@@ -48,6 +42,18 @@ struct ContentView: View {
                 Text("Enter some ingredients:")
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+            
+            VStack {
+                Spacer()
+                Spacer()
+                Spacer()
+                Button(action: {
+                    print("Recipe Title: " + String(model.model[1].title ?? "Test"))
+                }, label: {
+                    Text("API Call Test")
+                })
+                Spacer()
+            }
         }.onAppear() {
             model.findRecipes()
         }

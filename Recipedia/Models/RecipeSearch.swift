@@ -9,7 +9,7 @@
 import Foundation
 
 // MARK: - RecipeSearchElement
-struct RecipeSearchElement: Codable {
+struct RecipeSearchElement: Codable, Identifiable {
     var id: Int?
     var title: String?
     var image: String?

@@ -11,6 +11,8 @@ struct ContentView: View {
     
     var foodIconNames: Array = ["drop", "hare", "tortoise", "ant", "ladybug", "leaf"]
     @StateObject var model = RecipeSearchViewModel() // Create a View Model to interact with the API
+    @State var currentSearchResult: String = "Search Result Goes Here"
+    @State var recipes: [String] = []
     
     var body: some View {
         ZStack {
@@ -47,15 +49,22 @@ struct ContentView: View {
                 Spacer()
                 Spacer()
                 Spacer()
+                Spacer()
+                Spacer()
                 Button(action: {
-                    print("Recipe Title: " + String(model.model[0].title ?? "Test"))
+                    model.findRecipes(inputs: ["potatoes", "salt", "oliveoil"])
                 }, label: {
                     Text("API Call Test")
                 })
                 Spacer()
+                Text("Placeholder Recipe")
+                Spacer()
             }
-        }.onAppear(){
-            model.findRecipes()
+        }
+        // Must run findRecipes() on appearing because it doesn't work if only running when clicking the button
+        .onAppear() {
+            model.findRecipes(inputs: ["corn", "driedtomatoes", "cucumber"])
+            
         }
         
     }

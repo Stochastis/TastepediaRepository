@@ -52,12 +52,17 @@ struct ContentView: View {
                 Spacer()
                 Spacer()
                 Button(action: {
-                    model.findRecipes(inputs: ["potatoes", "salt", "oliveoil"])
+                    model.findRecipes(inputs: ["eggs", "tortillas", "fish"])
+                    for index in 0..<(model.model.count) {
+                        recipes.append(model.model[index].title ?? "Placeholder Recipe Title")
+                    }
+                    print(recipes)
+                    currentSearchResult = recipes[0]
                 }, label: {
                     Text("API Call Test")
                 })
                 Spacer()
-                Text("Placeholder Recipe")
+                Text(currentSearchResult)
                 Spacer()
             }
         }

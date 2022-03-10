@@ -13,6 +13,7 @@ struct ContentView: View {
     @StateObject var model = RecipeSearchViewModel() // Create a View Model to interact with the API
     @State var currentSearchResult: String = "Search Result Goes Here"
     @State var recipes: [String] = []
+    @State private var flag = false
     
     var body: some View {
         ZStack {
@@ -52,28 +53,23 @@ struct ContentView: View {
                 Spacer()
                 Spacer()
                 Button(action: {
-                    model.findRecipes(inputs: ["rice", "lime"])
+                    model.findRecipes(inputs: ["potatoes", "onions"])
                     recipes.removeAll()
                     for index in 0..<(model.model.count) {
                         recipes.append(model.model[index].title ?? "Placeholder Recipe Title")
                     }
                     if !recipes.isEmpty {
                         currentSearchResult = recipes.randomElement() ?? ""
+                        self.flag.toggle()
                     }
                 }, label: {
                     Text("API Call Test")
                 })
                 Spacer()
-                Text(!model.model.isEmpty ? String(model.model[0].title ?? "") : "")
+                Text(!model.model.isEmpty ? String(model.model.randomElement()?.title ?? "") : "")
                 Spacer()
             }
         }
-        // Must run findRecipes() on appearing because it doesn't work if only running when clicking the button
-//        .onAppear() {
-//            print("File \(#fileID): Line \(#line): Running onAppear....")
-//            model.findRecipes(inputs: [])
-//        }
-        
     }
 }
 

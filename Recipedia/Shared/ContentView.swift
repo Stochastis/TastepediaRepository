@@ -9,11 +9,10 @@ import SwiftUI
 
 struct ContentView: View {
     
-    var foodIconNames: Array = ["drop", "hare", "tortoise", "ant", "ladybug", "leaf"]
     @StateObject var model = RecipeSearchViewModel() // Create a View Model to interact with the API
-    @State var currentSearchResult: String = "Search Result Goes Here"
     @State var recipes: [String] = []
-    @State private var flag = false
+    @State var ingredients: [String] = []
+    @State var buttonIngredients: [[String]] = [["onions", "butter", "pepper"], ["tomatoes", "peppers", "asparagus"], ["squash", "chicken", "lamb"], ["beef", "cucumbers", "strawberries"], ["watermelon", "sugar", "blueberries"]]
     
     var body: some View {
         ZStack {
@@ -24,7 +23,8 @@ struct ContentView: View {
                         VStack {
                             ForEach(0 ..< 3) { j in
                                 Button(action: {
-                                    print(String(i) + ", " + String(j))
+                                    ingredients.append(buttonIngredients[i][j])
+                                    print(ingredients)
                                 }, label: {
                                     RoundedRectangle(cornerRadius: 10).frame(width: 50, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/).foregroundColor(.white)
                                         .overlay(Image("ChickenIcon").resizable())
@@ -52,15 +52,10 @@ struct ContentView: View {
                 Spacer()
                 Spacer()
                 Button(action: {
-                    model.findRecipes(inputs: ["brusselsprouts", "bluecheese"])
+                    model.findRecipes(inputs: ["pizza"])
                     recipes.removeAll()
                     for index in 0..<(model.model.count) {
                         recipes.append(model.model[index].title ?? "Placeholder Recipe Title")
-                    }
-                    if !recipes.isEmpty {
-                        print("Recipe array is empty.")
-                        currentSearchResult = recipes.randomElement() ?? ""
-                        self.flag.toggle()
                     }
                 }, label: {
                     Text("API Call Test")

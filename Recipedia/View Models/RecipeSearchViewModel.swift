@@ -10,10 +10,11 @@ import Foundation
 
 class RecipeSearchViewModel: ObservableObject {
     
-    var model = [RecipeSearchElement]()
+    @Published var model = [RecipeSearchElement]()
     
     func findRecipes(inputs: [String]) {
-        print("Running findRecipes().....")
+//        print("\(#fileID): Line \(#line):")
+//        print("Running findRecipes().....")
         
         // Create custom URL with desired ingredients from inputs parameter
         var ingredientString = ""
@@ -21,19 +22,38 @@ class RecipeSearchViewModel: ObservableObject {
             ingredientString += ingredient + ","
         }
         ingredientString = String(ingredientString.dropLast())
-        print("Ingredients: " + ingredientString)
+//        print("\(#fileID): Line \(#line):")
+//        print("Ingredients: " + ingredientString)
         let url: URL! = URL(string: "https://api.spoonacular.com/recipes/findByIngredients?ingredients=" + ingredientString + "&apiKey=af2da9210db04a9d8bb691d2f4166632")
-        print("URL: " + url.absoluteString)
+//        print("\(#fileID): Line \(#line):")
+//        print("URL: " + url.absoluteString)
         
         let request = URLRequest(url: url)
-        URLSession.shared.dataTask(with: request) { data, response, error in
+        
+        // Make the API call
+//        print("\(#fileID): Line \(#line):")
+//        print("Outide URLSession.shared.dataTask.....")
+        let session = URLSession.shared.dataTask(with: request) { data, response, error in
+//            print("\(#fileID): Line \(#line):")
+//            print("Inside URLSession.shared.dataTask.....")
             DispatchQueue.main.async {
+//                print("\(#fileID): Line \(#line):")
+//                print("Inside DispatchQueue.main.async....")
                 if data == nil {
+//                    print("\(#fileID): Line \(#line):")
                     print("No data recieved.")
                 }
+//                print("\(#fileID): Line \(#line):")
+//                print("data != nil.... Moving on to JSONDecoder....")
                 self.model = try! JSONDecoder().decode([RecipeSearchElement].self, from: data!)
+                print(self.model[0].title)
             }
-        }.resume()
+        }
+        session.resume()
+        
+//        print("\(#fileID): Line \(#line):")
+//        print("Outside URLSession.shared.dataTask.....")
+//        print(model)
         
     }
     

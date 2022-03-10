@@ -52,25 +52,27 @@ struct ContentView: View {
                 Spacer()
                 Spacer()
                 Button(action: {
-                    model.findRecipes(inputs: ["eggs", "tortillas", "fish"])
+                    model.findRecipes(inputs: ["rice", "lime"])
+                    recipes.removeAll()
                     for index in 0..<(model.model.count) {
                         recipes.append(model.model[index].title ?? "Placeholder Recipe Title")
                     }
-                    print(recipes)
-                    currentSearchResult = recipes[0]
+                    if !recipes.isEmpty {
+                        currentSearchResult = recipes.randomElement() ?? ""
+                    }
                 }, label: {
                     Text("API Call Test")
                 })
                 Spacer()
-                Text(currentSearchResult)
+                Text(!model.model.isEmpty ? String(model.model[0].title ?? "") : "")
                 Spacer()
             }
         }
         // Must run findRecipes() on appearing because it doesn't work if only running when clicking the button
-        .onAppear() {
-            model.findRecipes(inputs: ["corn", "driedtomatoes", "cucumber"])
-            
-        }
+//        .onAppear() {
+//            print("File \(#fileID): Line \(#line): Running onAppear....")
+//            model.findRecipes(inputs: [])
+//        }
         
     }
 }

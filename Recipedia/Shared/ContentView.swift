@@ -35,7 +35,6 @@ struct ContentView: View {
                     }
                 }
                 Spacer()
-                
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
             .background(Color.orange)
@@ -53,12 +52,13 @@ struct ContentView: View {
                 Spacer()
                 Spacer()
                 Button(action: {
-                    model.findRecipes(inputs: ["potatoes", "onions"])
+                    model.findRecipes(inputs: ["brusselsprouts", "bluecheese"])
                     recipes.removeAll()
                     for index in 0..<(model.model.count) {
                         recipes.append(model.model[index].title ?? "Placeholder Recipe Title")
                     }
                     if !recipes.isEmpty {
+                        print("Recipe array is empty.")
                         currentSearchResult = recipes.randomElement() ?? ""
                         self.flag.toggle()
                     }

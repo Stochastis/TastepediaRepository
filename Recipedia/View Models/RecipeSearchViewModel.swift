@@ -21,6 +21,7 @@ class RecipeSearchViewModel: ObservableObject {
         }
         ingredientString = String(ingredientString.dropLast())
         let url: URL! = URL(string: "https://api.spoonacular.com/recipes/findByIngredients?ingredients=" + ingredientString + "&apiKey=af2da9210db04a9d8bb691d2f4166632")
+        print(url.absoluteString)
         
         let request = URLRequest(url: url)
         
@@ -31,6 +32,10 @@ class RecipeSearchViewModel: ObservableObject {
                     print("No data recieved.")
                 }
                 self.model = try! JSONDecoder().decode([RecipeSearchElement].self, from: data!)
+                if self.model.isEmpty {
+                    print("model is empty.")
+                    self.model.append(RecipeSearchElement(title: "No Recipes Found"))
+                }
                 print(String(self.model[0].title!))
             }
         }

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct MainView: View {
     
     @StateObject var model = RecipeSearchViewModel() // Create a View Model to interact with the API
     @State var recipes: [String] = []
@@ -52,7 +52,7 @@ struct ContentView: View {
                 Spacer()
                 Spacer()
                 Button(action: {
-                    model.findRecipes(inputs: ["pizza"])
+                    model.findRecipes(inputs: ["ginger", "cilantro", "redbellpeppers"])
                     recipes.removeAll()
                     for index in 0..<(model.model.count) {
                         recipes.append(model.model[index].title ?? "Placeholder Recipe Title")
@@ -68,9 +68,9 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        MainView()
         
         
     }

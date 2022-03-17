@@ -8,14 +8,15 @@
 import SwiftUI
 
 struct PantryView: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     var body: some View {
         NavigationView{
             HStack {
-                NavigationLink(
-                    destination: MainView(),
-                    label: {
-                        Image(systemName: "note")
-                    })
+                Button(action: {
+                    self.presentationMode.wrappedValue.dismiss()
+                }, label: {
+                    Image(systemName: "note")
+                })
                 Text("This is the PantryView.")
             }
         }.navigationBarHidden(true)

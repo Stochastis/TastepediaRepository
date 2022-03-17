@@ -8,15 +8,16 @@
 import SwiftUI
 
 struct SearchView: View {
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     var body: some View {
         NavigationView{
             HStack {
                 Text("This is the SearchView.")
-                NavigationLink(
-                    destination: MainView(),
-                    label: {
-                        Image(systemName: "note")
-                    })
+                Button(action: {
+                    self.presentationMode.wrappedValue.dismiss()
+                }, label: {
+                    Image(systemName: "note")
+                })
             }
         }.navigationBarHidden(true)
     }

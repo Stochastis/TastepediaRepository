@@ -15,11 +15,15 @@ struct MainView: View {
     @State var buttonIngredients: [[String]] = [["onions", "butter", "pepper"], ["tomatoes", "peppers", "asparagus"], ["squash", "chicken", "lamb"], ["beef", "cucumbers", "strawberries"], ["watermelon", "sugar", "blueberries"]]
     
     var body: some View {
+        
+        // Wrap everything in a NavigationView so that pages can easily be navigated between
         NavigationView {
             ZStack {
                 VStack {
                     Spacer()
                     HStack() {
+                        
+                        // Essentially a button that uses the functionality of NavigationView to go between different views
                         NavigationLink(
                             destination: SearchView(),
                             label: {
@@ -40,6 +44,8 @@ struct MainView: View {
                                 }
                             }
                         }
+                        
+                        // Essentially a button that uses the functionality of NavigationView to go between different views
                         NavigationLink(
                             destination: PantryView(),
                             label: {

@@ -69,9 +69,9 @@
 			children = (
 				BC95F0CF27BB0DB60057F68F /* RecipediaApp.swift */,
 				BC95F0D027BB0DB60057F68F /* MainView.swift */,
-				BC95F0D127BB0DB70057F68F /* Assets.xcassets */,
 				BC7E52D427E3EEFE0066FC96 /* PantryView.swift */,
 				BC7E52D827E3FC010066FC96 /* SearchView.swift */,
+				BC95F0D127BB0DB70057F68F /* Assets.xcassets */,
 			);
 			path = Shared;
 			sourceTree = "<group>";

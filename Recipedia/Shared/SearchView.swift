@@ -1,5 +1,5 @@
 //
-//  PantryView.swift
+//  SearchView.swift
 //  Recipedia (iOS)
 //
 //  Created by Caleb Ross on 3/17/22.
@@ -7,23 +7,23 @@
 
 import SwiftUI
 
-struct PantryView: View {
+struct SearchView: View {
     var body: some View {
         NavigationView{
             HStack {
+                Text("This is the SearchView.")
                 NavigationLink(
                     destination: MainView(),
                     label: {
                         Image(systemName: "note")
                     })
-                Text("This is the PantryView.")
             }
         }.navigationBarHidden(true)
     }
 }
 
-struct PantryView_Previews: PreviewProvider {
+struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
-        PantryView()
+        SearchView()
     }
 }

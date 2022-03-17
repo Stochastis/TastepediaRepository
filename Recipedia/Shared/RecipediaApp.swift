@@ -7,11 +7,18 @@
 
 import SwiftUI
 
+var currentView = "MainView"
+
 @main
 struct RecipediaApp: App {
     var body: some Scene {
         WindowGroup {
-            MainView()
+            if currentView == "MainView" {
+                MainView()
+            }
+            else if currentView == "PantryView" {
+                PantryView()
+            }
         }
     }
 }

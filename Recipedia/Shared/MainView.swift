@@ -9,11 +9,8 @@ import SwiftUI
 
 struct MainView: View {
     
-    // Create a View Model to interact with the API
-    @StateObject var model = RecipeSearchViewModel()
-    
-    // Create an instance of the Pantry object to keep track of ingredients
-    @StateObject var pantry = Pantry(startingIngredients: ["Salt", "Garlic", "Peppers", "Avacado", "Beef"])
+    // Access the pantry environment object
+    @EnvironmentObject var pantry: Pantry
     
     @State var recipes: [String] = []
     @State var buttonIngredients: [[String]] = [["onions", "butter", "pepper"], ["tomatoes", "peppers", "asparagus"], ["squash", "chicken", "lamb"], ["beef", "cucumbers", "strawberries"], ["watermelon", "sugar", "blueberries"]]
@@ -62,6 +59,7 @@ struct MainView: View {
                 .background(Color.orange)
                 .ignoresSafeArea()
                 
+                // Investigate why this Text View is by itself in an HStack
                 HStack {
                     Text("Enter some ingredients:")
                 }
@@ -73,17 +71,7 @@ struct MainView: View {
                     Spacer()
                     Spacer()
                     Spacer()
-                    Button(action: {
-                        model.findRecipes(inputs: pantry.ingredients)
-                        recipes.removeAll()
-                        for index in 0..<(model.model.count) {
-                            recipes.append(model.model[index].title ?? "Placeholder Recipe Title")
-                        }
-                    }, label: {
-                        Text("API Call Test")
-                    })
                     Spacer()
-                    Text(!model.model.isEmpty ? String(model.model.randomElement()?.title ?? "") : "")
                     Spacer()
                 }
             }
@@ -91,12 +79,6 @@ struct MainView: View {
     }
 }
 
-class Pantry: ObservableObject {
-    init(startingIngredients: [String]) {
-        ingredients = startingIngredients
-    }
-    @Published var ingredients: [String]
-}
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {

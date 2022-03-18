@@ -11,6 +11,10 @@ struct PantryView: View {
     
     // Required so that this view can be 'dismissed' with a closure
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    
+    // Create ObservedObject for list of ingredients in pantry
+    @ObservedObject var pantry: Pantry
+    
     var body: some View {
         
         // Wrap everything in a NavigationView so that pages can easily be navigated between
@@ -27,15 +31,26 @@ struct PantryView: View {
                 }
                 Spacer()
                 ScrollView {
-                    ForEach(1 ..< 51) { i in
-                        HStack {
+                    ForEach(0 ..< pantry.ingredients.count) { i in
+                        if ((pantry.ingredients.count - i) == 1 && pantry.ingredients.count % 2 == 1) {
                             ZStack {
                                 Rectangle().aspectRatio(1, contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
-                                Text("Item \(i*2-1)").foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+                                Text("\(pantry.ingredients[i])").foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
                             }
-                            ZStack {
-                                Rectangle().aspectRatio(1, contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
-                                Text("Item \(i*2)").foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+                        } else {
+                            if (calculate(loop: i)) {
+                                HStack {
+                                    ZStack {
+                                        Rectangle().aspectRatio(1, contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
+                                        Text("\(pantry.ingredients[i-1])").foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+                                    }
+                                    ZStack {
+                                        Rectangle().aspectRatio(1, contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
+                                        Text("\(pantry.ingredients[i])").foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+                                    }
+                                }
+                            } else {
+                                /*@START_MENU_TOKEN@*/EmptyView()/*@END_MENU_TOKEN@*/
                             }
                         }
                     }
@@ -45,8 +60,12 @@ struct PantryView: View {
     }
 }
 
+func calculate(loop: Int) -> Bool {
+    return (loop % 2 == 1)
+}
+
 struct PantryView_Previews: PreviewProvider {
     static var previews: some View {
-        PantryView()
+        PantryView(pantry: Pantry(startingIngredients: ["Salt", "Garlic", "Peppers", "Avacado", "Beef"]))
     }
 }

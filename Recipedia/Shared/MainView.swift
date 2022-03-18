@@ -9,9 +9,13 @@ import SwiftUI
 
 struct MainView: View {
     
-    @StateObject var model = RecipeSearchViewModel() // Create a View Model to interact with the API
+    // Create a View Model to interact with the API
+    @StateObject var model = RecipeSearchViewModel()
+    
+    // Create an instance of the Pantry object to keep track of ingredients
+    @StateObject var pantry = Pantry(startingIngredients: ["Salt", "Garlic", "Peppers", "Avacado", "Beef"])
+    
     @State var recipes: [String] = []
-    @State var ingredients: [String] = []
     @State var buttonIngredients: [[String]] = [["onions", "butter", "pepper"], ["tomatoes", "peppers", "asparagus"], ["squash", "chicken", "lamb"], ["beef", "cucumbers", "strawberries"], ["watermelon", "sugar", "blueberries"]]
     
     var body: some View {
@@ -34,8 +38,8 @@ struct MainView: View {
                             VStack {
                                 ForEach(0 ..< 3) { j in
                                     Button(action: {
-                                        ingredients.append(buttonIngredients[i][j])
-                                        print(ingredients)
+                                        pantry.ingredients.append(buttonIngredients[i][j])
+                                        print(pantry.ingredients)
                                     }, label: {
                                         RoundedRectangle(cornerRadius: 10).frame(width: 50, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/).foregroundColor(.white)
                                             .overlay(Image("ChickenIcon").resizable())
@@ -47,7 +51,7 @@ struct MainView: View {
                         
                         // Essentially a button that uses the functionality of NavigationView to go between different views
                         NavigationLink(
-                            destination: PantryView(),
+                            destination: PantryView(pantry: pantry),
                             label: {
                                 Image(systemName: "tray.2.fill")
                             })
@@ -70,7 +74,7 @@ struct MainView: View {
                     Spacer()
                     Spacer()
                     Button(action: {
-                        model.findRecipes(inputs: ["egg", "butter", "steak", "milk", "carrots", "chicken", "potatoes", "garlic", "pork", "bellpeppers"])
+                        model.findRecipes(inputs: ["potatoes", "pork", "milk", "soysauce", "mayonaise", "spagetti", "garlic", "peppers", "pintobeans", "blackbeans", "tortillas", "carrots"])
                         recipes.removeAll()
                         for index in 0..<(model.model.count) {
                             recipes.append(model.model[index].title ?? "Placeholder Recipe Title")
@@ -85,6 +89,13 @@ struct MainView: View {
             }
         }.navigationBarHidden(true)
     }
+}
+
+class Pantry: ObservableObject {
+    init(startingIngredients: [String]) {
+        ingredients = startingIngredients
+    }
+    @Published var ingredients: [String]
 }
 
 struct MainView_Previews: PreviewProvider {

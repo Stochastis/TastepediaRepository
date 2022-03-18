@@ -74,7 +74,7 @@ struct MainView: View {
                     Spacer()
                     Spacer()
                     Button(action: {
-                        model.findRecipes(inputs: ["potatoes", "pork", "milk", "soysauce", "mayonaise", "spagetti", "garlic", "peppers", "pintobeans", "blackbeans", "tortillas", "carrots"])
+                        model.findRecipes(inputs: pantry.ingredients)
                         recipes.removeAll()
                         for index in 0..<(model.model.count) {
                             recipes.append(model.model[index].title ?? "Placeholder Recipe Title")

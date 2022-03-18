@@ -70,7 +70,7 @@ struct MainView: View {
                     Spacer()
                     Spacer()
                     Button(action: {
-                        model.findRecipes(inputs: ["ginger", "cilantro", "redbellpeppers"])
+                        model.findRecipes(inputs: ["egg", "butter", "steak", "milk", "carrots", "chicken", "potatoes", "garlic", "pork", "bellpeppers"])
                         recipes.removeAll()
                         for index in 0..<(model.model.count) {
                             recipes.append(model.model[index].title ?? "Placeholder Recipe Title")

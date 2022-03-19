@@ -9,11 +9,11 @@ import SwiftUI
 
 struct MainView: View {
     
+    // Temporary array for ingredient buttons. Delete or change this.
+    @State var buttonIngredients: [[String]] = [["onions", "butter", "pepper"], ["tomatoes", "peppers", "asparagus"], ["squash", "chicken", "lamb"], ["beef", "cucumbers", "strawberries"], ["watermelon", "sugar", "blueberries"]]
+    
     // Access the pantry environment object
     @EnvironmentObject var pantry: Pantry
-    
-    @State var recipes: [String] = []
-    @State var buttonIngredients: [[String]] = [["onions", "butter", "pepper"], ["tomatoes", "peppers", "asparagus"], ["squash", "chicken", "lamb"], ["beef", "cucumbers", "strawberries"], ["watermelon", "sugar", "blueberries"]]
     
     var body: some View {
         

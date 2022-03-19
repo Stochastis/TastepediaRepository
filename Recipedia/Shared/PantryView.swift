@@ -16,7 +16,6 @@ struct PantryView: View {
     @ObservedObject var pantry: Pantry
     
     var body: some View {
-        
         // Wrap everything in a NavigationView so that pages can easily be navigated between
         NavigationView{
             VStack {
@@ -31,13 +30,19 @@ struct PantryView: View {
                 }
                 Spacer()
                 ScrollView {
+                    // List out all ingredients in the pantry
                     ForEach(0 ..< pantry.ingredients.count) { i in
+                        
+                        // Checks if this is the last ingredient in the pantry and displays a singular, larger square for it
                         if ((pantry.ingredients.count - i) == 1 && pantry.ingredients.count % 2 == 1) {
                             ZStack {
                                 Rectangle().aspectRatio(1, contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
                                 Text("\(pantry.ingredients[i])").foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
                             }
-                        } else {
+                        }
+                        
+                        // Displays two squares for all ingredients in the pantry
+                        else {
                             if (calculate(loop: i)) {
                                 HStack {
                                     ZStack {

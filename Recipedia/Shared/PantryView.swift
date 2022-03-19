@@ -12,8 +12,8 @@ struct PantryView: View {
     // Required so that this view can be 'dismissed' with a closure
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
-    // Create ObservedObject for list of ingredients in pantry
-    @ObservedObject var pantry: Pantry
+    // Access the pantry environment object
+    @EnvironmentObject var pantry: Pantry
     
     var body: some View {
         // Wrap everything in a NavigationView so that pages can easily be navigated between
@@ -39,7 +39,7 @@ struct PantryView: View {
                                 Rectangle().aspectRatio(1, contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
                                 Text("\(pantry.ingredients[i])").foregroundColor(.orange)
                                 Button(action: {
-                                    print("Removed \(pantry.ingredients[i])")
+                                    print("Removed \(pantry.ingredients[i]) from pantry.")
                                     pantry.ingredients.remove(at: i)
                                 }, label: {
                                     Image(systemName: "minus.square.fill").foregroundColor(.orange)
@@ -47,7 +47,7 @@ struct PantryView: View {
                             }
                         }
                         
-                        // Displays two squares for all ingredients in the pantry
+                        // Displays two squares for all ingredients in the pantry except for the last one if there is an odd number of indgredients
                         else {
                             if (checkForTwoSquares(loop: i)) {
                                 HStack {
@@ -55,7 +55,7 @@ struct PantryView: View {
                                         Rectangle().aspectRatio(1, contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
                                         Text("\(pantry.ingredients[i-1])").foregroundColor(.orange)
                                         Button(action: {
-                                            print("Removed \(pantry.ingredients[i-1])")
+                                            print("Removed \(pantry.ingredients[i-1]) from pantry.")
                                             pantry.ingredients.remove(at: i-1)
                                         }, label: {
                                             Image(systemName: "minus.square.fill").foregroundColor(.orange)
@@ -65,7 +65,7 @@ struct PantryView: View {
                                         Rectangle().aspectRatio(1, contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
                                         Text("\(pantry.ingredients[i])").foregroundColor(.orange)
                                         Button(action: {
-                                            print("Removed \(pantry.ingredients[i])")
+                                            print("Removed \(pantry.ingredients[i]) from pantry.")
                                             pantry.ingredients.remove(at: i)
                                         }, label: {
                                             Image(systemName: "minus.square.fill").foregroundColor(.orange)
@@ -83,6 +83,8 @@ struct PantryView: View {
     }
 }
 
+// Checks if there needs to be one big square for an odd number of ingredients in the pantry
+// Using this function to minimize indexing time instead of doing this all in-line
 fileprivate func checkForOneSquare(loop: Int, count: Int) -> Bool {
     let first: Bool = ((count - loop) == 1);
     let second: Bool = ((count % 2) == 1);
@@ -90,12 +92,14 @@ fileprivate func checkForOneSquare(loop: Int, count: Int) -> Bool {
     return final;
 }
 
+// Checks if there needs to be two smaller squares for an even number of ingredients in the pantry
+// Using this function to minimize indexing time instead of doing this all in-line
 fileprivate func checkForTwoSquares(loop: Int) -> Bool {
     return (loop % 2 == 1)
 }
 
 struct PantryView_Previews: PreviewProvider {
     static var previews: some View {
-        PantryView(pantry: Pantry(startingIngredients: ["Salt", "Garlic", "Peppers", "Avacado", "Beef"]))
+        PantryView().environmentObject(Pantry(startingIngredients: ["Salt", "Garlic", "Peppers", "Avacado", "Beef"]))
     }
 }

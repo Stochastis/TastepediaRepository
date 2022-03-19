@@ -31,7 +31,7 @@ struct SearchView: View {
                         // Dismiss this current view and return to the previous one
                         self.presentationMode.wrappedValue.dismiss()
                     }, label: {
-                        Image(systemName: "note")
+                        Image(systemName: "note").foregroundColor(.black)
                     })
                 }
                 Button(action: {

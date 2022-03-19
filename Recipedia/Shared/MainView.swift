@@ -35,10 +35,12 @@ struct MainView: View {
                             VStack {
                                 ForEach(0 ..< 3) { j in
                                     Button(action: {
+                                        // Current Behavior: Adds ingredients to the pantry
+                                        // Desired Behavior: Add ingredients from pantry to list of preferred ingredients
                                         pantry.ingredients.append(buttonIngredients[i][j])
                                         print(pantry.ingredients)
                                     }, label: {
-                                        RoundedRectangle(cornerRadius: 10).frame(width: 50, height: 50, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/).foregroundColor(.white)
+                                        RoundedRectangle(cornerRadius: 10).frame(width: 50, height: 50, alignment: .center).foregroundColor(.white)
                                             .overlay(Image("ChickenIcon").resizable())
                                     })
                                     .padding(.bottom, 1.0)
@@ -48,7 +50,7 @@ struct MainView: View {
                         
                         // Essentially a button that uses the functionality of NavigationView to go between different views
                         NavigationLink(
-                            destination: PantryView(pantry: pantry),
+                            destination: PantryView(),
                             label: {
                                 Image(systemName: "tray.2.fill").foregroundColor(.black)
                             })
@@ -59,21 +61,7 @@ struct MainView: View {
                 .background(Color.orange)
                 .ignoresSafeArea()
                 
-                // Investigate why this Text View is by itself in an HStack
-                HStack {
-                    Text("Enter some ingredients:")
-                }
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-                
-                VStack {
-                    Spacer()
-                    Spacer()
-                    Spacer()
-                    Spacer()
-                    Spacer()
-                    Spacer()
-                    Spacer()
-                }
+                Text("Enter some ingredients:").frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             }
         }.navigationBarHidden(true)
     }

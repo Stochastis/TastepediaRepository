@@ -24,20 +24,26 @@ struct PantryView: View {
                         // Dismiss this current view and return to the previous one
                         self.presentationMode.wrappedValue.dismiss()
                     }, label: {
-                        Image(systemName: "note")
+                        Image(systemName: "note").foregroundColor(.black)
                     })
                     Text("This is the PantryView.")
                 }
                 Spacer()
                 ScrollView {
                     // List out all ingredients in the pantry
-                    ForEach(0 ..< pantry.ingredients.count) { i in
+                    ForEach(0 ..< pantry.ingredients.count, id: \.self) { i in
                         
                         // Checks if this is the last ingredient in the pantry and displays a singular, larger square for it
                         if (checkForOneSquare(loop: i, count: pantry.ingredients.count)) {
                             ZStack {
                                 Rectangle().aspectRatio(1, contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
-                                Text("\(pantry.ingredients[i])").foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+                                Text("\(pantry.ingredients[i])").foregroundColor(.orange)
+                                Button(action: {
+                                    print("Removed \(pantry.ingredients[i])")
+                                    pantry.ingredients.remove(at: i)
+                                }, label: {
+                                    Image(systemName: "minus.square.fill").foregroundColor(.orange)
+                                }).frame(width: 300, height: 300, alignment: .bottomLeading)
                             }
                         }
                         
@@ -47,11 +53,23 @@ struct PantryView: View {
                                 HStack {
                                     ZStack {
                                         Rectangle().aspectRatio(1, contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
-                                        Text("\(pantry.ingredients[i-1])").foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+                                        Text("\(pantry.ingredients[i-1])").foregroundColor(.orange)
+                                        Button(action: {
+                                            print("Removed \(pantry.ingredients[i-1])")
+                                            pantry.ingredients.remove(at: i-1)
+                                        }, label: {
+                                            Image(systemName: "minus.square.fill").foregroundColor(.orange)
+                                        }).frame(width: 150, height: 150, alignment: .bottomLeading)
                                     }
                                     ZStack {
                                         Rectangle().aspectRatio(1, contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
-                                        Text("\(pantry.ingredients[i])").foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+                                        Text("\(pantry.ingredients[i])").foregroundColor(.orange)
+                                        Button(action: {
+                                            print("Removed \(pantry.ingredients[i])")
+                                            pantry.ingredients.remove(at: i)
+                                        }, label: {
+                                            Image(systemName: "minus.square.fill").foregroundColor(.orange)
+                                        }).frame(width: 150, height: 150, alignment: .bottomLeading)
                                     }
                                 }
                             } else {
@@ -66,10 +84,10 @@ struct PantryView: View {
 }
 
 fileprivate func checkForOneSquare(loop: Int, count: Int) -> Bool {
-    let first: Bool = ((count - loop) == 1)
-    let second: Bool = (count % 2 == 1)
-    let final: Bool = (first && second)
-    return final
+    let first: Bool = ((count - loop) == 1);
+    let second: Bool = ((count % 2) == 1);
+    let final: Bool = (first && second);
+    return final;
 }
 
 fileprivate func checkForTwoSquares(loop: Int) -> Bool {

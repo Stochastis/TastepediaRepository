@@ -28,7 +28,7 @@ struct MainView: View {
                         NavigationLink(
                             destination: SearchView(),
                             label: {
-                                Image(systemName: "magnifyingglass")
+                                Image(systemName: "magnifyingglass").foregroundColor(.black)
                             })
                         
                         ForEach(0 ..< 5) { i in
@@ -50,7 +50,7 @@ struct MainView: View {
                         NavigationLink(
                             destination: PantryView(pantry: pantry),
                             label: {
-                                Image(systemName: "tray.2.fill")
+                                Image(systemName: "tray.2.fill").foregroundColor(.black)
                             })
                     }
                     Spacer()

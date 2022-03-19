@@ -34,7 +34,7 @@ struct PantryView: View {
                     ForEach(0 ..< pantry.ingredients.count) { i in
                         
                         // Checks if this is the last ingredient in the pantry and displays a singular, larger square for it
-                        if ((pantry.ingredients.count - i) == 1 && pantry.ingredients.count % 2 == 1) {
+                        if (checkForOneSquare(loop: i, count: pantry.ingredients.count)) {
                             ZStack {
                                 Rectangle().aspectRatio(1, contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
                                 Text("\(pantry.ingredients[i])").foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
@@ -43,7 +43,7 @@ struct PantryView: View {
                         
                         // Displays two squares for all ingredients in the pantry
                         else {
-                            if (calculate(loop: i)) {
+                            if (checkForTwoSquares(loop: i)) {
                                 HStack {
                                     ZStack {
                                         Rectangle().aspectRatio(1, contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
@@ -65,7 +65,14 @@ struct PantryView: View {
     }
 }
 
-func calculate(loop: Int) -> Bool {
+fileprivate func checkForOneSquare(loop: Int, count: Int) -> Bool {
+    let first: Bool = ((count - loop) == 1)
+    let second: Bool = (count % 2 == 1)
+    let final: Bool = (first && second)
+    return final
+}
+
+fileprivate func checkForTwoSquares(loop: Int) -> Bool {
     return (loop % 2 == 1)
 }
 

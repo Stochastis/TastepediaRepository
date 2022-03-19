@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BC7E52D527E3EEFE0066FC96 /* PantryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7E52D427E3EEFE0066FC96 /* PantryView.swift */; };
 		BC7E52D927E3FC010066FC96 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7E52D827E3FC010066FC96 /* SearchView.swift */; };
 		BC95F0E227BB0DB70057F68F /* RecipediaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC95F0CF27BB0DB60057F68F /* RecipediaApp.swift */; };
 		BC95F0E427BB0DB70057F68F /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC95F0D027BB0DB60057F68F /* MainView.swift */; };
 		BC95F0E627BB0DB70057F68F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC95F0D127BB0DB70057F68F /* Assets.xcassets */; };
+		BCA56D2127E66E1600FC1A70 /* PantryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7E52D427E3EEFE0066FC96 /* PantryView.swift */; };
 		BCAB55E927D1A6DA00334443 /* RecipeSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCAB55E827D1A6DA00334443 /* RecipeSearch.swift */; };
 		BCAB55F027D1AA8100334443 /* RecipeSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCAB55EF27D1AA8100334443 /* RecipeSearchViewModel.swift */; };
 /* End PBXBuildFile section */
@@ -162,12 +162,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCA56D2127E66E1600FC1A70 /* PantryView.swift in Sources */,
 				BCAB55F027D1AA8100334443 /* RecipeSearchViewModel.swift in Sources */,
 				BC95F0E427BB0DB70057F68F /* MainView.swift in Sources */,
 				BCAB55E927D1A6DA00334443 /* RecipeSearch.swift in Sources */,
 				BC95F0E227BB0DB70057F68F /* RecipediaApp.swift in Sources */,
 				BC7E52D927E3FC010066FC96 /* SearchView.swift in Sources */,
-				BC7E52D527E3EEFE0066FC96 /* PantryView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

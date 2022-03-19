@@ -27,6 +27,13 @@ struct PantryView: View {
                         Image(systemName: "note").foregroundColor(.black)
                     })
                     Text("This is the PantryView.")
+                    
+                    // Essentially a button that uses the functionality of NavigationView to go between different views
+                    NavigationLink(
+                        destination: IngredientSearchView(),
+                        label: {
+                            Image(systemName: "magnifyingglass").foregroundColor(.black)
+                        })
                 }
                 Spacer()
                 ScrollView {

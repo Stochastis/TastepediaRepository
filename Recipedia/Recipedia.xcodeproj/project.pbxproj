@@ -10,11 +10,8 @@
 		BC7E52D527E3EEFE0066FC96 /* PantryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7E52D427E3EEFE0066FC96 /* PantryView.swift */; };
 		BC7E52D927E3FC010066FC96 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7E52D827E3FC010066FC96 /* SearchView.swift */; };
 		BC95F0E227BB0DB70057F68F /* RecipediaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC95F0CF27BB0DB60057F68F /* RecipediaApp.swift */; };
-		BC95F0E327BB0DB70057F68F /* RecipediaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC95F0CF27BB0DB60057F68F /* RecipediaApp.swift */; };
 		BC95F0E427BB0DB70057F68F /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC95F0D027BB0DB60057F68F /* MainView.swift */; };
-		BC95F0E527BB0DB70057F68F /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC95F0D027BB0DB60057F68F /* MainView.swift */; };
 		BC95F0E627BB0DB70057F68F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC95F0D127BB0DB70057F68F /* Assets.xcassets */; };
-		BC95F0E727BB0DB70057F68F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC95F0D127BB0DB70057F68F /* Assets.xcassets */; };
 		BCAB55E927D1A6DA00334443 /* RecipeSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCAB55E827D1A6DA00334443 /* RecipeSearch.swift */; };
 		BCAB55F027D1AA8100334443 /* RecipeSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCAB55EF27D1AA8100334443 /* RecipeSearchViewModel.swift */; };
 /* End PBXBuildFile section */
@@ -27,22 +24,12 @@
 		BC95F0D127BB0DB70057F68F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BC95F0D627BB0DB70057F68F /* Recipedia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Recipedia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC95F0D927BB0DB70057F68F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BC95F0DE27BB0DB70057F68F /* Recipedia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Recipedia.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		BC95F0E027BB0DB70057F68F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BC95F0E127BB0DB70057F68F /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		BCAB55E827D1A6DA00334443 /* RecipeSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSearch.swift; sourceTree = "<group>"; };
 		BCAB55EF27D1AA8100334443 /* RecipeSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSearchViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		BC95F0D327BB0DB70057F68F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		BC95F0DB27BB0DB70057F68F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -59,7 +46,6 @@
 				BCAB55EE27D1AA4A00334443 /* View Models */,
 				BC95F0CE27BB0DB60057F68F /* Shared */,
 				BC95F0D827BB0DB70057F68F /* iOS */,
-				BC95F0DF27BB0DB70057F68F /* macOS */,
 				BC95F0D727BB0DB70057F68F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -80,7 +66,6 @@
 			isa = PBXGroup;
 			children = (
 				BC95F0D627BB0DB70057F68F /* Recipedia.app */,
-				BC95F0DE27BB0DB70057F68F /* Recipedia.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -91,15 +76,6 @@
 				BC95F0D927BB0DB70057F68F /* Info.plist */,
 			);
 			path = iOS;
-			sourceTree = "<group>";
-		};
-		BC95F0DF27BB0DB70057F68F /* macOS */ = {
-			isa = PBXGroup;
-			children = (
-				BC95F0E027BB0DB70057F68F /* Info.plist */,
-				BC95F0E127BB0DB70057F68F /* macOS.entitlements */,
-			);
-			path = macOS;
 			sourceTree = "<group>";
 		};
 		BCAB55E727D1A63C00334443 /* Models */ = {
@@ -138,23 +114,6 @@
 			productReference = BC95F0D627BB0DB70057F68F /* Recipedia.app */;
 			productType = "com.apple.product-type.application";
 		};
-		BC95F0DD27BB0DB70057F68F /* Recipedia (macOS) */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = BC95F0ED27BB0DB70057F68F /* Build configuration list for PBXNativeTarget "Recipedia (macOS)" */;
-			buildPhases = (
-				BC95F0DA27BB0DB70057F68F /* Sources */,
-				BC95F0DB27BB0DB70057F68F /* Frameworks */,
-				BC95F0DC27BB0DB70057F68F /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Recipedia (macOS)";
-			productName = "Recipedia (macOS)";
-			productReference = BC95F0DE27BB0DB70057F68F /* Recipedia.app */;
-			productType = "com.apple.product-type.application";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -165,9 +124,6 @@
 				LastUpgradeCheck = 1240;
 				TargetAttributes = {
 					BC95F0D527BB0DB70057F68F = {
-						CreatedOnToolsVersion = 12.4;
-					};
-					BC95F0DD27BB0DB70057F68F = {
 						CreatedOnToolsVersion = 12.4;
 					};
 				};
@@ -186,7 +142,6 @@
 			projectRoot = "";
 			targets = (
 				BC95F0D527BB0DB70057F68F /* Recipedia (iOS) */,
-				BC95F0DD27BB0DB70057F68F /* Recipedia (macOS) */,
 			);
 		};
 /* End PBXProject section */
@@ -197,14 +152,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC95F0E627BB0DB70057F68F /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		BC95F0DC27BB0DB70057F68F /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				BC95F0E727BB0DB70057F68F /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -221,15 +168,6 @@
 				BC95F0E227BB0DB70057F68F /* RecipediaApp.swift in Sources */,
 				BC7E52D927E3FC010066FC96 /* SearchView.swift in Sources */,
 				BC7E52D527E3EEFE0066FC96 /* PantryView.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		BC95F0DA27BB0DB70057F68F /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				BC95F0E527BB0DB70057F68F /* MainView.swift in Sources */,
-				BC95F0E327BB0DB70057F68F /* RecipediaApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,54 +330,6 @@
 			};
 			name = Release;
 		};
-		BC95F0EE27BB0DB70057F68F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 79U643427T;
-				ENABLE_HARDENED_RUNTIME = YES;
-				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = macOS/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Recipedia.Recipedia;
-				PRODUCT_NAME = Recipedia;
-				SDKROOT = macosx;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Debug;
-		};
-		BC95F0EF27BB0DB70057F68F /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_ENTITLEMENTS = macOS/macOS.entitlements;
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 79U643427T;
-				ENABLE_HARDENED_RUNTIME = YES;
-				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = macOS/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				PRODUCT_BUNDLE_IDENTIFIER = Recipedia.Recipedia;
-				PRODUCT_NAME = Recipedia;
-				SDKROOT = macosx;
-				SWIFT_VERSION = 5.0;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -457,15 +347,6 @@
 			buildConfigurations = (
 				BC95F0EB27BB0DB70057F68F /* Debug */,
 				BC95F0EC27BB0DB70057F68F /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		BC95F0ED27BB0DB70057F68F /* Build configuration list for PBXNativeTarget "Recipedia (macOS)" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				BC95F0EE27BB0DB70057F68F /* Debug */,
-				BC95F0EF27BB0DB70057F68F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

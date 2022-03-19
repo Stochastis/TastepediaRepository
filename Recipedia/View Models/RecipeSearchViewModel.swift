@@ -36,7 +36,6 @@ class RecipeSearchViewModel: ObservableObject {
                     print("model is empty.")
                     self.model.append(RecipeSearchElement(title: "No Recipes Found"))
                 }
-                print(String(self.model[0].title!))
             }
         }
         session.resume()

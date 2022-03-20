@@ -14,11 +14,13 @@ struct RecipediaApp: App {
     
     // Create an instance of the Pantry object to keep track of ingredients
     @StateObject var pantry = Pantry(startingIngredients: ["Salt", "Garlic", "Peppers", "Avacado", "Beef"])
+    
+    @StateObject var ingredientsList = IngredientsFile()
             
     // Start the application in the MainView
     var body: some Scene {
         WindowGroup {
-            MainView().environmentObject(pantry)
+            MainView().environmentObject(pantry).environmentObject(ingredientsList)
         }
     }
 }
@@ -29,5 +31,30 @@ class Pantry: ObservableObject {
         ingredients = startingIngredients
     }
     @Published var ingredients: [String]
+}
+
+// Grabs Top 1k Ingredients list from external txt file and compiles them into an array
+class IngredientsFile: ObservableObject {
+    var ingredientsList: [String] = []
+    
+    init() {
+        let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("Top1kIngredients.txt")
+        
+        do {
+            let ingredientsText = try String(contentsOf: path)
+            
+            for line in ingredientsText.split(separator: "\r\n") {
+                ingredientsList.append(String(line))
+            }
+        } catch {
+            print(error.localizedDescription)
+        }
+        print(path.absoluteString)
+        print(getDocumentDirectory())
+    }
+    
+    func getDocumentDirectory() -> URL {
+        return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+    }
 }
 

@@ -14,7 +14,7 @@ struct RecipediaApp: App {
     
     // Create an instance of the Pantry object to keep track of ingredients
     @StateObject var pantry = Pantry(startingIngredients: ["Salt", "Garlic", "Peppers", "Avacado", "Beef"])
-    
+            
     // Start the application in the MainView
     var body: some Scene {
         WindowGroup {

@@ -26,7 +26,17 @@ struct SearchView: View {
         NavigationView{
             VStack {
                 HStack {
-                    Text("This is the SearchView.")
+                    Button(action: {
+                        // Grabs recipes from the Spoonacular API through the ViewModel
+                        model.findRecipes(inputs: pantry.ingredients)
+                        recipes.removeAll()
+                        for index in 0..<(model.model.count) {
+                            recipes.append(model.model[index].title ?? "Placeholder Recipe Title")
+                        }
+                    }, label: {
+                        Text("API Call Test")
+                    })
+                    
                     Button(action: {
                         // Dismiss this current view and return to the previous one
                         self.presentationMode.wrappedValue.dismiss()
@@ -34,18 +44,12 @@ struct SearchView: View {
                         Image(systemName: "note").foregroundColor(.black)
                     })
                 }
-                Button(action: {
-                    
-                    // Grabs recipes from the Spoonacular API through the ViewModel
-                    model.findRecipes(inputs: pantry.ingredients)
-                    recipes.removeAll()
-                    for index in 0..<(model.model.count) {
-                        recipes.append(model.model[index].title ?? "Placeholder Recipe Title")
-                    }
-                }, label: {
-                    Text("API Call Test")
-                })
+                
+                Spacer()
+                
                 Text(!model.model.isEmpty ? String(model.model.randomElement()?.title ?? "") : "")
+                
+                Spacer()
                 
             }
         }.navigationBarHidden(true)

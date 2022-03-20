@@ -49,7 +49,7 @@ struct PantryView: View {
                                     print("Removed \(pantry.ingredients[i]) from pantry.")
                                     pantry.ingredients.remove(at: i)
                                 }, label: {
-                                    Image(systemName: "minus.square.fill").foregroundColor(.orange)
+                                    Image(systemName: "minus.square.fill").foregroundColor(.red)
                                 }).frame(width: 300, height: 300, alignment: .bottomLeading)
                             }
                         }
@@ -65,7 +65,7 @@ struct PantryView: View {
                                             print("Removed \(pantry.ingredients[i-1]) from pantry.")
                                             pantry.ingredients.remove(at: i-1)
                                         }, label: {
-                                            Image(systemName: "minus.square.fill").foregroundColor(.orange)
+                                            Image(systemName: "minus.square.fill").foregroundColor(.red)
                                         }).frame(width: 150, height: 150, alignment: .bottomLeading)
                                     }
                                     ZStack {
@@ -75,7 +75,7 @@ struct PantryView: View {
                                             print("Removed \(pantry.ingredients[i]) from pantry.")
                                             pantry.ingredients.remove(at: i)
                                         }, label: {
-                                            Image(systemName: "minus.square.fill").foregroundColor(.orange)
+                                            Image(systemName: "minus.square.fill").foregroundColor(.red)
                                         }).frame(width: 150, height: 150, alignment: .bottomLeading)
                                     }
                                 }
@@ -107,6 +107,6 @@ fileprivate func checkForTwoSquares(loop: Int) -> Bool {
 
 struct PantryView_Previews: PreviewProvider {
     static var previews: some View {
-        PantryView().environmentObject(Pantry(startingIngredients: ["Salt", "Garlic", "Peppers", "Avacado", "Beef"]))
+        PantryView().environmentObject(Pantry(startingIngredients: []))
     }
 }

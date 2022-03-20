@@ -9,9 +9,6 @@ import SwiftUI
 
 struct MainView: View {
     
-    // Temporary array for ingredient buttons. Delete or change this.
-    @State var buttonIngredients: [[String]] = [["onions", "butter", "pepper"], ["tomatoes", "peppers", "asparagus"], ["squash", "chicken", "lamb"], ["beef", "cucumbers", "strawberries"], ["watermelon", "sugar", "blueberries"]]
-    
     // Access the pantry environment object
     @EnvironmentObject var pantry: Pantry
     
@@ -35,10 +32,9 @@ struct MainView: View {
                             VStack {
                                 ForEach(0 ..< 3) { j in
                                     Button(action: {
-                                        // Current Behavior: Adds ingredients to the pantry
+                                        // Current Behavior: Nothing
                                         // Desired Behavior: Add ingredients from pantry to list of preferred ingredients
-                                        pantry.ingredients.append(buttonIngredients[i][j])
-                                        print(pantry.ingredients)
+                                        print("Button Pressed")
                                     }, label: {
                                         RoundedRectangle(cornerRadius: 10).frame(width: 50, height: 50, alignment: .center).foregroundColor(.white)
                                             .overlay(Image("ChickenIcon").resizable())
@@ -70,7 +66,7 @@ struct MainView: View {
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView().environmentObject(Pantry(startingIngredients: ["Salt", "Garlic", "Peppers", "Avacado", "Beef"]))
+        MainView().environmentObject(Pantry(startingIngredients: []))
         
         
     }

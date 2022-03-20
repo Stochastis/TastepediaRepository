@@ -13,7 +13,7 @@ import SwiftUI
 struct RecipediaApp: App {
     
     // Create an instance of the Pantry object to keep track of ingredients
-    @StateObject var pantry = Pantry(startingIngredients: ["Salt", "Garlic", "Peppers", "Avacado", "Beef"])
+    @StateObject var pantry = Pantry(startingIngredients: [])
     
     @StateObject var ingredientsList = IngredientsFile()
             

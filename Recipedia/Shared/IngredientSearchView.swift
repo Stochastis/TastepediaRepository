@@ -48,9 +48,14 @@ struct IngredientSearchView: View {
                                 Rectangle().aspectRatio(1, contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
                                 Text("\(ingredientsList.ingredientsList[i])").foregroundColor(.orange)
                                 Button(action: {
-                                    print("Add \(ingredientsList.ingredientsList[i]) to pantry")
+                                    if !(pantry.ingredients.contains(ingredientsList.ingredientsList[i])) {
+                                        print("Added \(ingredientsList.ingredientsList[i]) to pantry")
+                                        pantry.ingredients.append(ingredientsList.ingredientsList[i])
+                                    } else {
+                                        print("Pantry already contains \(ingredientsList.ingredientsList[i])")
+                                    }
                                 }, label: {
-                                    Image(systemName: "minus.square.fill").foregroundColor(.orange)
+                                    Image(systemName: "plus.square.fill").foregroundColor(.green)
                                 }).frame(width: 300, height: 300, alignment: .bottomLeading)
                             }
                         }
@@ -63,18 +68,28 @@ struct IngredientSearchView: View {
                                         Rectangle().aspectRatio(1, contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
                                         Text("\(ingredientsList.ingredientsList[i-1])").foregroundColor(.orange)
                                         Button(action: {
-                                            print("Add \(ingredientsList.ingredientsList[i-1]) to pantry")
+                                            if !(pantry.ingredients.contains(ingredientsList.ingredientsList[i-1])) {
+                                                print("Added \(ingredientsList.ingredientsList[i-1]) to pantry")
+                                                pantry.ingredients.append(ingredientsList.ingredientsList[i-1])
+                                            } else {
+                                                print("Pantry already contains \(ingredientsList.ingredientsList[i-1])")
+                                            }
                                         }, label: {
-                                            Image(systemName: "minus.square.fill").foregroundColor(.orange)
+                                            Image(systemName: "plus.square.fill").foregroundColor(.green)
                                         }).frame(width: 150, height: 150, alignment: .bottomLeading)
                                     }
                                     ZStack {
                                         Rectangle().aspectRatio(1, contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
                                         Text("\(ingredientsList.ingredientsList[i])").foregroundColor(.orange)
                                         Button(action: {
-                                            print("Add \(ingredientsList.ingredientsList[i]) to pantry")
+                                            if !(pantry.ingredients.contains(ingredientsList.ingredientsList[i])) {
+                                                print("Added \(ingredientsList.ingredientsList[i]) to pantry")
+                                                pantry.ingredients.append(ingredientsList.ingredientsList[i])
+                                            } else {
+                                                print("Pantry already contains \(ingredientsList.ingredientsList[i])")
+                                            }
                                         }, label: {
-                                            Image(systemName: "minus.square.fill").foregroundColor(.orange)
+                                            Image(systemName: "plus.square.fill").foregroundColor(.green)
                                         }).frame(width: 150, height: 150, alignment: .bottomLeading)
                                     }
                                 }

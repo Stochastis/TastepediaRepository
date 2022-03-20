@@ -47,13 +47,55 @@ struct SearchView: View {
                 
                 Spacer()
                 
-                Text(!model.model.isEmpty ? String(model.model.randomElement()?.title ?? "") : "")
-                
+                ScrollView {
+                    ForEach(0 ..< model.model.count, id: \.self) { i in
+                        
+                        if (checkForOneSquare(loop: i, count: model.model.count)) {
+                            ZStack {
+                                Rectangle().aspectRatio(1, contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
+                                Text(model.model[i].title ?? "Placeholder").foregroundColor(.orange)
+                            }
+                        }
+                        
+                        else {
+                            if (checkForTwoSquares(loop: i)) {
+                                HStack {
+                                    ZStack {
+                                        Rectangle().aspectRatio(1, contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
+                                        Text(model.model[i-1].title ?? "Placeholder").foregroundColor(.orange)
+                                    }
+                                    ZStack {
+                                        Rectangle().aspectRatio(1, contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
+                                        Text(model.model[i].title ?? "Placeholder").foregroundColor(.orange)
+                                    }
+                                }
+                            } else {
+                                /*@START_MENU_TOKEN@*/EmptyView()/*@END_MENU_TOKEN@*/
+                            }
+                        }
+                    }
+                }
+                                
                 Spacer()
                 
             }
         }.navigationBarHidden(true)
     }
+}
+
+// Checks if there needs to be one big square for an odd number of ingredients in the pantry
+// Using this function to minimize indexing time instead of doing this all in-line
+fileprivate func checkForOneSquare(loop: Int, count: Int) -> Bool {
+    let first: Bool = ((count - loop) == 1);
+    let second: Bool = ((count % 2) == 1);
+    let final: Bool = (first && second);
+    return final;
+}
+
+// Checks if there needs to be two smaller squares for an even number of ingredients in the pantry
+// Using this function to minimize indexing time instead of doing this all in-line
+fileprivate func checkForTwoSquares(loop: Int) -> Bool {
+    return (loop % 2 == 1)
 }
 
 struct SearchView_Previews: PreviewProvider {

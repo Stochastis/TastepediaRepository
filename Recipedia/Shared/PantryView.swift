@@ -56,6 +56,7 @@ struct PantryView: View {
                         
                         // Displays two squares for all ingredients in the pantry except for the last one if there is an odd number of indgredients
                         else {
+                            // Check if this if statement is necessary
                             if (checkForTwoSquares(loop: i)) {
                                 HStack {
                                     ZStack {

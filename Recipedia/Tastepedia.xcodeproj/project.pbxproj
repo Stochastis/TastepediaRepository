@@ -16,6 +16,7 @@
 		BCA56D2127E66E1600FC1A70 /* PantryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7E52D427E3EEFE0066FC96 /* PantryView.swift */; };
 		BCAB55E927D1A6DA00334443 /* RecipeSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCAB55E827D1A6DA00334443 /* RecipeSearch.swift */; };
 		BCAB55F027D1AA8100334443 /* RecipeSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCAB55EF27D1AA8100334443 /* RecipeSearchViewModel.swift */; };
+		BCCE875127E954F7005C7184 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BCCE875027E954F7005C7184 /* Launch Screen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		BC95F0D927BB0DB70057F68F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BCAB55E827D1A6DA00334443 /* RecipeSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSearch.swift; sourceTree = "<group>"; };
 		BCAB55EF27D1AA8100334443 /* RecipeSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSearchViewModel.swift; sourceTree = "<group>"; };
+		BCCE875027E954F7005C7184 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +48,7 @@
 		BC95F0C927BB0DB60057F68F = {
 			isa = PBXGroup;
 			children = (
+				BCCE875027E954F7005C7184 /* Launch Screen.storyboard */,
 				BCAB55E727D1A63C00334443 /* Models */,
 				BCAB55EE27D1AA4A00334443 /* View Models */,
 				BC95F0CE27BB0DB60057F68F /* Shared */,
@@ -157,6 +160,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCCE875127E954F7005C7184 /* Launch Screen.storyboard in Resources */,
 				BC95F0E627BB0DB70057F68F /* Assets.xcassets in Resources */,
 				BC2AEA6B27E8135A0022C13A /* Top1kIngredients.txt in Resources */,
 			);

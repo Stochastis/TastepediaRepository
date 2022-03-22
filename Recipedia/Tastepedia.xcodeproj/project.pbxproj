@@ -103,9 +103,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		BC95F0D527BB0DB70057F68F /* Recipedia (iOS) */ = {
+		BC95F0D527BB0DB70057F68F /* Tastepedia (iOS) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BC95F0EA27BB0DB70057F68F /* Build configuration list for PBXNativeTarget "Recipedia (iOS)" */;
+			buildConfigurationList = BC95F0EA27BB0DB70057F68F /* Build configuration list for PBXNativeTarget "Tastepedia (iOS)" */;
 			buildPhases = (
 				BC95F0D227BB0DB70057F68F /* Sources */,
 				BC95F0D327BB0DB70057F68F /* Frameworks */,
@@ -115,7 +115,7 @@
 			);
 			dependencies = (
 			);
-			name = "Recipedia (iOS)";
+			name = "Tastepedia (iOS)";
 			productName = "Recipedia (iOS)";
 			productReference = BC95F0D627BB0DB70057F68F /* Recipedia.app */;
 			productType = "com.apple.product-type.application";
@@ -147,7 +147,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				BC95F0D527BB0DB70057F68F /* Recipedia (iOS) */,
+				BC95F0D527BB0DB70057F68F /* Tastepedia (iOS) */,
 			);
 		};
 /* End PBXProject section */
@@ -354,7 +354,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BC95F0EA27BB0DB70057F68F /* Build configuration list for PBXNativeTarget "Recipedia (iOS)" */ = {
+		BC95F0EA27BB0DB70057F68F /* Build configuration list for PBXNativeTarget "Tastepedia (iOS)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BC95F0EB27BB0DB70057F68F /* Debug */,

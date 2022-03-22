@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "BC95F0D527BB0DB70057F68F"
                BuildableName = "Recipedia.app"
-               BlueprintName = "Recipedia (iOS)"
+               BlueprintName = "Tastepedia (iOS)"
                ReferencedContainer = "container:Tastepedia.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -46,7 +46,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "BC95F0D527BB0DB70057F68F"
             BuildableName = "Recipedia.app"
-            BlueprintName = "Recipedia (iOS)"
+            BlueprintName = "Tastepedia (iOS)"
             ReferencedContainer = "container:Tastepedia.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -63,7 +63,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "BC95F0D527BB0DB70057F68F"
             BuildableName = "Recipedia.app"
-            BlueprintName = "Recipedia (iOS)"
+            BlueprintName = "Tastepedia (iOS)"
             ReferencedContainer = "container:Tastepedia.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

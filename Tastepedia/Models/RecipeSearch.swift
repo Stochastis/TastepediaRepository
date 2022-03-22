@@ -74,6 +74,8 @@ extension RecipeSearchElement {
 
 enum ImageType: String, Codable {
     case jpg = "jpg"
+    case jpeg = "jpeg"
+    case png = "png"
 }
 
 

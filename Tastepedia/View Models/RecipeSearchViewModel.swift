@@ -17,7 +17,7 @@ class RecipeSearchViewModel: ObservableObject {
         // Create custom URL with desired ingredients from inputs parameter
         var ingredientString = ""
         for ingredient in inputs {
-            ingredientString += ingredient.replacingOccurrences(of: " ", with: "") + ","
+            ingredientString += ingredient.replacingOccurrences(of: " ", with: "").lowercased() + ","
         }
         ingredientString = String(ingredientString.dropLast())
         let url: URL! = URL(string: "https://api.spoonacular.com/recipes/findByIngredients?ingredients=" + ingredientString + "&ranking=2&apiKey=af2da9210db04a9d8bb691d2f4166632")
@@ -31,9 +31,15 @@ class RecipeSearchViewModel: ObservableObject {
                 if data == nil {
                     print("No data recieved.")
                 }
-                self.model = try! JSONDecoder().decode([RecipeSearchElement].self, from: data!)
+                do {
+                    self.model = try JSONDecoder().decode([RecipeSearchElement].self, from: data!)
+                    print("Successfully decoded JSON")
+                } catch {
+                    print("Trouble decoding JSON. Error below.")
+                    print("Error: \(error)")
+                }
                 if self.model.isEmpty {
-                    print("model is empty.")
+                    print("Model is empty.")
                     self.model.append(RecipeSearchElement(title: "No Recipes Found"))
                 }
             }

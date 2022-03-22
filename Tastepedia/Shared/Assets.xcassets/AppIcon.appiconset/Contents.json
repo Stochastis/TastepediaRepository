@@ -1,103 +1,88 @@
 {
   "images" : [
     {
-      "filename" : "TastepediaIconLowQual1.0.0-20.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "20x20"
     },
     {
-      "filename" : "TastepediaIconLowQual1.0.0-15.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "20x20"
     },
     {
-      "filename" : "TastepediaIconLowQual1.0.0-17.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "29x29"
     },
     {
-      "filename" : "TastepediaIconLowQual1.0.0-10.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "29x29"
     },
     {
-      "filename" : "TastepediaIconLowQual1.0.0-12.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "40x40"
     },
     {
-      "filename" : "TastepediaIconLowQual1.0.0-9.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "40x40"
     },
     {
-      "filename" : "TastepediaIconLowQual1.0.0-8.png",
+      "filename" : "TastepediaIcon120px1.0.0.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "60x60"
     },
     {
-      "filename" : "TastepediaIconLowQual1.0.0-4.png",
+      "filename" : "TastepediaIcon180px1.0.0.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "60x60"
     },
     {
-      "filename" : "TastepediaIconLowQual1.0.0-24.png",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "20x20"
     },
     {
-      "filename" : "TastepediaIconLowQual1.0.0-19.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "20x20"
     },
     {
-      "filename" : "TastepediaIconLowQual1.0.0-23.png",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "29x29"
     },
     {
-      "filename" : "TastepediaIconLowQual1.0.0-16.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "29x29"
     },
     {
-      "filename" : "TastepediaIconLowQual1.0.0-18.png",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "40x40"
     },
     {
-      "filename" : "TastepediaIconLowQual1.0.0-11.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "40x40"
     },
     {
-      "filename" : "TastepediaIconLowQual1.0.0-13.png",
       "idiom" : "ipad",
       "scale" : "1x",
       "size" : "76x76"
     },
     {
-      "filename" : "TastepediaIconLowQual1.0.0-6.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "76x76"
     },
     {
-      "filename" : "TastepediaIconLowQual1.0.0-5.png",
       "idiom" : "ipad",
       "scale" : "2x",
       "size" : "83.5x83.5"
@@ -109,55 +94,55 @@
       "size" : "1024x1024"
     },
     {
-      "filename" : "TastepediaIconLowQual1.0.0-25.png",
+      "filename" : "TastepediaIcon16px1.0.0.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "16x16"
     },
     {
-      "filename" : "TastepediaIconLowQual1.0.0-22.png",
+      "filename" : "TastepediaIcon32px1.0.0-1.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "16x16"
     },
     {
-      "filename" : "TastepediaIconLowQual1.0.0-21.png",
+      "filename" : "TastepediaIcon32px1.0.0.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "32x32"
     },
     {
-      "filename" : "TastepediaIconLowQual1.0.0-14.png",
+      "filename" : "TastepediaIcon64pt1.0.0.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "32x32"
     },
     {
-      "filename" : "TastepediaIconLowQual1.0.0-7.png",
+      "filename" : "TastepediaIcon128pt1.0.0.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "128x128"
     },
     {
-      "filename" : "TastepediaIconLowQual1.0.0-3.png",
+      "filename" : "TastepediaIcon256pt1.0.0-1.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "128x128"
     },
     {
-      "filename" : "TastepediaIconLowQual1.0.0-2.png",
+      "filename" : "TastepediaIcon256pt1.0.0.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "256x256"
     },
     {
-      "filename" : "TastepediaIconLowQual1.0.0.png",
+      "filename" : "TastepediaIcon512pt1.0.0-1.png",
       "idiom" : "mac",
       "scale" : "2x",
       "size" : "256x256"
     },
     {
-      "filename" : "TastepediaIconLowQual1.0.0-1.png",
+      "filename" : "TastepediaIcon512pt1.0.0.png",
       "idiom" : "mac",
       "scale" : "1x",
       "size" : "512x512"

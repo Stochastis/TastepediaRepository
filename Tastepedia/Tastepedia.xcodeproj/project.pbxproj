@@ -20,14 +20,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		BC2AEA6A27E8135A0022C13A /* Top1kIngredients.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Top1kIngredients.txt; path = ../../../../.Trash/Top1kIngredients.txt; sourceTree = "<group>"; };
+		BC05599927E96614009DEBA1 /* Tastepedia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tastepedia.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BC2AEA6A27E8135A0022C13A /* Top1kIngredients.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Top1kIngredients.txt; sourceTree = "<group>"; };
 		BC3DACAF27E68BEE00F94F3D /* IngredientSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientSearchView.swift; sourceTree = "<group>"; };
 		BC7E52D427E3EEFE0066FC96 /* PantryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PantryView.swift; sourceTree = "<group>"; };
 		BC7E52D827E3FC010066FC96 /* RecipeSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSearchView.swift; sourceTree = "<group>"; };
 		BC95F0CF27BB0DB60057F68F /* TastepediaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TastepediaApp.swift; sourceTree = "<group>"; };
 		BC95F0D027BB0DB60057F68F /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		BC95F0D127BB0DB70057F68F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		BC95F0D627BB0DB70057F68F /* Recipedia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Recipedia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC95F0D927BB0DB70057F68F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BCAB55E827D1A6DA00334443 /* RecipeSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSearch.swift; sourceTree = "<group>"; };
 		BCAB55EF27D1AA8100334443 /* RecipeSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSearchViewModel.swift; sourceTree = "<group>"; };
@@ -53,7 +53,7 @@
 				BCAB55EE27D1AA4A00334443 /* View Models */,
 				BC95F0CE27BB0DB60057F68F /* Shared */,
 				BC95F0D827BB0DB70057F68F /* iOS */,
-				BC95F0D727BB0DB70057F68F /* Products */,
+				BC05599927E96614009DEBA1 /* Tastepedia.app */,
 			);
 			sourceTree = "<group>";
 		};
@@ -69,14 +69,6 @@
 				BC2AEA6A27E8135A0022C13A /* Top1kIngredients.txt */,
 			);
 			path = Shared;
-			sourceTree = "<group>";
-		};
-		BC95F0D727BB0DB70057F68F /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				BC95F0D627BB0DB70057F68F /* Recipedia.app */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		BC95F0D827BB0DB70057F68F /* iOS */ = {
@@ -120,7 +112,7 @@
 			);
 			name = "Tastepedia (iOS)";
 			productName = "Recipedia (iOS)";
-			productReference = BC95F0D627BB0DB70057F68F /* Recipedia.app */;
+			productReference = BC05599927E96614009DEBA1 /* Tastepedia.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -146,7 +138,7 @@
 				Base,
 			);
 			mainGroup = BC95F0C927BB0DB60057F68F;
-			productRefGroup = BC95F0D727BB0DB70057F68F /* Products */;
+			productRefGroup = BC95F0C927BB0DB60057F68F;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -314,7 +306,7 @@
 				);
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.calebsross.Tastepedia;
-				PRODUCT_NAME = Recipedia;
+				PRODUCT_NAME = Tastepedia;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -338,7 +330,7 @@
 				);
 				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.calebsross.Tastepedia;
-				PRODUCT_NAME = Recipedia;
+				PRODUCT_NAME = Tastepedia;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

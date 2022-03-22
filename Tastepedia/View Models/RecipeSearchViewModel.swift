@@ -1,6 +1,6 @@
 //
 //  RecipeSearchViewModel.swift
-//  Recipedia (iOS)
+//  Tastepedia (iOS)
 //
 //  Created by Caleb Ross on 3/3/22.
 //

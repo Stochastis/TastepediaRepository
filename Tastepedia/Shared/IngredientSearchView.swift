@@ -1,6 +1,6 @@
 //
 //  IngredientSearchView.swift
-//  Recipedia (iOS)
+//  Tastepedia (iOS)
 //
 //  Created by Caleb Ross on 3/19/22.
 //

@@ -1,6 +1,6 @@
 //
 //  PantryView.swift
-//  Recipedia (iOS)
+//  Tastepedia (iOS)
 //
 //  Created by Caleb Ross on 3/17/22.
 //

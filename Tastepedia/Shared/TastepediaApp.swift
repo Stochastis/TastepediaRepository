@@ -1,5 +1,5 @@
 //
-//  RecipediaApp.swift
+//  Tastepedia.swift
 //  Shared
 //
 //  Created by CSStudent on 2/14/22.
@@ -10,7 +10,7 @@ import SwiftUI
 // Starting point for the application
 // Calls the MainView() as the beginning view
 @main
-struct RecipediaApp: App {
+struct Tastepedia: App {
     
     // Create an instance of the Pantry object to keep track of ingredients
     @StateObject var pantry = Pantry(startingIngredients: [])

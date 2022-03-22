@@ -1,11 +1,13 @@
 {
   "images" : [
     {
+      "filename" : "TastepediaIcon40px1.0.0.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "20x20"
     },
     {
+      "filename" : "TastepediaIcon60px1.0.0.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "20x20"
@@ -23,11 +25,13 @@
       "size" : "29x29"
     },
     {
+      "filename" : "TastepediaIcon80px1.0.0.png",
       "idiom" : "iphone",
       "scale" : "2x",
       "size" : "40x40"
     },
     {
+      "filename" : "TastepediaIcon120px1.0.0-1.png",
       "idiom" : "iphone",
       "scale" : "3x",
       "size" : "40x40"

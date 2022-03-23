@@ -15,6 +15,8 @@ struct PantryView: View {
     // Access the pantry environment object
     @EnvironmentObject var pantry: Pantry
     
+    let storedData = UserDefaults.standard
+    
     var body: some View {
         // Wrap everything in a NavigationView so that pages can easily be navigated between
         NavigationView{
@@ -26,7 +28,7 @@ struct PantryView: View {
                     }, label: {
                         Image(systemName: "note").foregroundColor(.black)
                     })
-                    Text("This is the PantryView.")
+                    Text("This is your digital pantry.")
                     
                     // Essentially a button that uses the functionality of NavigationView to go between different views
                     NavigationLink(
@@ -46,8 +48,9 @@ struct PantryView: View {
                                 Rectangle().aspectRatio(1, contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
                                 Text("\(pantry.ingredients[i])").foregroundColor(.orange)
                                 Button(action: {
-                                    print("Removed \(pantry.ingredients[i]) from pantry.")
+                                    print("Removing \(pantry.ingredients[i]) from pantry.")
                                     pantry.ingredients.remove(at: i)
+                                    storedData.set(pantry.ingredients, forKey: "savedIngredients")
                                 }, label: {
                                     Image(systemName: "minus.square.fill").foregroundColor(.red)
                                 }).frame(width: 300, height: 300, alignment: .bottomLeading)
@@ -63,8 +66,9 @@ struct PantryView: View {
                                         Rectangle().aspectRatio(1, contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
                                         Text("\(pantry.ingredients[i-1])").foregroundColor(.orange)
                                         Button(action: {
-                                            print("Removed \(pantry.ingredients[i-1]) from pantry.")
+                                            print("Removing \(pantry.ingredients[i-1]) from pantry.")
                                             pantry.ingredients.remove(at: i-1)
+                                            storedData.set(pantry.ingredients, forKey: "savedIngredients")
                                         }, label: {
                                             Image(systemName: "minus.square.fill").foregroundColor(.red)
                                         }).frame(width: 150, height: 150, alignment: .bottomLeading)
@@ -73,8 +77,9 @@ struct PantryView: View {
                                         Rectangle().aspectRatio(1, contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
                                         Text("\(pantry.ingredients[i])").foregroundColor(.orange)
                                         Button(action: {
-                                            print("Removed \(pantry.ingredients[i]) from pantry.")
+                                            print("Removing \(pantry.ingredients[i]) from pantry.")
                                             pantry.ingredients.remove(at: i)
+                                            storedData.set(pantry.ingredients, forKey: "savedIngredients")
                                         }, label: {
                                             Image(systemName: "minus.square.fill").foregroundColor(.red)
                                         }).frame(width: 150, height: 150, alignment: .bottomLeading)
@@ -108,6 +113,6 @@ fileprivate func checkForTwoSquares(loop: Int) -> Bool {
 
 struct PantryView_Previews: PreviewProvider {
     static var previews: some View {
-        PantryView().environmentObject(Pantry(startingIngredients: []))
+        PantryView().environmentObject(Pantry())
     }
 }

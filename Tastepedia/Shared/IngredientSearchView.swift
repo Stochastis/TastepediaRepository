@@ -18,6 +18,9 @@ struct IngredientSearchView: View {
     
     @EnvironmentObject var pantry: Pantry
     
+    // For easier access to UserDefaults
+    let storedData = UserDefaults.standard
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -30,12 +33,7 @@ struct IngredientSearchView: View {
                     })
                     
                     HStack {
-                        Button(action: {
-                            print("Button pressed")
-                        }, label: {
-                            Image(systemName: "magnifyingglass").foregroundColor(.black)
-                        })
-                        
+                        Image(systemName: "magnifyingglass").foregroundColor(.black)
                         TextField("Enter an ingredient...", text: $searchQuery)
                     }.padding(.vertical, 10).padding(.horizontal).background(Color.primary.opacity(0.05)).cornerRadius(8).padding(.horizontal)
                 }
@@ -51,6 +49,7 @@ struct IngredientSearchView: View {
                                     if !(pantry.ingredients.contains(ingredientsList.ingredientsList[i])) {
                                         print("Added \(ingredientsList.ingredientsList[i]) to pantry")
                                         pantry.ingredients.append(ingredientsList.ingredientsList[i])
+                                        storedData.set(pantry.ingredients, forKey: "savedIngredients")
                                     } else {
                                         print("Pantry already contains \(ingredientsList.ingredientsList[i])")
                                     }
@@ -71,6 +70,7 @@ struct IngredientSearchView: View {
                                             if !(pantry.ingredients.contains(ingredientsList.ingredientsList[i-1])) {
                                                 print("Added \(ingredientsList.ingredientsList[i-1]) to pantry")
                                                 pantry.ingredients.append(ingredientsList.ingredientsList[i-1])
+                                                storedData.set(pantry.ingredients, forKey: "savedIngredients")
                                             } else {
                                                 print("Pantry already contains \(ingredientsList.ingredientsList[i-1])")
                                             }
@@ -85,6 +85,7 @@ struct IngredientSearchView: View {
                                             if !(pantry.ingredients.contains(ingredientsList.ingredientsList[i])) {
                                                 print("Added \(ingredientsList.ingredientsList[i]) to pantry")
                                                 pantry.ingredients.append(ingredientsList.ingredientsList[i])
+                                                storedData.set(pantry.ingredients, forKey: "savedIngredients")
                                             } else {
                                                 print("Pantry already contains \(ingredientsList.ingredientsList[i])")
                                             }

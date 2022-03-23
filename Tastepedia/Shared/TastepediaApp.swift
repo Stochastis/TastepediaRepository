@@ -13,7 +13,7 @@ import SwiftUI
 struct Tastepedia: App {
     
     // Create an instance of the Pantry object to keep track of ingredients
-    @StateObject var pantry = Pantry(startingIngredients: [])
+    @StateObject var pantry = Pantry()
     
     // Create an instance of the IngredientsFile object to open up the txt file of ingredients and use them later
     @StateObject var ingredientsList = IngredientsFile()
@@ -26,10 +26,13 @@ struct Tastepedia: App {
     }
 }
 
-// The Pantry class that keeps track of all ingredients in the pantry
+// The Pantry class that verifies the existence of 'savedIngredients' in UserDefaults and stores ingredients in local storage
 class Pantry: ObservableObject {
-    init(startingIngredients: [String]) {
-        ingredients = startingIngredients
+    init() {
+        if UserDefaults.standard.object(forKey: "savedIngredients") == nil {
+            UserDefaults.standard.setValue([], forKey: "savedIngredients")
+        }
+        ingredients = UserDefaults.standard.object(forKey: "savedIngredients") as? [String] ?? [String]()
     }
     @Published var ingredients: [String]
 }

@@ -9,9 +9,6 @@ import SwiftUI
 
 struct MainView: View {
     
-    // Access the pantry environment object
-    @EnvironmentObject var pantry: Pantry
-    
     var body: some View {
         
         // Wrap everything in a NavigationView so that pages can easily be navigated between
@@ -66,8 +63,6 @@ struct MainView: View {
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView().environmentObject(Pantry(startingIngredients: []))
-        
-        
+        MainView().environmentObject(Pantry())
     }
 }

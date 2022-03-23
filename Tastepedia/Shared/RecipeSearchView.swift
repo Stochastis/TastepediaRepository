@@ -83,7 +83,7 @@ struct SearchView: View {
     }
 }
 
-// Checks if there needs to be one big square for an odd number of ingredients in the pantry
+// Checks if there needs to be one big square for an odd number of ingredients in the results
 // Using this function to minimize indexing time instead of doing this all in-line
 fileprivate func checkForOneSquare(loop: Int, count: Int) -> Bool {
     let first: Bool = ((count - loop) == 1);
@@ -92,7 +92,7 @@ fileprivate func checkForOneSquare(loop: Int, count: Int) -> Bool {
     return final;
 }
 
-// Checks if there needs to be two smaller squares for an even number of ingredients in the pantry
+// Checks if there needs to be two smaller squares for an even number of ingredients in the results
 // Using this function to minimize indexing time instead of doing this all in-line
 fileprivate func checkForTwoSquares(loop: Int) -> Bool {
     return (loop % 2 == 1)

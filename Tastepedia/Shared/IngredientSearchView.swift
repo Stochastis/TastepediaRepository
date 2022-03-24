@@ -36,7 +36,7 @@ struct IngredientSearchView: View {
                         Image(systemName: "magnifyingglass").foregroundColor(.black)
                         TextField("Enter an ingredient...", text: $searchQuery)
                     }.padding(.vertical, 10).padding(.horizontal).background(Color.primary.opacity(0.05)).cornerRadius(8).padding(.horizontal)
-                }
+                }.onAppear(print(ingredientsList))
                 Spacer()
                 ScrollView {
                     ForEach((0 ..< ingredientsList.ingredientsList.count).filter({ ingredientsList.ingredientsList[$0].lowercased().contains(searchQuery.lowercased()) }), id: \.self) { i in
@@ -51,17 +51,12 @@ struct IngredientSearchView: View {
                                     
                                     // Adds ingredient if not already in pantry
                                     if !(pantry.ingredients.contains(selectedIngredient)) {
-                                        print("Added \(selectedIngredient) to pantry")
-                                        pantry.ingredients.append(selectedIngredient)
-                                        storedData.set(pantry.ingredients, forKey: "savedIngredients")
+                                        addIngredient(ingredientToAdd: selectedIngredient)
                                     }
                                     
                                     // Removes ingredient if already in pantry
                                     else {
-                                        print("Pantry already contains \(selectedIngredient)")
-                                        print("Removing \(selectedIngredient) from pantry")
-                                        pantry.ingredients.remove(at: pantry.ingredients.firstIndex(where: {$0 == selectedIngredient}) ?? 0)
-                                        storedData.set(pantry.ingredients, forKey: "savedIngredients")
+                                        removeIngredient(ingredientToRemove: selectedIngredient)
                                     }
                                 }, label: {
                                     // Green plus if not in pantry. Red minus if in pantry.
@@ -87,17 +82,12 @@ struct IngredientSearchView: View {
                                             
                                             // Adds ingredient if not already in pantry
                                             if !(pantry.ingredients.contains(selectedIngredient)) {
-                                                print("Added \(selectedIngredient) to pantry")
-                                                pantry.ingredients.append(selectedIngredient)
-                                                storedData.set(pantry.ingredients, forKey: "savedIngredients")
+                                                addIngredient(ingredientToAdd: selectedIngredient)
                                             }
                                             
                                             // Removes ingredient if already in pantry
                                             else {
-                                                print("Pantry already contains \(selectedIngredient)")
-                                                print("Removing \(selectedIngredient) from pantry")
-                                                pantry.ingredients.remove(at: pantry.ingredients.firstIndex(where: {$0 == selectedIngredient}) ?? 0)
-                                                storedData.set(pantry.ingredients, forKey: "savedIngredients")
+                                                removeIngredient(ingredientToRemove: selectedIngredient)
                                             }
                                         }, label: {
                                             // Green plus if not in pantry. Red minus if in pantry.
@@ -117,17 +107,12 @@ struct IngredientSearchView: View {
                                             
                                             // Adds ingredient if not already in pantry
                                             if !(pantry.ingredients.contains(selectedIngredient)) {
-                                                print("Added \(selectedIngredient) to pantry")
-                                                pantry.ingredients.append(selectedIngredient)
-                                                storedData.set(pantry.ingredients, forKey: "savedIngredients")
+                                                addIngredient(ingredientToAdd: selectedIngredient)
                                             }
                                             
                                             // Removes ingredient if already in pantry
                                             else {
-                                                print("Pantry already contains \(selectedIngredient)")
-                                                print("Removing \(selectedIngredient) from pantry")
-                                                pantry.ingredients.remove(at: pantry.ingredients.firstIndex(where: {$0 == selectedIngredient}) ?? 0)
-                                                storedData.set(pantry.ingredients, forKey: "savedIngredients")
+                                                removeIngredient(ingredientToRemove: selectedIngredient)
                                             }
                                         }, label: {
                                             // Green plus if not in pantry. Red minus if in pantry.
@@ -148,6 +133,21 @@ struct IngredientSearchView: View {
             }
         }.navigationBarHidden(true)
     }
+}
+
+// Adds ingredient to the pantry
+fileprivate func addIngredient(ingredientToAdd: String) {
+    print("Added \(ingredientToAdd) to pantry")
+    pantry.ingredients.append(ingredientToAdd)
+    storedData.set(pantry.ingredients, forKey: "savedIngredients")
+}
+
+// Removes ingredients from the pantry
+fileprivate func removeIngredient(ingredientToRemove: String) {
+    print("Pantry already contains \(ingredientToRemove)")
+    print("Removing \(ingredientToRemove) from pantry")
+    pantry.ingredients.remove(at: pantry.ingredients.firstIndex(where: {$0 == ingredientToRemove}) ?? 0)
+    storedData.set(pantry.ingredients, forKey: "savedIngredients")
 }
 
 // Checks if there needs to be one big square for an odd number of ingredients in the pantry

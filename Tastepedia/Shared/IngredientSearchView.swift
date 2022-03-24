@@ -43,18 +43,33 @@ struct IngredientSearchView: View {
                         
                         if (checkForOneSquare(loop: i, count: ingredientsList.ingredientsList.count)) {
                             ZStack {
-                                Rectangle().aspectRatio(1, contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
+                                Rectangle().aspectRatio(1, contentMode: .fill)
                                 Text("\(ingredientsList.ingredientsList[i])").foregroundColor(.orange)
                                 Button(action: {
-                                    if !(pantry.ingredients.contains(ingredientsList.ingredientsList[i])) {
-                                        print("Added \(ingredientsList.ingredientsList[i]) to pantry")
-                                        pantry.ingredients.append(ingredientsList.ingredientsList[i])
+                                    // Store the ingredient in a variable for easy access later
+                                    let selectedIngredient: String = ingredientsList.ingredientsList[i]
+                                    
+                                    // Adds ingredient if not already in pantry
+                                    if !(pantry.ingredients.contains(selectedIngredient)) {
+                                        print("Added \(selectedIngredient) to pantry")
+                                        pantry.ingredients.append(selectedIngredient)
                                         storedData.set(pantry.ingredients, forKey: "savedIngredients")
-                                    } else {
-                                        print("Pantry already contains \(ingredientsList.ingredientsList[i])")
+                                    }
+                                    
+                                    // Removes ingredient if already in pantry
+                                    else {
+                                        print("Pantry already contains \(selectedIngredient)")
+                                        print("Removing \(selectedIngredient) from pantry")
+                                        pantry.ingredients.remove(at: pantry.ingredients.firstIndex(where: {$0 == selectedIngredient}) ?? 0)
+                                        storedData.set(pantry.ingredients, forKey: "savedIngredients")
                                     }
                                 }, label: {
-                                    Image(systemName: "plus.square.fill").foregroundColor(.green)
+                                    // Green plus if not in pantry. Red minus if in pantry.
+                                    if !(pantry.ingredients.contains(ingredientsList.ingredientsList[i])) {
+                                        Image(systemName: "plus.square.fill").foregroundColor(.green)
+                                    } else {
+                                        Image(systemName: "minus.square.fill").foregroundColor(.red)
+                                    }
                                 }).frame(width: 300, height: 300, alignment: .bottomLeading)
                             }
                         }
@@ -64,38 +79,68 @@ struct IngredientSearchView: View {
                             if (checkForTwoSquares(loop: i)) {
                                 HStack {
                                     ZStack {
-                                        Rectangle().aspectRatio(1, contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
+                                        Rectangle().aspectRatio(1, contentMode: .fill)
                                         Text("\(ingredientsList.ingredientsList[i-1])").foregroundColor(.orange)
                                         Button(action: {
-                                            if !(pantry.ingredients.contains(ingredientsList.ingredientsList[i-1])) {
-                                                print("Added \(ingredientsList.ingredientsList[i-1]) to pantry")
-                                                pantry.ingredients.append(ingredientsList.ingredientsList[i-1])
+                                            // Store the ingredient in a variable for easy access later
+                                            let selectedIngredient: String = ingredientsList.ingredientsList[i-1]
+                                            
+                                            // Adds ingredient if not already in pantry
+                                            if !(pantry.ingredients.contains(selectedIngredient)) {
+                                                print("Added \(selectedIngredient) to pantry")
+                                                pantry.ingredients.append(selectedIngredient)
                                                 storedData.set(pantry.ingredients, forKey: "savedIngredients")
-                                            } else {
-                                                print("Pantry already contains \(ingredientsList.ingredientsList[i-1])")
+                                            }
+                                            
+                                            // Removes ingredient if already in pantry
+                                            else {
+                                                print("Pantry already contains \(selectedIngredient)")
+                                                print("Removing \(selectedIngredient) from pantry")
+                                                pantry.ingredients.remove(at: pantry.ingredients.firstIndex(where: {$0 == selectedIngredient}) ?? 0)
+                                                storedData.set(pantry.ingredients, forKey: "savedIngredients")
                                             }
                                         }, label: {
-                                            Image(systemName: "plus.square.fill").foregroundColor(.green)
+                                            // Green plus if not in pantry. Red minus if in pantry.
+                                            if !(pantry.ingredients.contains(ingredientsList.ingredientsList[i-1])) {
+                                                Image(systemName: "plus.square.fill").foregroundColor(.green)
+                                            } else {
+                                                Image(systemName: "minus.square.fill").foregroundColor(.red)
+                                            }
                                         }).frame(width: 150, height: 150, alignment: .bottomLeading)
                                     }
                                     ZStack {
-                                        Rectangle().aspectRatio(1, contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
+                                        Rectangle().aspectRatio(1, contentMode: .fill)
                                         Text("\(ingredientsList.ingredientsList[i])").foregroundColor(.orange)
                                         Button(action: {
-                                            if !(pantry.ingredients.contains(ingredientsList.ingredientsList[i])) {
-                                                print("Added \(ingredientsList.ingredientsList[i]) to pantry")
-                                                pantry.ingredients.append(ingredientsList.ingredientsList[i])
+                                            // Store the ingredient in a variable for easy access later
+                                            let selectedIngredient: String = ingredientsList.ingredientsList[i]
+                                            
+                                            // Adds ingredient if not already in pantry
+                                            if !(pantry.ingredients.contains(selectedIngredient)) {
+                                                print("Added \(selectedIngredient) to pantry")
+                                                pantry.ingredients.append(selectedIngredient)
                                                 storedData.set(pantry.ingredients, forKey: "savedIngredients")
-                                            } else {
-                                                print("Pantry already contains \(ingredientsList.ingredientsList[i])")
+                                            }
+                                            
+                                            // Removes ingredient if already in pantry
+                                            else {
+                                                print("Pantry already contains \(selectedIngredient)")
+                                                print("Removing \(selectedIngredient) from pantry")
+                                                pantry.ingredients.remove(at: pantry.ingredients.firstIndex(where: {$0 == selectedIngredient}) ?? 0)
+                                                storedData.set(pantry.ingredients, forKey: "savedIngredients")
                                             }
                                         }, label: {
-                                            Image(systemName: "plus.square.fill").foregroundColor(.green)
+                                            // Green plus if not in pantry. Red minus if in pantry.
+                                            if !(pantry.ingredients.contains(ingredientsList.ingredientsList[i])) {
+                                                Image(systemName: "plus.square.fill").foregroundColor(.green)
+                                            } else {
+                                                Image(systemName: "minus.square.fill").foregroundColor(.red)
+                                            }
                                         }).frame(width: 150, height: 150, alignment: .bottomLeading)
                                     }
                                 }
                             } else {
-                                /*@START_MENU_TOKEN@*/EmptyView()/*@END_MENU_TOKEN@*/
+                                EmptyView()
                             }
                         }
                     }

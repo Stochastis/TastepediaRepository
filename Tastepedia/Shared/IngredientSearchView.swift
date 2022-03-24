@@ -39,7 +39,7 @@ struct IngredientSearchView: View {
                 }
                 Spacer()
                 ScrollView {
-                    ForEach((0 ..< ingredientsList.ingredientsList.count).filter({ ingredientsList.ingredientsList[$0].contains(searchQuery) }), id: \.self) { i in
+                    ForEach((0 ..< ingredientsList.ingredientsList.count).filter({ ingredientsList.ingredientsList[$0].lowercased().contains(searchQuery.lowercased()) }), id: \.self) { i in
                         
                         if (checkForOneSquare(loop: i, count: ingredientsList.ingredientsList.count)) {
                             ZStack {

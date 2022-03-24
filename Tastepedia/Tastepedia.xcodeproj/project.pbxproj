@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BC2AEA6B27E8135A0022C13A /* Top1kIngredients.txt in Resources */ = {isa = PBXBuildFile; fileRef = BC2AEA6A27E8135A0022C13A /* Top1kIngredients.txt */; };
+		BC2AEA6B27E8135A0022C13A /* MasterIngredientsList.txt in Resources */ = {isa = PBXBuildFile; fileRef = BC2AEA6A27E8135A0022C13A /* MasterIngredientsList.txt */; };
 		BC3DACB027E68BEE00F94F3D /* IngredientSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3DACAF27E68BEE00F94F3D /* IngredientSearchView.swift */; };
 		BC7E52D927E3FC010066FC96 /* RecipeSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7E52D827E3FC010066FC96 /* RecipeSearchView.swift */; };
 		BC95F0E227BB0DB70057F68F /* TastepediaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC95F0CF27BB0DB60057F68F /* TastepediaApp.swift */; };
@@ -21,7 +21,7 @@
 
 /* Begin PBXFileReference section */
 		BC05599927E96614009DEBA1 /* Tastepedia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tastepedia.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		BC2AEA6A27E8135A0022C13A /* Top1kIngredients.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Top1kIngredients.txt; sourceTree = "<group>"; };
+		BC2AEA6A27E8135A0022C13A /* MasterIngredientsList.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MasterIngredientsList.txt; sourceTree = "<group>"; };
 		BC3DACAF27E68BEE00F94F3D /* IngredientSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientSearchView.swift; sourceTree = "<group>"; };
 		BC7E52D427E3EEFE0066FC96 /* PantryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PantryView.swift; sourceTree = "<group>"; };
 		BC7E52D827E3FC010066FC96 /* RecipeSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSearchView.swift; sourceTree = "<group>"; };
@@ -66,7 +66,7 @@
 				BC7E52D427E3EEFE0066FC96 /* PantryView.swift */,
 				BC3DACAF27E68BEE00F94F3D /* IngredientSearchView.swift */,
 				BC95F0D127BB0DB70057F68F /* Assets.xcassets */,
-				BC2AEA6A27E8135A0022C13A /* Top1kIngredients.txt */,
+				BC2AEA6A27E8135A0022C13A /* MasterIngredientsList.txt */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -154,7 +154,7 @@
 			files = (
 				BCCE875127E954F7005C7184 /* Launch Screen.storyboard in Resources */,
 				BC95F0E627BB0DB70057F68F /* Assets.xcassets in Resources */,
-				BC2AEA6B27E8135A0022C13A /* Top1kIngredients.txt in Resources */,
+				BC2AEA6B27E8135A0022C13A /* MasterIngredientsList.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

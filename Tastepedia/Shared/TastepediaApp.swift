@@ -37,12 +37,12 @@ class Pantry: ObservableObject {
     @Published var ingredients: [String]
 }
 
-// Grabs Top 1k Ingredients list from external txt file and compiles them into an array
+// Grabs Master Ingredients List from external txt file and compiles them into an array
 class IngredientsFile: ObservableObject {
     var ingredientsList: [String] = []
     
     init() {
-        if let fileURL = Bundle.main.url(forResource: "Top1kIngredients", withExtension: "txt") {
+        if let fileURL = Bundle.main.url(forResource: "MasterIngredientsList", withExtension: "txt") {
             if let fileContents = try? String(contentsOf: fileURL) {
                 print("Loaded ingredients file from bundle.")
                 for line in fileContents.split(separator: "\r\n") {

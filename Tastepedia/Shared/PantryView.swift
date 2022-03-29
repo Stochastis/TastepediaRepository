@@ -46,7 +46,7 @@ struct PantryView: View {
                         if (checkForOneSquare(loop: i, count: pantry.ingredients.count)) {
                             ZStack {
                                 Rectangle().aspectRatio(1, contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
-                                Text("\(pantry.ingredients[i])").foregroundColor(.orange)
+                                Text("\(pantry.ingredients[i].capitalized)").foregroundColor(.orange)
                                 Button(action: {
                                     print("Removing \(pantry.ingredients[i]) from pantry.")
                                     pantry.ingredients.remove(at: i)
@@ -64,7 +64,7 @@ struct PantryView: View {
                                 HStack {
                                     ZStack {
                                         Rectangle().aspectRatio(1, contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
-                                        Text("\(pantry.ingredients[i-1])").foregroundColor(.orange)
+                                        Text("\(pantry.ingredients[i-1].capitalized)").foregroundColor(.orange)
                                         Button(action: {
                                             print("Removing \(pantry.ingredients[i-1]) from pantry.")
                                             pantry.ingredients.remove(at: i-1)
@@ -75,7 +75,7 @@ struct PantryView: View {
                                     }
                                     ZStack {
                                         Rectangle().aspectRatio(1, contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
-                                        Text("\(pantry.ingredients[i])").foregroundColor(.orange)
+                                        Text("\(pantry.ingredients[i].capitalized)").foregroundColor(.orange)
                                         Button(action: {
                                             print("Removing \(pantry.ingredients[i]) from pantry.")
                                             pantry.ingredients.remove(at: i)
@@ -94,21 +94,6 @@ struct PantryView: View {
             }
         }.navigationBarHidden(true)
     }
-}
-
-// Checks if there needs to be one big square for an odd number of ingredients in the pantry
-// Using this function to minimize indexing time instead of doing this all in-line
-fileprivate func checkForOneSquare(loop: Int, count: Int) -> Bool {
-    let first: Bool = ((count - loop) == 1);
-    let second: Bool = ((count % 2) == 1);
-    let final: Bool = (first && second);
-    return final;
-}
-
-// Checks if there needs to be two smaller squares for an even number of ingredients in the pantry
-// Using this function to minimize indexing time instead of doing this all in-line
-fileprivate func checkForTwoSquares(loop: Int) -> Bool {
-    return (loop % 2 == 1)
 }
 
 struct PantryView_Previews: PreviewProvider {

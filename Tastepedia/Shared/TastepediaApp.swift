@@ -26,15 +26,27 @@ struct Tastepedia: App {
     }
 }
 
-// The Pantry class that verifies the existence of 'savedIngredients' in UserDefaults and stores ingredients in local storage
+// The Pantry class that verifies the existence of 'savedIngredients' in UserDefaults
+// Also has the ability to add/remove ingredients to/from local storage
 class Pantry: ObservableObject {
+    @Published var ingredients: [String]
+
     init() {
         if UserDefaults.standard.object(forKey: "savedIngredients") == nil {
             UserDefaults.standard.setValue([], forKey: "savedIngredients")
         }
         ingredients = UserDefaults.standard.object(forKey: "savedIngredients") as? [String] ?? [String]()
     }
-    @Published var ingredients: [String]
+    
+    func addIngredient(_ ingredientToAdd: String){
+        ingredients.append(ingredientToAdd)
+        UserDefaults.standard.set(ingredients, forKey: "savedIngredients")
+    }
+    
+    func removeIngredient(_ ingredientToRemove: String){
+        ingredients.remove(at: ingredients.firstIndex(where: {$0 == ingredientToRemove}) ?? 0)
+        UserDefaults.standard.set(ingredients, forKey: "savedIngredients")
+    }
 }
 
 // Grabs Master Ingredients List from external txt file and compiles them into an array
@@ -59,3 +71,17 @@ class IngredientsFile: ObservableObject {
     }
 }
 
+// Checks if there needs to be one big square for an odd number of ingredients in the pantry
+// Using this function to minimize indexing time instead of doing this all in-line
+func checkForOneSquare(loop: Int, count: Int) -> Bool {
+    let first: Bool = ((count - loop) == 1);
+    let second: Bool = ((count % 2) == 1);
+    let final: Bool = (first && second);
+    return final;
+}
+
+// Checks if there needs to be two smaller squares for an even number of ingredients in the pantry
+// Using this function to minimize indexing time instead of doing this all in-line
+func checkForTwoSquares(loop: Int) -> Bool {
+    return (loop % 2 == 1)
+}

@@ -17,7 +17,7 @@ class RecipeSearchViewModel: ObservableObject {
         // Create custom URL with desired ingredients from inputs parameter
         var ingredientString = ""
         for ingredient in inputs {
-            ingredientString += ingredient.replacingOccurrences(of: " ", with: "").lowercased() + ","
+            ingredientString += ingredient.replacingOccurrences(of: " ", with: "") + ","
         }
         ingredientString = String(ingredientString.dropLast())
         let url: URL! = URL(string: "https://api.spoonacular.com/recipes/findByIngredients?ingredients=" + ingredientString + "&ranking=2&apiKey=af2da9210db04a9d8bb691d2f4166632")

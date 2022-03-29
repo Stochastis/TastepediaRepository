@@ -83,21 +83,6 @@ struct SearchView: View {
     }
 }
 
-// Checks if there needs to be one big square for an odd number of ingredients in the results
-// Using this function to minimize indexing time instead of doing this all in-line
-fileprivate func checkForOneSquare(loop: Int, count: Int) -> Bool {
-    let first: Bool = ((count - loop) == 1);
-    let second: Bool = ((count % 2) == 1);
-    let final: Bool = (first && second);
-    return final;
-}
-
-// Checks if there needs to be two smaller squares for an even number of ingredients in the results
-// Using this function to minimize indexing time instead of doing this all in-line
-fileprivate func checkForTwoSquares(loop: Int) -> Bool {
-    return (loop % 2 == 1)
-}
-
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
         SearchView()

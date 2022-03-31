@@ -50,22 +50,22 @@ struct SearchView: View {
                 ScrollView {
                     ForEach(0 ..< model.model.count, id: \.self) { i in
                         
-                        if (checkForOneSquare(loop: i, count: model.model.count)) {
+                        if (oneSquare(loop: i, count: model.model.count)) {
                             ZStack {
-                                Rectangle().aspectRatio(1, contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
+                                Rectangle().aspectRatio(1, contentMode: .fill)
                                 Text(model.model[i].title ?? "Placeholder").foregroundColor(.orange)
                             }
                         }
                         
                         else {
-                            if (checkForTwoSquares(loop: i)) {
+                            if (twoSquares(loop: i)) {
                                 HStack {
                                     ZStack {
-                                        Rectangle().aspectRatio(1, contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
+                                        Rectangle().aspectRatio(1, contentMode: .fill)
                                         Text(model.model[i-1].title ?? "Placeholder").foregroundColor(.orange)
                                     }
                                     ZStack {
-                                        Rectangle().aspectRatio(1, contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
+                                        Rectangle().aspectRatio(1, contentMode: .fill)
                                         Text(model.model[i].title ?? "Placeholder").foregroundColor(.orange)
                                     }
                                 }

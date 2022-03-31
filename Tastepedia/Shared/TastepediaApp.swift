@@ -73,7 +73,7 @@ class IngredientsFile: ObservableObject {
 
 // Checks if there needs to be one big square for an odd number of ingredients in the pantry
 // Using this function to minimize indexing time instead of doing this all in-line
-func checkForOneSquare(loop: Int, count: Int) -> Bool {
+func oneSquare(loop: Int, count: Int) -> Bool {
     let first: Bool = ((count - loop) == 1);
     let second: Bool = ((count % 2) == 1);
     let final: Bool = (first && second);
@@ -82,6 +82,6 @@ func checkForOneSquare(loop: Int, count: Int) -> Bool {
 
 // Checks if there needs to be two smaller squares for an even number of ingredients in the pantry
 // Using this function to minimize indexing time instead of doing this all in-line
-func checkForTwoSquares(loop: Int) -> Bool {
+func twoSquares(loop: Int) -> Bool {
     return (loop % 2 == 1)
 }

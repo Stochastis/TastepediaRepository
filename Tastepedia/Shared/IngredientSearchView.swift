@@ -14,17 +14,15 @@ struct IngredientSearchView: View {
     
     @State var searchQuery = ""
     
-    @EnvironmentObject var ingredientsList: IngredientsFile
+    @State var filteredIngredients: [String] = []
     
-    @EnvironmentObject var pantry: Pantry
-    
-    // For easier access to UserDefaults
-    let storedData = UserDefaults.standard
-    
+    @EnvironmentObject var ingredientsFile: IngredientsFile
+                
     var body: some View {
         NavigationView {
             VStack {
                 HStack {
+                    // Return Button
                     Button(action: {
                         // Dismiss this current view and return to the previous one
                         self.presentationMode.wrappedValue.dismiss()
@@ -34,11 +32,16 @@ struct IngredientSearchView: View {
                     
                     HStack {
                         Image(systemName: "magnifyingglass").foregroundColor(.black)
-                        TextField("Enter an ingredient...", text: $searchQuery)
+                        TextField("Enter an ingredient...", text: $searchQuery).onChange(of: searchQuery) { newValue in
+                            print("Query changed to \"\(searchQuery)\".")
+                            filteredIngredients = ingredientsFile.ingredientsList.filter({$0.localizedCaseInsensitiveContains(searchQuery)})
+                        }
                     }.padding(.vertical, 10).padding(.horizontal).background(Color.primary.opacity(0.05)).cornerRadius(8).padding(.horizontal)
                 }
+                
                 Spacer()
-                IngredientSearchScrollView(searchQuery: $searchQuery)
+                
+                IngredientSearchScrollView(filteredIngredients: $filteredIngredients)
             }
         }.navigationBarHidden(true)
     }
@@ -46,6 +49,6 @@ struct IngredientSearchView: View {
 
 struct IngredientSearchView_Previews: PreviewProvider {
     static var previews: some View {
-        IngredientSearchView().environmentObject(IngredientsFile())
+        IngredientSearchView()
     }
 }

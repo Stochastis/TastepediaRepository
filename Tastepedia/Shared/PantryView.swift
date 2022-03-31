@@ -43,50 +43,20 @@ struct PantryView: View {
                     ForEach(0 ..< pantry.ingredients.count, id: \.self) { i in
                         
                         // Checks if this is the last ingredient in the pantry and displays a singular, larger square for it
-                        if (checkForOneSquare(loop: i, count: pantry.ingredients.count)) {
-                            ZStack {
-                                Rectangle().aspectRatio(1, contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
-                                Text("\(pantry.ingredients[i].capitalized)").foregroundColor(.orange)
-                                Button(action: {
-                                    print("Removing \(pantry.ingredients[i]) from pantry.")
-                                    pantry.ingredients.remove(at: i)
-                                    storedData.set(pantry.ingredients, forKey: "savedIngredients")
-                                }, label: {
-                                    Image(systemName: "minus.square.fill").foregroundColor(.red)
-                                }).frame(width: 300, height: 300, alignment: .bottomLeading)
-                            }
+                        if (oneSquare(loop: i, count: pantry.ingredients.count)) {
+                            PantryViewSquare(i: i)
                         }
                         
                         // Displays two squares for all ingredients in the pantry except for the last one if there is an odd number of indgredients
                         else {
                             // Check if this if statement is necessary
-                            if (checkForTwoSquares(loop: i)) {
+                            if (twoSquares(loop: i)) {
                                 HStack {
-                                    ZStack {
-                                        Rectangle().aspectRatio(1, contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
-                                        Text("\(pantry.ingredients[i-1].capitalized)").foregroundColor(.orange)
-                                        Button(action: {
-                                            print("Removing \(pantry.ingredients[i-1]) from pantry.")
-                                            pantry.ingredients.remove(at: i-1)
-                                            storedData.set(pantry.ingredients, forKey: "savedIngredients")
-                                        }, label: {
-                                            Image(systemName: "minus.square.fill").foregroundColor(.red)
-                                        }).frame(width: 150, height: 150, alignment: .bottomLeading)
-                                    }
-                                    ZStack {
-                                        Rectangle().aspectRatio(1, contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
-                                        Text("\(pantry.ingredients[i].capitalized)").foregroundColor(.orange)
-                                        Button(action: {
-                                            print("Removing \(pantry.ingredients[i]) from pantry.")
-                                            pantry.ingredients.remove(at: i)
-                                            storedData.set(pantry.ingredients, forKey: "savedIngredients")
-                                        }, label: {
-                                            Image(systemName: "minus.square.fill").foregroundColor(.red)
-                                        }).frame(width: 150, height: 150, alignment: .bottomLeading)
-                                    }
+                                    PantryViewSquare(i: i-1)
+                                    PantryViewSquare(i: i)
                                 }
                             } else {
-                                /*@START_MENU_TOKEN@*/EmptyView()/*@END_MENU_TOKEN@*/
+                                EmptyView()
                             }
                         }
                     }

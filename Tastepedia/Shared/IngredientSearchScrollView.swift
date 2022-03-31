@@ -10,25 +10,39 @@ import SwiftUI
 struct IngredientSearchScrollView: View {
     @EnvironmentObject var ingredientsList: IngredientsFile
     
-    @Binding var searchQuery: String
+    @Binding var filteredIngredients: [String]
     
     var body: some View {
         ScrollView {
-            // Don't make this filter any longer. Indexing takes to long.
-            ForEach((0 ..< ingredientsList.ingredientsList.count).filter({ ingredientsList.ingredientsList[$0].localizedCaseInsensitiveContains(searchQuery) }), id: \.self) { i in
-                
-                if (checkForOneSquare(loop: i, count: ingredientsList.ingredientsList.count)) {
-                    IngredientSearchScrollViewOneSquare(index: i)
-                }
-                
-                // Displays two squares for all ingredients in the list except for the last one if there is an odd number of indgredients
-                else {
-                    if (checkForTwoSquares(loop: i)) {
-                        IngredientSearchScrollViewTwoSquares(index: i)
-                    } else {
-                        EmptyView()
+            if (filteredIngredients.count != 0) {
+                // If there is an even number of results
+                if (filteredIngredients.count % 2 == 0) {
+                    ForEach((0 ..< filteredIngredients.count), id: \.self) { i in
+                        if (i % 2 == 0) {
+                            HStack{
+                                IngredientSearchScrollViewOneSquare(filteredIngredients: $filteredIngredients, index: i, width: 150, height: 150)
+                                IngredientSearchScrollViewOneSquare(filteredIngredients: $filteredIngredients, index: i+1, width: 150, height: 150)
+                            }
+                        }
                     }
                 }
+                // If there is an odd number of results
+                else {
+                    ForEach((0 ..< filteredIngredients.count), id: \.self) { i in
+                        if (i != (filteredIngredients.count - 1)) {
+                            HStack{
+                                IngredientSearchScrollViewOneSquare(filteredIngredients: $filteredIngredients, index: i, width: 150, height: 150)
+                                IngredientSearchScrollViewOneSquare(filteredIngredients: $filteredIngredients, index: i+1, width: 150, height: 150)
+                            }
+                        }
+                        else {
+                            IngredientSearchScrollViewOneSquare(filteredIngredients: $filteredIngredients, index: i, width: 300, height: 300)
+                        }
+                    }
+                }
+            }
+            else {
+                EmptyView()
             }
         }
     }

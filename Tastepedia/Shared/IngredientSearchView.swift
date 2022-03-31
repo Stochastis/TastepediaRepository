@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct IngredientSearchView: View {
+    // A variable for keeping track of the phone's current color scheme
+    @Environment(\.colorScheme) var colorScheme
+    
     
     // Required so that this view can be 'dismissed' with a closure
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
@@ -22,12 +25,13 @@ struct IngredientSearchView: View {
         NavigationView {
             VStack {
                 HStack {
+                    Spacer()
                     // Return Button
                     Button(action: {
                         // Dismiss this current view and return to the previous one
                         self.presentationMode.wrappedValue.dismiss()
                     }, label: {
-                        Image(systemName: "note").foregroundColor(.black)
+                        Image(systemName: "note").foregroundColor(colorScheme == .dark ? .white : .black)
                     })
                     
                     HStack {
@@ -36,7 +40,7 @@ struct IngredientSearchView: View {
                             print("Query changed to \"\(searchQuery)\".")
                             filteredIngredients = ingredientsFile.ingredientsList.filter({$0.localizedCaseInsensitiveContains(searchQuery)})
                         }
-                    }.padding(.vertical, 10).padding(.horizontal).background(Color.primary.opacity(0.05)).cornerRadius(8).padding(.horizontal)
+                    }.padding(.vertical, 10).padding(.horizontal).background(Color.primary.opacity(colorScheme == .dark ? 0.5 : 0.05)).cornerRadius(8).padding(.horizontal)
                 }
                 
                 Spacer()

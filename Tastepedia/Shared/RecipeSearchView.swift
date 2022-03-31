@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct SearchView: View {
+    // A variable for keeping track of the phone's current color scheme
+    @Environment(\.colorScheme) var colorScheme
     
     // Used to store the titles of recipes gathered from the API call
     @State var recipes: [String] = []
@@ -41,7 +43,7 @@ struct SearchView: View {
                         // Dismiss this current view and return to the previous one
                         self.presentationMode.wrappedValue.dismiss()
                     }, label: {
-                        Image(systemName: "note").foregroundColor(.black)
+                        Image(systemName: "note").foregroundColor(colorScheme == .dark ? .white : .black)
                     })
                 }
                 

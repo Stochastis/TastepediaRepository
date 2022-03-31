@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct PantryView: View {
-    
+    // A variable for keeping track of the phone's current color scheme
+    @Environment(\.colorScheme) var colorScheme
+
     // Required so that this view can be 'dismissed' with a closure
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     // Access the pantry environment object
     @EnvironmentObject var pantry: Pantry
-    
-    let storedData = UserDefaults.standard
     
     var body: some View {
         // Wrap everything in a NavigationView so that pages can easily be navigated between
@@ -26,7 +26,7 @@ struct PantryView: View {
                         // Dismiss this current view and return to the previous one
                         self.presentationMode.wrappedValue.dismiss()
                     }, label: {
-                        Image(systemName: "note").foregroundColor(.black)
+                        Image(systemName: "note").foregroundColor(colorScheme == .dark ? .white : .black)
                     })
                     Text("This is your digital pantry.")
                     
@@ -34,31 +34,42 @@ struct PantryView: View {
                     NavigationLink(
                         destination: IngredientSearchView(),
                         label: {
-                            Image(systemName: "magnifyingglass").foregroundColor(.black)
+                            Image(systemName: "magnifyingglass").foregroundColor(colorScheme == .dark ? .white : .black)
                         })
                 }
                 Spacer()
                 ScrollView {
-                    // List out all ingredients in the pantry
-                    ForEach(0 ..< pantry.ingredients.count, id: \.self) { i in
-                        
-                        // Checks if this is the last ingredient in the pantry and displays a singular, larger square for it
-                        if (oneSquare(loop: i, count: pantry.ingredients.count)) {
-                            PantryViewSquare(i: i)
-                        }
-                        
-                        // Displays two squares for all ingredients in the pantry except for the last one if there is an odd number of indgredients
-                        else {
-                            // Check if this if statement is necessary
-                            if (twoSquares(loop: i)) {
-                                HStack {
-                                    PantryViewSquare(i: i-1)
-                                    PantryViewSquare(i: i)
+                    if (pantry.ingredients.count != 0) {
+                        // If there is an even number of results
+                        if (pantry.ingredients.count % 2 == 0) {
+                            ForEach((0 ..< pantry.ingredients.count), id: \.self) { i in
+                                if (i % 2 == 0) {
+                                    HStack{
+                                        PIViewSquare(textsToShow: $pantry.ingredients, index: i, width: 150, height: 150)
+                                        PIViewSquare(textsToShow: $pantry.ingredients, index: i+1, width: 150, height: 150)
+                                    }
                                 }
-                            } else {
-                                EmptyView()
                             }
                         }
+                        // If there is an odd number of results
+                        else {
+                            ForEach((0 ..< pantry.ingredients.count), id: \.self) { i in
+                                if (i != (pantry.ingredients.count - 1)) {
+                                    if (i % 2 == 0) {
+                                        HStack{
+                                            PIViewSquare(textsToShow: $pantry.ingredients, index: i, width: 150, height: 150)
+                                            PIViewSquare(textsToShow: $pantry.ingredients, index: i+1, width: 150, height: 150)
+                                        }
+                                    }
+                                }
+                                else {
+                                    PIViewSquare(textsToShow: $pantry.ingredients, index: i, width: 300, height: 300)
+                                }
+                            }
+                        }
+                    }
+                    else {
+                        EmptyView()
                     }
                 }
             }

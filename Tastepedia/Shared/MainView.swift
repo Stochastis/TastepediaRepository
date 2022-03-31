@@ -17,6 +17,7 @@ struct MainView: View {
                 VStack {
                     Spacer()
                     HStack() {
+                        Spacer()
                         
                         // Essentially a button that uses the functionality of NavigationView to go between different views
                         NavigationLink(
@@ -24,22 +25,7 @@ struct MainView: View {
                             label: {
                                 Image(systemName: "magnifyingglass").foregroundColor(.black)
                             })
-                        
-                        ForEach(0 ..< 5) { i in
-                            VStack {
-                                ForEach(0 ..< 3) { j in
-                                    Button(action: {
-                                        // Current Behavior: Nothing
-                                        // Desired Behavior: Add ingredients from pantry to list of preferred ingredients
-                                        print("Button Pressed")
-                                    }, label: {
-                                        RoundedRectangle(cornerRadius: 10).frame(width: 50, height: 50, alignment: .center).foregroundColor(.white)
-                                            .overlay(Image("ChickenIcon").resizable())
-                                    })
-                                    .padding(.bottom, 1.0)
-                                }
-                            }
-                        }
+                        Spacer()
                         
                         // Essentially a button that uses the functionality of NavigationView to go between different views
                         NavigationLink(
@@ -47,6 +33,7 @@ struct MainView: View {
                             label: {
                                 Image(systemName: "tray.2.fill").foregroundColor(.black)
                             })
+                        Spacer()
                     }
                     Spacer()
                 }

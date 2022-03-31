@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-struct IngredientSearchScrollViewOneSquare: View {
+struct PIViewSquare: View {
     // Access the pantry environment object
     @EnvironmentObject var pantry: Pantry
     
-    @Binding var filteredIngredients: [String]
+    @Binding var textsToShow: [String]
     
     let index: Int
     
@@ -19,29 +19,30 @@ struct IngredientSearchScrollViewOneSquare: View {
     let height: CGFloat
     
     var body: some View {
-        if (index < filteredIngredients.count) {
+        if (index < textsToShow.count) {
             ZStack {
                 Rectangle().aspectRatio(1, contentMode: .fill)
-                Text("\(filteredIngredients[index].capitalized)").foregroundColor(.orange)
+                Text("\(textsToShow[index].capitalized)").foregroundColor(.orange)
                 Button(action: {
                     // Store the ingredient in a variable for easy access later
-                    let selectedIngredient: String = filteredIngredients[index]
+                    let selectedIngredient: String = textsToShow[index]
                     
                     // Adds ingredient if not already in pantry
                     if !(pantry.ingredients.contains(selectedIngredient)) {
-                        print("Added \(selectedIngredient) to pantry")
                         pantry.addIngredient(selectedIngredient)
+                        print("Added \(selectedIngredient) to pantry")
                     }
                     
                     // Removes ingredient if already in pantry
                     else {
-                        print("Pantry already contains \(selectedIngredient)")
-                        print("Removing \(selectedIngredient) from pantry")
+                        print("Pantry already contains \(selectedIngredient).")
+                        print("Removing \(selectedIngredient) from pantry.")
                         pantry.removeIngredient(selectedIngredient)
+                        print("Removed \(selectedIngredient) from pantry.")
                     }
                 }, label: {
                     // Green plus if not in pantry. Red minus if in pantry.
-                    if !(pantry.ingredients.contains(filteredIngredients[index])) {
+                    if !(pantry.ingredients.contains(textsToShow[index])) {
                         Image(systemName: "plus.square.fill").foregroundColor(.green)
                     } else {
                         Image(systemName: "minus.square.fill").foregroundColor(.red)

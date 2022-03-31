@@ -11,7 +11,6 @@ import SwiftUI
 // Calls the MainView() as the beginning view
 @main
 struct Tastepedia: App {
-    
     // Create an instance of the Pantry object to keep track of ingredients
     @StateObject var pantry = Pantry()
     

@@ -20,8 +20,8 @@ struct IngredientSearchScrollView: View {
                     ForEach((0 ..< filteredIngredients.count), id: \.self) { i in
                         if (i % 2 == 0) {
                             HStack{
-                                IngredientSearchScrollViewOneSquare(filteredIngredients: $filteredIngredients, index: i, width: 150, height: 150)
-                                IngredientSearchScrollViewOneSquare(filteredIngredients: $filteredIngredients, index: i+1, width: 150, height: 150)
+                                PIViewSquare(textsToShow: $filteredIngredients, index: i, width: 150, height: 150)
+                                PIViewSquare(textsToShow: $filteredIngredients, index: i+1, width: 150, height: 150)
                             }
                         }
                     }
@@ -30,13 +30,15 @@ struct IngredientSearchScrollView: View {
                 else {
                     ForEach((0 ..< filteredIngredients.count), id: \.self) { i in
                         if (i != (filteredIngredients.count - 1)) {
-                            HStack{
-                                IngredientSearchScrollViewOneSquare(filteredIngredients: $filteredIngredients, index: i, width: 150, height: 150)
-                                IngredientSearchScrollViewOneSquare(filteredIngredients: $filteredIngredients, index: i+1, width: 150, height: 150)
+                            if (i % 2 == 0) {
+                                HStack{
+                                    PIViewSquare(textsToShow: $filteredIngredients, index: i, width: 150, height: 150)
+                                    PIViewSquare(textsToShow: $filteredIngredients, index: i+1, width: 150, height: 150)
+                                }
                             }
                         }
                         else {
-                            IngredientSearchScrollViewOneSquare(filteredIngredients: $filteredIngredients, index: i, width: 300, height: 300)
+                            PIViewSquare(textsToShow: $filteredIngredients, index: i, width: 300, height: 300)
                         }
                     }
                 }

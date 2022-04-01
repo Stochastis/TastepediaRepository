@@ -20,8 +20,8 @@ struct IngredientSearchScrollView: View {
                     ForEach((0 ..< filteredIngredients.count), id: \.self) { i in
                         if (i % 2 == 0) {
                             HStack{
-                                PIViewSquare(textsToShow: $filteredIngredients, index: i, width: 150, height: 150)
-                                PIViewSquare(textsToShow: $filteredIngredients, index: i+1, width: 150, height: 150)
+                                PISquareView(textsToShow: $filteredIngredients, index: i, width: 150, height: 150)
+                                PISquareView(textsToShow: $filteredIngredients, index: i+1, width: 150, height: 150)
                             }
                         }
                     }
@@ -32,13 +32,13 @@ struct IngredientSearchScrollView: View {
                         if (i != (filteredIngredients.count - 1)) {
                             if (i % 2 == 0) {
                                 HStack{
-                                    PIViewSquare(textsToShow: $filteredIngredients, index: i, width: 150, height: 150)
-                                    PIViewSquare(textsToShow: $filteredIngredients, index: i+1, width: 150, height: 150)
+                                    PISquareView(textsToShow: $filteredIngredients, index: i, width: 150, height: 150)
+                                    PISquareView(textsToShow: $filteredIngredients, index: i+1, width: 150, height: 150)
                                 }
                             }
                         }
                         else {
-                            PIViewSquare(textsToShow: $filteredIngredients, index: i, width: 300, height: 300)
+                            PISquareView(textsToShow: $filteredIngredients, index: i, width: 300, height: 300)
                         }
                     }
                 }

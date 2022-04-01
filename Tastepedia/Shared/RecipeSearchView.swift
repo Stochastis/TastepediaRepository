@@ -51,23 +51,14 @@ struct SearchView: View {
                 ScrollView {
                     ForEach(0 ..< model.foundRecipes.count, id: \.self) { i in
                         if (oneSquare(loop: i, count: model.foundRecipes.count)) {
-                            ZStack {
-                                Rectangle().aspectRatio(1, contentMode: .fill)
-                                Text(model.foundRecipes[i].title ?? "Placeholder").foregroundColor(.orange)
-                            }
+                            RecipeButton(model: model, index: i)
                         }
                         
                         else {
                             if (twoSquares(loop: i)) {
                                 HStack {
-                                    ZStack {
-                                        Rectangle().aspectRatio(1, contentMode: .fill)
-                                        Text(model.foundRecipes[i-1].title ?? "Placeholder").foregroundColor(.orange)
-                                    }
-                                    ZStack {
-                                        Rectangle().aspectRatio(1, contentMode: .fill)
-                                        Text(model.foundRecipes[i].title ?? "Placeholder").foregroundColor(.orange)
-                                    }
+                                    RecipeButton(model: model, index: i-1)
+                                    RecipeButton(model: model, index: i)
                                 }
                             } else {
                                 EmptyView()

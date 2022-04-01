@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct PIViewSquare: View {
+struct PISquareView: View {
     // Access the pantry environment object
     @EnvironmentObject var pantry: Pantry
     

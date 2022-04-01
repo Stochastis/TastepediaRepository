@@ -45,8 +45,8 @@ struct PantryView: View {
                             ForEach((0 ..< pantry.ingredients.count), id: \.self) { i in
                                 if (i % 2 == 0) {
                                     HStack{
-                                        PIViewSquare(textsToShow: $pantry.ingredients, index: i, width: 150, height: 150)
-                                        PIViewSquare(textsToShow: $pantry.ingredients, index: i+1, width: 150, height: 150)
+                                        PISquareView(textsToShow: $pantry.ingredients, index: i, width: 150, height: 150)
+                                        PISquareView(textsToShow: $pantry.ingredients, index: i+1, width: 150, height: 150)
                                     }
                                 }
                             }
@@ -57,13 +57,13 @@ struct PantryView: View {
                                 if (i != (pantry.ingredients.count - 1)) {
                                     if (i % 2 == 0) {
                                         HStack{
-                                            PIViewSquare(textsToShow: $pantry.ingredients, index: i, width: 150, height: 150)
-                                            PIViewSquare(textsToShow: $pantry.ingredients, index: i+1, width: 150, height: 150)
+                                            PISquareView(textsToShow: $pantry.ingredients, index: i, width: 150, height: 150)
+                                            PISquareView(textsToShow: $pantry.ingredients, index: i+1, width: 150, height: 150)
                                         }
                                     }
                                 }
                                 else {
-                                    PIViewSquare(textsToShow: $pantry.ingredients, index: i, width: 300, height: 300)
+                                    PISquareView(textsToShow: $pantry.ingredients, index: i, width: 300, height: 300)
                                 }
                             }
                         }

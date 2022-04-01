@@ -10,7 +10,7 @@ import Foundation
 
 class RecipeSearchViewModel: ObservableObject {
     
-    @Published var model = [RecipeSearchElement]()
+    @Published var foundRecipes = [RecipeSearchElement]()
     
     func findRecipes(inputs: [String]) {
         
@@ -32,15 +32,15 @@ class RecipeSearchViewModel: ObservableObject {
                     print("No data recieved.")
                 }
                 do {
-                    self.model = try JSONDecoder().decode([RecipeSearchElement].self, from: data!)
+                    self.foundRecipes = try JSONDecoder().decode([RecipeSearchElement].self, from: data!)
                     print("Successfully decoded JSON")
                 } catch {
                     print("Trouble decoding JSON. Error below.")
                     print("Error: \(error)")
                 }
-                if self.model.isEmpty {
+                if self.foundRecipes.isEmpty {
                     print("Model is empty.")
-                    self.model.append(RecipeSearchElement(title: "No Recipes Found"))
+                    self.foundRecipes.append(RecipeSearchElement(title: "No Recipes Found"))
                 }
             }
         }

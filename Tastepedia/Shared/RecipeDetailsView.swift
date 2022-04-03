@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct RecipeDetailsView: View {
+    
+    // Create a View Model to interact with the API
+    @StateObject var model: InstructionSearchViewModel
+        
     var body: some View {
-        Text("This is the RecipeDetails View.")
-    }
-}
-
-struct RecipeDetailsView_Previews: PreviewProvider {
-    static var previews: some View {
-        RecipeDetailsView()
+        ZStack{
+            Text("Ah")
+        }
     }
 }

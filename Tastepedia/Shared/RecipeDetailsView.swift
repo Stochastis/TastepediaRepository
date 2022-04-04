@@ -11,10 +11,10 @@ struct RecipeDetailsView: View {
     
     // Create a View Model to interact with the API
     @StateObject var model: InstructionSearchViewModel
-        
+
     var body: some View {
         ZStack{
-            Text("Ah")
+            Text(model.instructions[0].steps![0].step!)
         }
     }
 }

@@ -11,19 +11,26 @@ struct RecipeButtonView: View {
     // A variable for keeping track of the phone's current color scheme
     @Environment(\.colorScheme) var colorScheme
     
+    @State var tapped = false
+    
     // Create a View Model to interact with the API
     @StateObject var model: RecipeSearchViewModel
+    
+    @StateObject var instructionModel = InstructionSearchViewModel()
     
     let index: Int
     
     var body: some View {
-        NavigationLink(
-            destination: RecipeDetailsView(model: InstructionSearchViewModel(recipeID: model.foundRecipes[index].id ?? 777)),
-            label: {
-                ZStack {
-                    Rectangle().aspectRatio(1, contentMode: .fill).foregroundColor(colorScheme == .dark ? .white : .black)
-                    Text(model.foundRecipes[index].title ?? "Placeholder").foregroundColor(.orange)
-                }
-            })
+        ZStack {
+            Rectangle().aspectRatio(1, contentMode: .fill).foregroundColor(colorScheme == .dark ? .white : .black).onTapGesture {
+                instructionModel.findInstructions(id: model.foundRecipes[index].id ?? 777)
+                tapped.toggle()
+            }
+            Text(model.foundRecipes[index].title ?? "Placeholder").foregroundColor(.orange).onTapGesture {
+                instructionModel.findInstructions(id: model.foundRecipes[index].id ?? 777)
+                tapped.toggle()
+            }
+            NavigationLink("", destination: RecipeDetailsView(model: instructionModel), isActive: $tapped)
+        }
     }
 }

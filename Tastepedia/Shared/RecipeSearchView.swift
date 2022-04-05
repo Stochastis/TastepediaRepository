@@ -52,14 +52,14 @@ struct SearchView: View {
                 ScrollView {
                     ForEach(0 ..< model.foundRecipes.count, id: \.self) { i in
                         if (oneSquare(loop: i, count: model.foundRecipes.count)) {
-                            RecipeButtonView(model: model, index: i)
+                            RecipeButtonView(model: model, ingredients: IngredientsInformation(recipe: model.foundRecipes[i]), index: i)
                         }
                         
                         else {
                             if (twoSquares(loop: i)) {
                                 HStack {
-                                    RecipeButtonView(model: model, index: i-1)
-                                    RecipeButtonView(model: model, index: i)
+                                    RecipeButtonView(model: model, ingredients: IngredientsInformation(recipe: model.foundRecipes[i-1]), index: i-1)
+                                    RecipeButtonView(model: model, ingredients: IngredientsInformation(recipe: model.foundRecipes[i]), index: i)
                                 }
                             } else {
                                 EmptyView()

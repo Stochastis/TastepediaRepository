@@ -70,6 +70,26 @@ class IngredientsFile: ObservableObject {
     }
 }
 
+// To keep track of a specific recipe's ingredients and their amounts
+class IngredientsInformation: ObservableObject {
+    var names: [String]
+    var amounts: [Double]
+    var units: [String]
+    
+    init(recipe: RecipeSearchElement) {
+        var index = 0
+        names = [String](repeating: "nil", count: recipe.usedIngredients!.count)
+        amounts = [Double](repeating: 77.77, count: recipe.usedIngredients!.count)
+        units = [String](repeating: "nil", count: recipe.usedIngredients!.count)
+        for ingredient in recipe.usedIngredients! {
+            self.names[index] = ingredient.name!
+            self.amounts[index] = ingredient.amount!
+            self.units[index] = ingredient.unitLong!
+            index += 1
+        }
+    }
+}
+
 // Checks if there needs to be one big square for an odd number of ingredients in the pantry
 // Using this function to minimize indexing time instead of doing this all in-line
 func oneSquare(loop: Int, count: Int) -> Bool {

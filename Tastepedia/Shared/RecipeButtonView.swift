@@ -18,6 +18,8 @@ struct RecipeButtonView: View {
     
     @StateObject var instructionModel = InstructionSearchViewModel()
     
+    @StateObject var ingredients: IngredientsInformation
+    
     let index: Int
     
     var body: some View {
@@ -30,7 +32,7 @@ struct RecipeButtonView: View {
                 instructionModel.findInstructions(id: model.foundRecipes[index].id ?? 777)
                 tapped.toggle()
             }
-            NavigationLink("", destination: RecipeDetailsView(model: instructionModel), isActive: $tapped)
+            NavigationLink("", destination: RecipeDetailsView(model: instructionModel, ingredients: ingredients), isActive: $tapped)
         }
     }
 }

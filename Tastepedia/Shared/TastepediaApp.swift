@@ -90,7 +90,7 @@ class IngredientsInformation: ObservableObject {
         units = [String](repeating: "nil", count: temp.count)
         for ingredient in temp {
             self.names[index] = ingredient.name!
-            self.amounts[index] = String(format: "%.2f", ingredient.name!)
+            self.amounts[index] = String(format: "%.2f", ingredient.amount!)
             self.units[index] = ingredient.unitLong!
             index += 1
         }

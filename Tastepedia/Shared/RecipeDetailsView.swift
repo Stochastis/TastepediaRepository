@@ -16,12 +16,14 @@ struct RecipeDetailsView: View {
     
     var body: some View {
         ScrollView {
+            // Recipe ingredients
             ForEach(0 ..< ingredients.names.count, id: \.self) { i in
-                Text("\(ingredients.amounts[i]) \(ingredients.units[i]) of \(ingredients.names[i])")
+                Text("\(ingredients.amounts[i]) \(ingredients.units[i]) of \(ingredients.names[i])").frame(width: 350, height: 50, alignment: .leading)
             }
+            // Recipe instructions
             ForEach(0 ..< model.instructions[0].steps!.count, id: \.self) { i in
                 VStack {
-                    Text("Step \(i+1):")
+                    Text("Step \(i+1):").padding([.top])
                     Text(model.instructions[0].steps![i].step!)
                         .padding([.leading, .bottom, .trailing])
                 }

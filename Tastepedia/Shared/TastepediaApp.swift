@@ -73,17 +73,24 @@ class IngredientsFile: ObservableObject {
 // To keep track of a specific recipe's ingredients and their amounts
 class IngredientsInformation: ObservableObject {
     var names: [String]
-    var amounts: [Double]
+    var amounts: [String]
     var units: [String]
     
     init(recipe: RecipeSearchElement) {
         var index = 0
-        names = [String](repeating: "nil", count: recipe.usedIngredients!.count)
-        amounts = [Double](repeating: 77.77, count: recipe.usedIngredients!.count)
-        units = [String](repeating: "nil", count: recipe.usedIngredients!.count)
+        var temp = [SedIngredient]()
         for ingredient in recipe.usedIngredients! {
+            temp.append(ingredient)
+        }
+        for ingredient in recipe.missedIngredients! {
+            temp.append(ingredient)
+        }
+        names = [String](repeating: "nil", count: temp.count)
+        amounts = [String](repeating: "nil", count: temp.count)
+        units = [String](repeating: "nil", count: temp.count)
+        for ingredient in temp {
             self.names[index] = ingredient.name!
-            self.amounts[index] = ingredient.amount!
+            self.amounts[index] = String(format: "%.2f", ingredient.name!)
             self.units[index] = ingredient.unitLong!
             index += 1
         }

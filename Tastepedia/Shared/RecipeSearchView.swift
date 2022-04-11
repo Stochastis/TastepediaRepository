@@ -48,6 +48,7 @@ struct SearchView: View {
                     })
                 }
                 Spacer()
+                
                 // Show all the recipe results
                 ScrollView {
                     ForEach(0 ..< model.foundRecipes.count, id: \.self) { i in

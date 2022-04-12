@@ -29,7 +29,7 @@ struct Tastepedia: App {
 // Also has the ability to add/remove ingredients to/from local storage
 class Pantry: ObservableObject {
     @Published var ingredients: [String]
-
+    
     init() {
         if UserDefaults.standard.object(forKey: "savedIngredients") == nil {
             UserDefaults.standard.setValue([], forKey: "savedIngredients")
@@ -128,20 +128,4 @@ func newJSONEncoder() -> JSONEncoder {
         encoder.dateEncodingStrategy = .iso8601
     }
     return encoder
-}
-
-extension UIImageView {
-    func loadFrom(URLAddress: String) {
-        guard let url = URL(string: URLAddress) else {
-            return
-        }
-        
-        DispatchQueue.main.async { [weak self] in
-            if let imageData = try? Data(contentsOf: url) {
-                if let loadedImage = UIImage(data: imageData) {
-                        self?.image = loadedImage
-                }
-            }
-        }
-    }
 }

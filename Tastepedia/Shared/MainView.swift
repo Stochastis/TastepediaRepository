@@ -21,7 +21,7 @@ struct MainView: View {
                         
                         // Essentially a button that uses the functionality of NavigationView to go between different views
                         NavigationLink(
-                            destination: SearchView(),
+                            destination: RecipeSearchView(),
                             label: {
                                 Image(systemName: "magnifyingglass").foregroundColor(.black)
                             })

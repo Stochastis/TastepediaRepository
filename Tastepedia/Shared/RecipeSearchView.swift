@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SearchView: View {
+struct RecipeSearchView: View {
     // Required so that this view can be 'dismissed' with a closure
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
@@ -16,53 +16,49 @@ struct SearchView: View {
     
     // Used to store the titles of recipes gathered from the API call
     @State var recipes: [String] = []
-    
+        
     // Create a View Model to interact with the API
     @StateObject var model = RecipeSearchViewModel()
     
     // Access the pantry environment object
     @EnvironmentObject var pantry: Pantry
-    
+        
     var body: some View {
-        // Wrap everything in a NavigationView so that pages can easily be navigated between
-        VStack {
-            // Show all the recipe results
-            ScrollView {
-                // Grabs recipes from the Spoonacular API through the ViewModel
-                Button(action: {
-                    model.findRecipes(inputs: pantry.ingredients)
-                    recipes.removeAll()
-                    for index in 0..<(model.foundRecipes.count) {
-                        recipes.append(model.foundRecipes[index].title ?? "Placeholder Recipe Title")
-                    }
-                }, label: {
-                    Text("Tap Here To Search For Recipes")
-                })
+        // Show all the recipe results
+        ScrollView {
+            // Grabs recipes from the Spoonacular API through the ViewModel
+            Button(action: {
+                model.findRecipes(inputs: pantry.ingredients)
+                recipes.removeAll()
+                for index in 0..<(model.foundRecipes.count) {
+                    recipes.append(model.foundRecipes[index].title ?? "Placeholder Recipe Title")
+                }
+            }, label: {
+                Text("Tap Here To Search For Recipes")
+            })
+            
+            ForEach(0 ..< model.foundRecipes.count, id: \.self) { i in
+                if (oneSquare(loop: i, count: model.foundRecipes.count)) {
+                    NavigationLink(destination: RecipeDetailsView(instructionModel: InstructionSearchViewModel(id: model.foundRecipes[i].id ?? 777), ingredientInfo: IngredientsInformation(recipe: model.foundRecipes[i]), recipeName: model.foundRecipes[i].title ?? "Placeholder"), label: {
+                        RecipeButtonView(recipeName: model.foundRecipes[i].title ?? "Placeholder")
+                    })
+                }
                 
-                ForEach(0 ..< model.foundRecipes.count, id: \.self) { i in
-                    if (oneSquare(loop: i, count: model.foundRecipes.count)) {
-                        RecipeButtonView(model: model, ingredients: IngredientsInformation(recipe: model.foundRecipes[i]), index: i)
-                    }
-                    
-                    else {
-                        if (twoSquares(loop: i)) {
-                            HStack {
-                                RecipeButtonView(model: model, ingredients: IngredientsInformation(recipe: model.foundRecipes[i-1]), index: i-1)
-                                RecipeButtonView(model: model, ingredients: IngredientsInformation(recipe: model.foundRecipes[i]), index: i)
-                            }
-                        } else {
-                            EmptyView()
+                else {
+                    if (twoSquares(loop: i)) {
+                        HStack {
+                            NavigationLink(destination: RecipeDetailsView(instructionModel: InstructionSearchViewModel(id: model.foundRecipes[i].id ?? 777), ingredientInfo: IngredientsInformation(recipe: model.foundRecipes[i]), recipeName: model.foundRecipes[i].title ?? "Placeholder"), label: {
+                                RecipeButtonView(recipeName: model.foundRecipes[i].title ?? "Placeholder")
+                            })
+                            NavigationLink(destination: RecipeDetailsView(instructionModel: InstructionSearchViewModel(id: model.foundRecipes[i-1].id ?? 777), ingredientInfo: IngredientsInformation(recipe: model.foundRecipes[i-1]), recipeName: model.foundRecipes[i-1].title ?? "Placeholder"), label: {
+                                RecipeButtonView(recipeName: model.foundRecipes[i-1].title ?? "Placeholder")
+                            })
                         }
+                    } else {
+                        EmptyView()
                     }
                 }
             }
-            Spacer()
         }.navigationTitle("Recipe Search")
-    }
-}
-
-struct SearchView_Previews: PreviewProvider {
-    static var previews: some View {
-        SearchView()
     }
 }

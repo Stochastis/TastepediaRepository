@@ -14,8 +14,11 @@ struct RecipeDetailsView: View {
     
     let ingredients: IngredientsInformation
     
+//    let picture: UIImage
+    
     var body: some View {
         ScrollView {
+//            Image(uiImage: picture)
             Text("Ingredients:")
             // Recipe ingredients
             ForEach(0 ..< ingredients.names.count, id: \.self) { i in

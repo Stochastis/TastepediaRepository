@@ -10,31 +10,38 @@ import SwiftUI
 struct RecipeDetailsView: View {
     
     // Create a View Model to interact with the API
-    @StateObject var model: InstructionSearchViewModel
+    @StateObject var recipeInstructions: InstructionSearchViewModel
     
-    let ingredients: IngredientsInformation
+    let ingredientInfo: IngredientsInformation
     
-//    let picture: UIImage
+    let recipeName: String
+    
+    //let picture: UIImage
     
     var body: some View {
         ScrollView {
-//            Image(uiImage: picture)
-            Text("Ingredients:")
+            //Image(uiImage: picture)
             // Recipe ingredients
-            ForEach(0 ..< ingredients.names.count, id: \.self) { i in
-                Text("\(ingredients.amounts[i]) \(ingredients.units[i]) of \(ingredients.names[i])").frame(width: 350, height: 50, alignment: .leading)
-            }
-            Divider()
-            
-            // Recipe instructions
-            Text("Steps:")
-            ForEach(0 ..< model.instructions[0].steps!.count, id: \.self) { i in
-                VStack {
-                    Text("Step \(i+1):").padding([.top])
-                    Text(model.instructions[0].steps![i].step!)
-                        .padding([.leading, .bottom, .trailing])
+            LazyVStack(pinnedViews: .sectionHeaders) {
+                Section(header: Text("Ingredients").frame(width: 350, height: 25, alignment: .center).background(Color.orange)) {
+                    ForEach(0 ..< ingredientInfo.names.count, id: \.self) { i in
+                        Text("\(ingredientInfo.amounts[i]) \(ingredientInfo.units[i].capitalized) of \(ingredientInfo.names[i].capitalized)").frame(width: 350, height: 50, alignment: .leading)
+                    }
                 }
             }
-        }
+            
+            // Recipe instructions
+            LazyVStack(pinnedViews: .sectionHeaders) {
+                Section(header: Text("Instructions").frame(width: 350, height: 25, alignment: .center).background(Color.orange)) {
+                    ForEach(0 ..< recipeInstructions.instructions[0].steps!.count, id: \.self) { i in
+                        VStack {
+                            Text("Step \(i+1):").padding([.top])
+                            Text(recipeInstructions.instructions[0].steps![i].step!)
+                                .padding([.leading, .bottom, .trailing])
+                        }
+                    }
+                }
+            }
+        }.navigationBarTitleDisplayMode(.inline).navigationTitle(recipeName)
     }
 }

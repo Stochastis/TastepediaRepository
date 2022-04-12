@@ -40,8 +40,6 @@ struct MainView: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
                 .background(Color.orange)
                 .ignoresSafeArea()
-                
-                Text("Enter some ingredients:").frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             }
         }.navigationBarHidden(true)
     }

@@ -13,7 +13,7 @@ struct RecipeButtonView: View {
     
     @State var tapped = false
     
-//    @State var picture = UIImage()
+    //@State var picture = UIImage()
     
     // Create a View Model to interact with the API
     @StateObject var model: RecipeSearchViewModel
@@ -28,9 +28,9 @@ struct RecipeButtonView: View {
         ZStack {
             Rectangle().aspectRatio(1, contentMode: .fill).foregroundColor(colorScheme == .dark ? .white : .black).onTapGesture {
                 instructionModel.findInstructions(id: model.foundRecipes[index].id ?? 777)
-//                let image1 = UIImageView()
-//                image1.loadFrom(URLAddress: "https://spoonacular.com/recipeImages/644677-312x231.jpg")
-//                picture = image1.image!
+                //let image1 = UIImageView()
+                //image1.loadFrom(URLAddress: "https://spoonacular.com/recipeImages/644677-312x231.jpg")
+                //picture = image1.image!
                 tapped.toggle()
             }
             // Name of the recipe
@@ -38,7 +38,7 @@ struct RecipeButtonView: View {
                 instructionModel.findInstructions(id: model.foundRecipes[index].id ?? 777)
                 tapped.toggle()
             }
-            NavigationLink("", destination: RecipeDetailsView(model: instructionModel, ingredients: ingredients), isActive: $tapped)
+            NavigationLink("", destination: RecipeDetailsView(recipeInstructions: instructionModel, ingredientInfo: ingredients, recipeName: model.foundRecipes[index].title ?? "Placeholder"), isActive: $tapped)
         }
     }
 }

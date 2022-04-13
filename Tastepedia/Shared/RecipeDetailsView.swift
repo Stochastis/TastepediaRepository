@@ -24,7 +24,6 @@ struct RecipeDetailsView: View {
     
     var body: some View {
         ScrollView {
-            //Image(uiImage: picture)
             // Recipe ingredients
             LazyVStack(pinnedViews: .sectionHeaders) {
                 Section(header: Text("Ingredients").frame(width: 350, height: 25, alignment: .center).background(Color.orange)) {
@@ -46,7 +45,7 @@ struct RecipeDetailsView: View {
                     }
                 }
             }
-        }.navigationBarTitleDisplayMode(.inline).navigationBarBackButtonHidden(false).navigationTitle(recipeName).toolbar(content: {
+        }.navigationBarTitleDisplayMode(.inline).navigationTitle(recipeName).toolbar(content: {
             ToolbarItem(placement: .navigationBarTrailing, content: {
                 if downloaded {
                     Image(systemName: "square.and.arrow.down.fill").foregroundColor(colorScheme == .dark ? .white : .black).onTapGesture {

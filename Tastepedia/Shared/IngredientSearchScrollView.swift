@@ -4,6 +4,7 @@
 //
 //  Created by Caleb Ross on 3/24/22.
 //
+//  This view is a scrollable grid of the current ingredient search results list
 
 import SwiftUI
 

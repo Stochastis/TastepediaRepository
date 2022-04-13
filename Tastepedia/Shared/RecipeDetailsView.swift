@@ -4,6 +4,7 @@
 //
 //  Created by Caleb Ross on 4/1/22.
 //
+//  A view to display a recipe's details and give the users the option to save the recipe for later
 
 import SwiftUI
 
@@ -19,8 +20,6 @@ struct RecipeDetailsView: View {
     let ingredientInfo: IngredientsInformation
     
     let recipeName: String
-    
-    //let picture: UIImage
     
     var body: some View {
         ScrollView {

@@ -4,6 +4,7 @@
 //
 //  Created by CSStudent on 2/14/22.
 //
+// The application's main file
 
 import SwiftUI
 
@@ -17,7 +18,7 @@ struct Tastepedia: App {
     // Create an instance of the IngredientsFile object to open up the txt file of ingredients and use them later
     @StateObject var ingredientsList = IngredientsFile()
     
-    // Start the application in the MainView
+    // Start the application in a given view
     var body: some Scene {
         WindowGroup {
             MainView().environmentObject(pantry).environmentObject(ingredientsList)
@@ -28,8 +29,9 @@ struct Tastepedia: App {
 // The Pantry class that verifies the existence of 'savedIngredients' in UserDefaults
 // Also has the ability to add/remove ingredients to/from local storage
 class Pantry: ObservableObject {
-    @Published var ingredients: [String]
+    @Published var ingredients: [String] // Stores all the user's current ingredients in an array
     
+    // Verifies that the device has the ingredients in local storage
     init() {
         if UserDefaults.standard.object(forKey: "savedIngredients") == nil {
             UserDefaults.standard.setValue([], forKey: "savedIngredients")
@@ -37,11 +39,13 @@ class Pantry: ObservableObject {
         ingredients = UserDefaults.standard.object(forKey: "savedIngredients") as? [String] ?? [String]()
     }
     
+    // Adds an ingredient to local and application storage
     func addIngredient(_ ingredientToAdd: String){
         ingredients.append(ingredientToAdd)
         UserDefaults.standard.set(ingredients, forKey: "savedIngredients")
     }
     
+    // Removes an ingredient from local and applications storage
     func removeIngredient(_ ingredientToRemove: String){
         ingredients.remove(at: ingredients.firstIndex(where: {$0 == ingredientToRemove}) ?? 0)
         UserDefaults.standard.set(ingredients, forKey: "savedIngredients")
@@ -50,8 +54,9 @@ class Pantry: ObservableObject {
 
 // Grabs Master Ingredients List from external txt file and compiles them into an array
 class IngredientsFile: ObservableObject {
-    var ingredientsList: [String] = []
+    var ingredientsList: [String] = [] // Keeps all ingredients available for the user to interact with in an easily accessible array
     
+    // Loads the ingredients list from a text file
     init() {
         if let fileURL = Bundle.main.url(forResource: "MasterIngredientsList", withExtension: "txt") {
             if let fileContents = try? String(contentsOf: fileURL) {
@@ -76,6 +81,7 @@ class IngredientsInformation: ObservableObject {
     var amounts: [String]
     var units: [String]
     
+    // Adds to the IngredientsInformation object ingredients, both missed and used, from the Recipe Search Element object passed as a parameter
     init(recipe: RecipeSearchElement) {
         var index = 0
         var temp = [SedIngredient]()
@@ -113,7 +119,7 @@ func twoSquares(loop: Int) -> Bool {
 }
 
 // MARK: - Helper functions for creating encoders and decoders
-
+// Creates and returns an instance of Apple's JSONDecoder class
 func newJSONDecoder() -> JSONDecoder {
     let decoder = JSONDecoder()
     if #available(iOS 10.0, OSX 10.12, tvOS 10.0, watchOS 3.0, *) {
@@ -122,6 +128,7 @@ func newJSONDecoder() -> JSONDecoder {
     return decoder
 }
 
+// Creates and returns an instance of Apple's JSONEncoder class
 func newJSONEncoder() -> JSONEncoder {
     let encoder = JSONEncoder()
     if #available(iOS 10.0, OSX 10.12, tvOS 10.0, watchOS 3.0, *) {

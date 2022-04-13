@@ -10,8 +10,9 @@ import Foundation
 
 class InstructionSearchViewModel: ObservableObject {
     
-    @Published var instructions = [InstructionSearchElement]()
+    @Published var instructions = [InstructionSearchElement]() // Stores all of the instructions returned by the API call
     
+    // Calls the Spoonacular API to retrieve a given recipe's instructions
     init (id: Int) {
         instructions = [InstructionSearchElement(name: "", steps: [Step(number: 1, step: "Loading Recipe Instructions...")])]
         

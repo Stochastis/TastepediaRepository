@@ -1,9 +1,10 @@
 //
-//  IngredientSearchScrollViewOneSquare.swift
+//  PISquareView.swift
 //  Tastepedia (iOS)
 //
 //  Created by Caleb Ross on 3/24/22.
 //
+//  A square that contains an ingredient and a button that can add/remove that ingredient from the user's Pantry
 
 import SwiftUI
 

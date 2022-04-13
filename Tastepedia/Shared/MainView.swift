@@ -1,9 +1,10 @@
 //
-//  ContentView.swift
+//  MainView.swift
 //  Shared
 //
 //  Created by Caleb Ross on 2/14/22.
 //
+//  This is the main page
 
 import SwiftUI
 

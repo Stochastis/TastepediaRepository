@@ -4,6 +4,7 @@
 //
 //  Created by Caleb Ross on 4/1/22.
 //
+//  A rectangle with a given recipe's name on top
 
 import SwiftUI
 

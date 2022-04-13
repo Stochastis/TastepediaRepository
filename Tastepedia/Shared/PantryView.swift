@@ -4,6 +4,7 @@
 //
 //  Created by Caleb Ross on 3/17/22.
 //
+//  A view that displays a user's Pantry and allows them to remove ingredients from it
 
 import SwiftUI
 

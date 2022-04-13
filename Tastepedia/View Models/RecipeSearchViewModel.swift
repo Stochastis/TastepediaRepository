@@ -10,8 +10,9 @@ import Foundation
 
 class RecipeSearchViewModel: ObservableObject {
     
-    @Published var foundRecipes = [RecipeSearchElement]()
+    @Published var foundRecipes = [RecipeSearchElement]() // Stores the recipes found by the API call
     
+    // Creates a URL from a string containing all the ingredients stored in the Pantry and uses that URL to make an API call to Spoonacular
     func findRecipes(inputs: [String]) {
         
         // Create custom URL with desired ingredients from inputs parameter

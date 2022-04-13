@@ -4,6 +4,7 @@
 //
 //  Created by Caleb Ross on 3/19/22.
 //
+//  A view that allows users to search for and add ingredients to their pantry
 
 import SwiftUI
 

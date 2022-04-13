@@ -4,7 +4,7 @@
 //////
 //////  Created by Caleb Ross on 3/3/22.
 //////
-//////  This is the model that directly interacts with the API and the View Model
+//////  This is the model that directly interacts with the API directly as well as the Recipe Search View Model
 
 import Foundation
 
@@ -15,6 +15,7 @@ struct RecipeSearchElement: Codable, Identifiable {
     var image: String?
     var imageType: ImageType?
     var usedIngredientCount, missedIngredientCount: Int?
+    // SedIngredient is an object that contains information about a specific ingredient used in the particular recipe. Information includes amounts, units, id, and name of the ingredient.
     var missedIngredients, usedIngredients, unusedIngredients: [SedIngredient]?
     var likes: Int?
 }
@@ -22,6 +23,9 @@ struct RecipeSearchElement: Codable, Identifiable {
 // MARK: RecipeSearchElement convenience initializers and mutators
 
 extension RecipeSearchElement {
+    // Create a JSON Decoder object.
+    // Use it to process the data given by the API call into usable information.
+    // Store this information in the form of properties of the RecipeSearchElement object.
     init(data: Data) throws {
         self = try newJSONDecoder().decode(RecipeSearchElement.self, from: data)
     }
@@ -81,6 +85,7 @@ enum ImageType: String, Codable {
 
 // MARK: - SedIngredient
 struct SedIngredient: Codable {
+    // Store information about a given ingredient in a specific recipe
     var id: Int?
     var amount: Double?
     var unit, unitLong, unitShort, aisle: String?
@@ -93,6 +98,9 @@ struct SedIngredient: Codable {
 // MARK: SedIngredient convenience initializers and mutators
 
 extension SedIngredient {
+    // Create a JSON Decoder object.
+    // Use it to process the data given by the API call into usable information.
+    // Store this information in the form of properties of the SedIngredient object.
     init(data: Data) throws {
         self = try newJSONDecoder().decode(SedIngredient.self, from: data)
     }
@@ -149,6 +157,7 @@ extension SedIngredient {
 
 typealias RecipeSearch = [RecipeSearchElement]
 
+// Adds functionality to arrays of RecipeSearchElements
 extension Array where Element == RecipeSearch.Element {
     init(data: Data) throws {
         self = try newJSONDecoder().decode(RecipeSearch.self, from: data)
@@ -176,6 +185,7 @@ extension Array where Element == RecipeSearch.Element {
 
 // MARK: - URLSession response handlers
 
+// Adds functionality to URLSession objects
 extension URLSession {
     fileprivate func codableTask<T: Codable>(with url: URL, completionHandler: @escaping (T?, URLResponse?, Error?) -> Void) -> URLSessionDataTask {
         return self.dataTask(with: url) { data, response, error in

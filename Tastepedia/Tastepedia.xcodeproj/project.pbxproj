@@ -11,6 +11,7 @@
 		BC3DACB027E68BEE00F94F3D /* IngredientSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3DACAF27E68BEE00F94F3D /* IngredientSearchView.swift */; };
 		BC64248327F7BF8C00DFECE1 /* RecipeButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC64248227F7BF8C00DFECE1 /* RecipeButtonView.swift */; };
 		BC64248827F7C39400DFECE1 /* RecipeDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC64248727F7C39400DFECE1 /* RecipeDetailsView.swift */; };
+		BC7D31372808E70E0058FF82 /* CookbookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7D31362808E70E0058FF82 /* CookbookView.swift */; };
 		BC7E52D927E3FC010066FC96 /* RecipeSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7E52D827E3FC010066FC96 /* RecipeSearchView.swift */; };
 		BC95F0E227BB0DB70057F68F /* TastepediaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC95F0CF27BB0DB60057F68F /* TastepediaApp.swift */; };
 		BC95F0E427BB0DB70057F68F /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC95F0D027BB0DB60057F68F /* MainView.swift */; };
@@ -31,6 +32,7 @@
 		BC3DACAF27E68BEE00F94F3D /* IngredientSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IngredientSearchView.swift; sourceTree = "<group>"; };
 		BC64248227F7BF8C00DFECE1 /* RecipeButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeButtonView.swift; sourceTree = "<group>"; };
 		BC64248727F7C39400DFECE1 /* RecipeDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailsView.swift; sourceTree = "<group>"; };
+		BC7D31362808E70E0058FF82 /* CookbookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CookbookView.swift; sourceTree = "<group>"; };
 		BC7E52D427E3EEFE0066FC96 /* PantryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PantryView.swift; sourceTree = "<group>"; };
 		BC7E52D827E3FC010066FC96 /* RecipeSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeSearchView.swift; sourceTree = "<group>"; };
 		BC95F0CF27BB0DB60057F68F /* TastepediaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TastepediaApp.swift; sourceTree = "<group>"; };
@@ -73,10 +75,11 @@
 			isa = PBXGroup;
 			children = (
 				BC95F0CF27BB0DB60057F68F /* TastepediaApp.swift */,
+				BC95F0D027BB0DB60057F68F /* MainView.swift */,
+				BC7D31362808E70E0058FF82 /* CookbookView.swift */,
 				BC7E52D827E3FC010066FC96 /* RecipeSearchView.swift */,
 				BC64248227F7BF8C00DFECE1 /* RecipeButtonView.swift */,
 				BC64248727F7C39400DFECE1 /* RecipeDetailsView.swift */,
-				BC95F0D027BB0DB60057F68F /* MainView.swift */,
 				BC7E52D427E3EEFE0066FC96 /* PantryView.swift */,
 				BC3DACAF27E68BEE00F94F3D /* IngredientSearchView.swift */,
 				BCBD105D27ED432800E9FB6A /* IngredientSearchScrollView.swift */,
@@ -186,6 +189,7 @@
 				BC64248327F7BF8C00DFECE1 /* RecipeButtonView.swift in Sources */,
 				BCBD105E27ED432800E9FB6A /* IngredientSearchScrollView.swift in Sources */,
 				BCA56D2127E66E1600FC1A70 /* PantryView.swift in Sources */,
+				BC7D31372808E70E0058FF82 /* CookbookView.swift in Sources */,
 				BCAB55F027D1AA8100334443 /* RecipeSearchViewModel.swift in Sources */,
 				BC95F0E427BB0DB70057F68F /* MainView.swift in Sources */,
 				BCAB55E927D1A6DA00334443 /* RecipeSearch.swift in Sources */,

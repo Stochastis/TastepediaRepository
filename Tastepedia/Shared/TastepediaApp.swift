@@ -12,17 +12,31 @@ import SwiftUI
 // Calls the MainView() as the beginning view
 @main
 struct Tastepedia: App {
-    // Create an instance of the Pantry object to keep track of ingredients
+    // Create an instance of the Pantry class to keep track of ingredients
     @StateObject var pantry = Pantry()
     
-    // Create an instance of the IngredientsFile object to open up the txt file of ingredients and use them later
+    // Create an instance of the Cookbook class to keep track of saved recipes
+    @StateObject var cookbook = Cookbook()
+    
+    // Create an instance of the IngredientsFile class to open up the txt file of ingredients and use them later
     @StateObject var ingredientsList = IngredientsFile()
     
     // Start the application in a given view
     var body: some Scene {
         WindowGroup {
-            MainView().environmentObject(pantry).environmentObject(ingredientsList)
+            MainView().environmentObject(pantry).environmentObject(cookbook).environmentObject(ingredientsList)
         }
+    }
+}
+
+struct Recipe: Equatable, Codable {
+    let id: Int
+    let name: String
+    let ingredients: IngredientsInformation
+    let instructions: InstructionSearchElement
+    
+    static func == (lhs: Recipe, rhs: Recipe) -> Bool {
+        return (lhs.name == rhs.name && lhs.ingredients == rhs.ingredients && lhs.instructions == rhs.instructions)
     }
 }
 
@@ -52,6 +66,92 @@ class Pantry: ObservableObject {
     }
 }
 
+class Cookbook: ObservableObject {
+    @Published var savedRecipes: [Recipe]
+    
+    init() {
+        print("Initializing Cookbook")
+        if UserDefaults.standard.data(forKey: "savedRecipes") == nil {
+            print("Creating Cookbook in Local Storage")
+            let tempSI = [SedIngredient(amount: 777.77, unitLong: "No Recipes Saved", name: "No Recipes Saved")]
+            let tempRSE = RecipeSearchElement(missedIngredients: tempSI, usedIngredients: tempSI)
+            let tempISE = InstructionSearchElement()
+            let tempII = IngredientsInformation(recipe: tempRSE)
+            let temp = Recipe(id: -1, name: "No Recipes Saved", ingredients: tempII, instructions: tempISE)
+            do {
+                // Create JSON Encoder
+                let encoder = JSONEncoder()
+                
+                // Encode Note
+                let data = try encoder.encode([temp])
+                
+                // Write/Set Data
+                UserDefaults.standard.set(data, forKey: "savedRecipes")
+                
+            } catch {
+                print("Unable to Encode Array of Recipes (\(error))")
+            }
+        }
+        // Read/Get Data
+        do {
+            // Create JSON Decoder
+            let decoder = JSONDecoder()
+            
+            // Decode Note
+            savedRecipes = try decoder.decode([Recipe].self, from: UserDefaults.standard.data(forKey: "savedRecipes")!)
+            
+        } catch {
+            print("Unable to Decode Recipes (\(error))")
+            savedRecipes = []
+        }
+        
+        if savedRecipes[0].name == "No Recipes Saved" {
+            print("Removing Temp Recipe")
+            removeRecipe(-1)
+        }
+        
+        print("Finished Cookbook initialization")
+    }
+    
+    // Adds a recipe to local and application storage
+    func addReipe(_ recipeToAdd: Recipe){
+        savedRecipes.append(recipeToAdd)
+        do {
+            // Create JSON Encoder
+            let encoder = JSONEncoder()
+            
+            // Encode Note
+            let data = try encoder.encode(savedRecipes)
+            
+            // Write/Set Data
+            UserDefaults.standard.set(data, forKey: "savedRecipes")
+            print("Saved savedRecipes to local storage")
+            
+        } catch {
+            print("Unable to Encode Array of Recipes (\(error))")
+        }
+    }
+    
+    // Removes recipe from local and application storage
+    func removeRecipe(_ recipeToRemove: Int){
+        savedRecipes.remove(at: savedRecipes.firstIndex(where: {$0.id == recipeToRemove}) ?? 0)
+        do {
+            // Create JSON Encoder
+            let encoder = JSONEncoder()
+            
+            // Encode Note
+            let data = try encoder.encode(savedRecipes)
+            
+            // Write/Set Data
+            UserDefaults.standard.set(data, forKey: "savedRecipes")
+            
+        } catch {
+            print("Unable to Encode Array of Recipes (\(error))")
+        }
+    }
+    
+}
+
 // Grabs Master Ingredients List from external txt file and compiles them into an array
 class IngredientsFile: ObservableObject {
     var ingredientsList: [String] = [] // Keeps all ingredients available for the user to interact with in an easily accessible array
@@ -76,7 +176,7 @@ class IngredientsFile: ObservableObject {
 }
 
 // To keep track of a specific recipe's ingredients and their amounts
-class IngredientsInformation: ObservableObject {
+class IngredientsInformation: ObservableObject, Equatable, Codable {
     var names: [String]
     var amounts: [String]
     var units: [String]
@@ -100,6 +200,10 @@ class IngredientsInformation: ObservableObject {
             self.units[index] = ingredient.unitLong!
             index += 1
         }
+    }
+    
+    static func == (lhs: IngredientsInformation, rhs: IngredientsInformation) -> Bool {
+        return (lhs.names == rhs.names && lhs.amounts == rhs.amounts && lhs.units == rhs.units)
     }
 }
 

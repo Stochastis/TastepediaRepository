@@ -9,9 +9,13 @@
 import Foundation
 
 // MARK: - InstructionSearchElement
-struct InstructionSearchElement: Codable {
+struct InstructionSearchElement: Codable, Equatable {
     var name: String?
     var steps: [Step]? // Includes information such as the directions themselves, the equipment/ingredients needed, and the time it will take for this a particular step
+    
+    static func == (lhs: InstructionSearchElement, rhs: InstructionSearchElement) -> Bool {
+        return (lhs.name == rhs.name && lhs.steps == rhs.steps)
+    }
 }
 
 // MARK: InstructionSearchElement convenience initializers and mutators
@@ -53,11 +57,15 @@ extension InstructionSearchElement {
 
 // An object that stores information about a single step in a recipe's instructions.
 // Information includes the step's number, the directions themselves, the ingredients/equipment needed, and how long it will take to complete.
-struct Step: Codable {
+struct Step: Codable, Equatable {
     var number: Int?
     var step: String?
     var ingredients, equipment: [Ent]?
     var length: Length?
+    
+    static func == (lhs: Step, rhs: Step) -> Bool {
+        return (lhs.number == rhs.number && lhs.step == rhs.step && lhs.ingredients == rhs.ingredients && lhs.equipment == rhs.equipment && lhs.length == rhs.length)
+    }
 }
 
 // MARK: Step convenience initializers and mutators
@@ -104,7 +112,7 @@ extension Step {
 }
 
 // An object that stores information about either an ingredient or a piece of equipment
-struct Ent: Codable {
+struct Ent: Codable, Equatable {
     var id: Int?
     var name, localizedName, image: String?
 }
@@ -151,7 +159,7 @@ extension Ent {
 }
 
 // MARK: - Length
-struct Length: Codable {
+struct Length: Codable, Equatable {
     var number: Int?
     var unit: String?
 }

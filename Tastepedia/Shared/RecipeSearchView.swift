@@ -44,20 +44,14 @@ struct RecipeSearchView: View {
             // Display each recipe result in a grid
             ForEach(0 ..< model.foundRecipes.count, id: \.self) { i in
                 if (oneSquare(loop: i, count: model.foundRecipes.count)) {
-                    NavigationLink(destination: RecipeDetailsView(instructionModel: InstructionSearchViewModel(id: model.foundRecipes[i].id ?? 777), ingredientInfo: IngredientsInformation(recipe: model.foundRecipes[i]), recipeName: model.foundRecipes[i].title ?? "Placeholder"), label: {
-                        RecipeButtonView(recipeName: model.foundRecipes[i].title ?? "Placeholder")
-                    })
+                    RecipeButtonView(recipeName: model.foundRecipes[i].title ?? "Placeholder", model: model, i: i)
                 }
                 
                 else {
                     if (twoSquares(loop: i)) {
                         HStack {
-                            NavigationLink(destination: RecipeDetailsView(instructionModel: InstructionSearchViewModel(id: model.foundRecipes[i].id ?? 777), ingredientInfo: IngredientsInformation(recipe: model.foundRecipes[i]), recipeName: model.foundRecipes[i].title ?? "Placeholder"), label: {
-                                RecipeButtonView(recipeName: model.foundRecipes[i].title ?? "Placeholder")
-                            })
-                            NavigationLink(destination: RecipeDetailsView(instructionModel: InstructionSearchViewModel(id: model.foundRecipes[i-1].id ?? 777), ingredientInfo: IngredientsInformation(recipe: model.foundRecipes[i-1]), recipeName: model.foundRecipes[i-1].title ?? "Placeholder"), label: {
-                                RecipeButtonView(recipeName: model.foundRecipes[i-1].title ?? "Placeholder")
-                            })
+                            RecipeButtonView(recipeName: model.foundRecipes[i].title ?? "Placeholder", model: model, i: i)
+                            RecipeButtonView(recipeName: model.foundRecipes[i-1].title ?? "Placeholder", model: model, i: i-1)
                         }
                     } else {
                         EmptyView()

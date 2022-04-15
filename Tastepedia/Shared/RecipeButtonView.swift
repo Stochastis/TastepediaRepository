@@ -14,11 +14,17 @@ struct RecipeButtonView: View {
     
     let recipeName: String
     
+    let model: RecipeSearchViewModel
+    
+    let i: Int
+    
     var body: some View {
-        ZStack {
-            Rectangle().aspectRatio(1, contentMode: .fill).foregroundColor(colorScheme == .dark ? .white : .black)
-            // Name of the recipe
-            Text(recipeName).foregroundColor(.orange)
-        }
+        NavigationLink(destination: RecipeDetailsView(downloaded: true, instructionModel: InstructionSearchViewModel(id: model.foundRecipes[i].id ?? 777), ingredientInfo: IngredientsInformation(recipe: model.foundRecipes[i]), recipeName: model.foundRecipes[i].title ?? "Placeholder", id: model.foundRecipes[i].id ?? 777), label: {
+                        ZStack {
+                            Rectangle().aspectRatio(1, contentMode: .fill).foregroundColor(colorScheme == .dark ? .white : .black)
+                            // Name of the recipe
+                            Text(recipeName).foregroundColor(.orange)
+                        }}
+        )
     }
 }

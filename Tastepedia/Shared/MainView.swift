@@ -19,7 +19,6 @@ struct MainView: View {
                     Spacer()
                     HStack() {
                         Spacer()
-                        
                         // Essentially a button that uses the functionality of NavigationView to go between different views
                         NavigationLink(
                             destination: RecipeSearchView(),
@@ -27,7 +26,12 @@ struct MainView: View {
                                 Image(systemName: "magnifyingglass").foregroundColor(.black)
                             })
                         Spacer()
-                        
+                        NavigationLink(
+                            destination: CookbookView(),
+                            label: {
+                                Image(systemName: "text.book.closed").foregroundColor(.black)
+                            }).offset(x: 0, y: -100)
+                        Spacer()
                         // Essentially a button that uses the functionality of NavigationView to go between different views
                         NavigationLink(
                             destination: PantryView(),
@@ -43,12 +47,5 @@ struct MainView: View {
                 .ignoresSafeArea()
             }
         }.navigationBarHidden(true)
-    }
-}
-
-
-struct MainView_Previews: PreviewProvider {
-    static var previews: some View {
-        MainView().environmentObject(Pantry())
     }
 }

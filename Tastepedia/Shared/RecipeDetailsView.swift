@@ -12,14 +12,19 @@ struct RecipeDetailsView: View {
     // A variable for keeping track of the phone's current color scheme
     @Environment(\.colorScheme) var colorScheme
     
-    @State var downloaded = false
+    @State var downloaded: Bool
     
     // Create a View Model to interact with the API
     @StateObject var instructionModel: InstructionSearchViewModel
     
+    // Access the application's cookbook environment object
+    @EnvironmentObject var cookbook: Cookbook
+    
     let ingredientInfo: IngredientsInformation
     
     let recipeName: String
+    
+    let id: Int
     
     var body: some View {
         ScrollView {
@@ -49,11 +54,13 @@ struct RecipeDetailsView: View {
                 if downloaded {
                     Image(systemName: "square.and.arrow.down.fill").foregroundColor(colorScheme == .dark ? .white : .black).onTapGesture {
                         downloaded.toggle()
-                        print("Saved Recipe")
+                        cookbook.removeRecipe(id)
+                        print("Unsaved Recipe")
                     }
                 } else {
                     Image(systemName: "square.and.arrow.down").foregroundColor(colorScheme == .dark ? .white : .black).onTapGesture {
                         downloaded.toggle()
+                        cookbook.addReipe(Recipe(id: id, name: recipeName, ingredients: ingredientInfo, instructions: instructionModel.instructions[0]))
                         print("Saved Recipe")
                     }
                 }

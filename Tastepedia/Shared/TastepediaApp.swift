@@ -33,10 +33,24 @@ struct Recipe: Equatable, Codable {
     let id: Int
     let name: String
     let ingredients: IngredientsInformation
-    let instructions: InstructionSearchElement
+    var instructions: InstructionSearchElement
     
     static func == (lhs: Recipe, rhs: Recipe) -> Bool {
-        return (lhs.name == rhs.name && lhs.ingredients == rhs.ingredients && lhs.instructions == rhs.instructions)
+        return (lhs.id == rhs.id)
+    }
+}
+
+class ObservableRecipe: ObservableObject {
+    let id: Int
+    let name: String
+    let ingredients: IngredientsInformation
+    @Published var instructions: InstructionSearchElement
+    
+    init(_ id: Int, _ name: String, _ ingredients: IngredientsInformation, _ instructions: InstructionSearchElement) {
+        self.id = id
+        self.name = name
+        self.ingredients = ingredients
+        self.instructions = instructions
     }
 }
 
@@ -71,19 +85,14 @@ class Cookbook: ObservableObject {
     
     init() {
         print("Initializing Cookbook")
-        if UserDefaults.standard.data(forKey: "savedRecipes") == nil {
+        if UserDefaults.standard.data(forKey: "savedRecipes") == nil{
             print("Creating Cookbook in Local Storage")
-            let tempSI = [SedIngredient(amount: 777.77, unitLong: "No Recipes Saved", name: "No Recipes Saved")]
-            let tempRSE = RecipeSearchElement(missedIngredients: tempSI, usedIngredients: tempSI)
-            let tempISE = InstructionSearchElement()
-            let tempII = IngredientsInformation(recipe: tempRSE)
-            let temp = Recipe(id: -1, name: "No Recipes Saved", ingredients: tempII, instructions: tempISE)
             do {
                 // Create JSON Encoder
                 let encoder = JSONEncoder()
                 
                 // Encode Note
-                let data = try encoder.encode([temp])
+                let data = try encoder.encode([Recipe]())
                 
                 // Write/Set Data
                 UserDefaults.standard.set(data, forKey: "savedRecipes")
@@ -103,11 +112,6 @@ class Cookbook: ObservableObject {
         } catch {
             print("Unable to Decode Recipes (\(error))")
             savedRecipes = []
-        }
-        
-        if savedRecipes[0].name == "No Recipes Saved" {
-            print("Removing Temp Recipe")
-            removeRecipe(-1)
         }
         
         print("Finished Cookbook initialization")

@@ -44,14 +44,17 @@ struct RecipeSearchView: View {
             // Display each recipe result in a grid
             ForEach(0 ..< model.foundRecipes.count, id: \.self) { i in
                 if (oneSquare(loop: i, count: model.foundRecipes.count)) {
-                    RecipeButtonView(recipeName: model.foundRecipes[i].title ?? "Placeholder", model: model, i: i)
+                    // TO-DO: Look at simplifying this view call. Maybe create another initializer for Recipe class.
+                    RecipeButtonView(recipe: Recipe(id: model.foundRecipes[i].id!, name: model.foundRecipes[i].title!, ingredients: IngredientsInformation(recipe: model.foundRecipes[i]), instructions: InstructionSearchElement(name: "", steps: [Step(number: 1, step: "Loading Recipe Instructions...")])))
                 }
                 
                 else {
                     if (twoSquares(loop: i)) {
                         HStack {
-                            RecipeButtonView(recipeName: model.foundRecipes[i].title ?? "Placeholder", model: model, i: i)
-                            RecipeButtonView(recipeName: model.foundRecipes[i-1].title ?? "Placeholder", model: model, i: i-1)
+                            // TO-DO: Look at simplifying this view call. Maybe create another initializer for Recipe class.
+                            RecipeButtonView(recipe: Recipe(id: model.foundRecipes[i].id!, name: model.foundRecipes[i].title!, ingredients: IngredientsInformation(recipe: model.foundRecipes[i]), instructions: InstructionSearchElement(name: "", steps: [Step(number: 1, step: "Loading Recipe Instructions...")])))
+                            // TO-DO: Look at simplifying this view call. Maybe create another initializer for Recipe class.
+                            RecipeButtonView(recipe: Recipe(id: model.foundRecipes[i-1].id!, name: model.foundRecipes[i-1].title!, ingredients: IngredientsInformation(recipe: model.foundRecipes[i-1]), instructions: InstructionSearchElement(name: "", steps: [Step(number: 1, step: "Loading Recipe Instructions...")])))
                         }
                     } else {
                         EmptyView()

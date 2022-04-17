@@ -11,14 +11,14 @@ import Foundation
 class InstructionSearchViewModel: ObservableObject {
     
     @Published var instructions = [InstructionSearchElement]() // Stores all of the instructions returned by the API call
-    
+        
     // Calls the Spoonacular API to retrieve a given recipe's instructions
     init (id: Int) {
         instructions = [InstructionSearchElement(name: "", steps: [Step(number: 1, step: "Loading Recipe Instructions...")])]
         
         // Create custom URL with desired recipe ID from id parameter
         let url: URL! = URL(string: "https://api.spoonacular.com/recipes/" + String(id) + "/analyzedInstructions?apiKey=af2da9210db04a9d8bb691d2f4166632")
-        print(url.absoluteString)
+        print("Grabbing Instructions from: \(url.absoluteString)")
         
         let request = URLRequest(url: url)
         

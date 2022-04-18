@@ -52,6 +52,19 @@ class ObservableRecipe: ObservableObject {
         self.ingredients = ingredients
         self.instructions = instructions
     }
+    
+    func getInstructions(){
+        print("here")
+        if (self.instructions.steps![0].step == "Loading Recipe Instructions...") {
+            let temp = InstructionSearchViewModel(id: self.id)
+            temp.group.wait()
+            self.instructions = temp.instructions[0]
+            return
+        }
+        else {
+            return
+        }
+    }
 }
 
 // The Pantry class that verifies the existence of 'savedIngredients' in UserDefaults

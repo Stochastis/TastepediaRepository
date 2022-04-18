@@ -23,7 +23,7 @@ struct RecipeSearchView: View {
     
     // Access the pantry environment object
     @EnvironmentObject var pantry: Pantry
-    
+        
     var body: some View {
         // Show all the recipe results
         ScrollView {

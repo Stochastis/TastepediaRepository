@@ -13,13 +13,15 @@ struct RecipeButtonView: View {
     @Environment(\.colorScheme) var colorScheme
     
     @EnvironmentObject var recipe: ObservableRecipe
+    
+    @EnvironmentObject var cookbook: Cookbook
         
     let i: Int
     
     let recipeID: Int
     
     var body: some View {
-        NavigationLink(destination: RecipeDetailsView(downloaded: true, recipe: recipe, instructionModel: InstructionSearchViewModel(id: recipeID)), label: {
+        NavigationLink(destination: RecipeDetailsView(recipe: recipe), label: {
                         ZStack {
                             Rectangle().aspectRatio(1, contentMode: .fill).foregroundColor(colorScheme == .dark ? .white : .black)
                             // Name of the recipe

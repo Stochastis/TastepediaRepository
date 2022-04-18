@@ -11,9 +11,11 @@ import Foundation
 class InstructionSearchViewModel: ObservableObject {
     
     @Published var instructions = [InstructionSearchElement]() // Stores all of the instructions returned by the API call
+    
+    let group: DispatchGroup
         
     // Calls the Spoonacular API to retrieve a given recipe's instructions
-    init (id: Int) {
+    init (id: Int){
         instructions = [InstructionSearchElement(name: "", steps: [Step(number: 1, step: "Loading Recipe Instructions...")])]
         
         // Create custom URL with desired recipe ID from id parameter
@@ -22,8 +24,11 @@ class InstructionSearchViewModel: ObservableObject {
         
         let request = URLRequest(url: url)
         
+        group = DispatchGroup()
+        
         // Make the API call
         let session = URLSession.shared.dataTask(with: request) { data, response, error in
+            self.group.enter()
             DispatchQueue.main.async {
                 if data == nil {
                     print("No data recieved.")
@@ -40,6 +45,7 @@ class InstructionSearchViewModel: ObservableObject {
                     print("Instruction model is empty.")
                     self.instructions.append(InstructionSearchElement(name: "", steps: [Step(number: 1, step: "No Instructions Found")]))
                 }
+                self.group.leave()
             }
         }
         session.resume()

@@ -31,6 +31,7 @@ class InstructionSearchViewModel: ObservableObject {
                 do {
                     self.instructions = try JSONDecoder().decode([InstructionSearchElement].self, from: data!)
                     print("Successfully decoded JSON")
+                    print("Step 1: \(self.instructions[0].steps![0].step ?? "Placeholder")")
                 } catch {
                     print("Trouble decoding JSON. Error below.")
                     print("Error: \(error)")

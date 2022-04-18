@@ -12,10 +12,14 @@ struct RecipeButtonView: View {
     // A variable for keeping track of the phone's current color scheme
     @Environment(\.colorScheme) var colorScheme
     
-    var recipe: Recipe
+    @EnvironmentObject var recipe: ObservableRecipe
+        
+    let i: Int
+    
+    let recipeID: Int
     
     var body: some View {
-        NavigationLink(destination: RecipeDetailsView(downloaded: true, recipe: ObservableRecipe(recipe.id, recipe.name, recipe.ingredients, recipe.instructions)), label: {
+        NavigationLink(destination: RecipeDetailsView(downloaded: true, recipe: recipe, instructionModel: InstructionSearchViewModel(id: recipeID)), label: {
                         ZStack {
                             Rectangle().aspectRatio(1, contentMode: .fill).foregroundColor(colorScheme == .dark ? .white : .black)
                             // Name of the recipe

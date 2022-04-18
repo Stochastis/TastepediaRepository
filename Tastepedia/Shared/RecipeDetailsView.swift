@@ -14,10 +14,13 @@ struct RecipeDetailsView: View {
     
     @State var downloaded: Bool
     
+    @StateObject var recipe: ObservableRecipe
+    
+    // Create a View Model to interact with the API
+    @StateObject var instructionModel: InstructionSearchViewModel
+    
     // Access the application's cookbook environment object
     @EnvironmentObject var cookbook: Cookbook
-    
-    @StateObject var recipe: ObservableRecipe
     
     var body: some View {
         ScrollView {
@@ -33,10 +36,10 @@ struct RecipeDetailsView: View {
             // Recipe instructions
             LazyVStack(pinnedViews: .sectionHeaders) {
                 Section(header: Text("Instructions").frame(width: 350, height: 25, alignment: .center).background(Color.orange)) {
-                    ForEach(0 ..< recipe.instructions.steps!.count, id: \.self) { i in
+                    ForEach(0 ..< instructionModel.instructions[0].steps!.count, id: \.self) { i in
                         VStack {
                             Text("Step \(i+1):").padding([.top])
-                            Text(recipe.instructions.steps![0].step!)
+                            Text(instructionModel.instructions[0].steps![i].step!)
                                 .padding([.leading, .bottom, .trailing])
                         }
                     }
@@ -59,10 +62,6 @@ struct RecipeDetailsView: View {
                     }
                 }
             })
-        }).onAppear(perform: {
-            if recipe.instructions.steps![0].step == "Loading Recipe Instructions..." {
-                recipe.instructions = InstructionSearchViewModel(id: recipe.id).instructions[0]
-            }
         })
     }
 }

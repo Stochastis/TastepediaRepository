@@ -101,6 +101,8 @@ class Cookbook: ObservableObject {
         if UserDefaults.standard.data(forKey: "savedRecipes") == nil{
             print("Creating Cookbook in Local Storage")
             do {
+                // Create an empty array of recipes to initialize the UserDefaults storage for future use
+                
                 // Create JSON Encoder
                 let encoder = JSONEncoder()
                 

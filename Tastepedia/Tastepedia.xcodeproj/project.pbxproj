@@ -59,6 +59,46 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BC54BDF0280E34DE00E73F01 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BC54BDF3280E358600E73F01 /* Recipe Search */,
+				BC54BDF1280E351A00E73F01 /* Pantry and Ingredients */,
+				BC95F0D027BB0DB60057F68F /* MainView.swift */,
+				BC7D31362808E70E0058FF82 /* CookbookView.swift */,
+				BC64248727F7C39400DFECE1 /* RecipeDetailsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		BC54BDF1280E351A00E73F01 /* Pantry and Ingredients */ = {
+			isa = PBXGroup;
+			children = (
+				BC54BDF2280E356600E73F01 /* Ingredient Search */,
+				BC7E52D427E3EEFE0066FC96 /* PantryView.swift */,
+				BCBD106027ED43EF00E9FB6A /* PISquareView.swift */,
+			);
+			path = "Pantry and Ingredients";
+			sourceTree = "<group>";
+		};
+		BC54BDF2280E356600E73F01 /* Ingredient Search */ = {
+			isa = PBXGroup;
+			children = (
+				BC3DACAF27E68BEE00F94F3D /* IngredientSearchView.swift */,
+				BCBD105D27ED432800E9FB6A /* IngredientSearchScrollView.swift */,
+			);
+			path = "Ingredient Search";
+			sourceTree = "<group>";
+		};
+		BC54BDF3280E358600E73F01 /* Recipe Search */ = {
+			isa = PBXGroup;
+			children = (
+				BC7E52D827E3FC010066FC96 /* RecipeSearchView.swift */,
+				BC64248227F7BF8C00DFECE1 /* RecipeButtonView.swift */,
+			);
+			path = "Recipe Search";
+			sourceTree = "<group>";
+		};
 		BC95F0C927BB0DB60057F68F = {
 			isa = PBXGroup;
 			children = (
@@ -75,15 +115,6 @@
 			isa = PBXGroup;
 			children = (
 				BC95F0CF27BB0DB60057F68F /* TastepediaApp.swift */,
-				BC95F0D027BB0DB60057F68F /* MainView.swift */,
-				BC7D31362808E70E0058FF82 /* CookbookView.swift */,
-				BC7E52D827E3FC010066FC96 /* RecipeSearchView.swift */,
-				BC64248227F7BF8C00DFECE1 /* RecipeButtonView.swift */,
-				BC64248727F7C39400DFECE1 /* RecipeDetailsView.swift */,
-				BC7E52D427E3EEFE0066FC96 /* PantryView.swift */,
-				BC3DACAF27E68BEE00F94F3D /* IngredientSearchView.swift */,
-				BCBD105D27ED432800E9FB6A /* IngredientSearchScrollView.swift */,
-				BCBD106027ED43EF00E9FB6A /* PISquareView.swift */,
 				BC95F0D127BB0DB70057F68F /* Assets.xcassets */,
 				BC2AEA6A27E8135A0022C13A /* MasterIngredientsList.txt */,
 			);
@@ -112,6 +143,7 @@
 			children = (
 				BCAB55EF27D1AA8100334443 /* RecipeSearchViewModel.swift */,
 				BCBDF9DE27FA589500836B0C /* InstructionSearchViewModel.swift */,
+				BC54BDF0280E34DE00E73F01 /* Views */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";

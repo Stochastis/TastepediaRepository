@@ -30,7 +30,7 @@ struct RecipeSearchView: View {
             // Grabs recipes from the Spoonacular API through the RecipeSearchViewModel
             Button(action: {
                 // Find recipes given the Pantry's current ingredients.
-                model.findRecipes(inputs: pantry.ingredients)
+                model.findRecipes(ingredients: pantry.ingredients)
                 // Clear previous recipe results
                 recipes.removeAll()
                 // Add current recipe results

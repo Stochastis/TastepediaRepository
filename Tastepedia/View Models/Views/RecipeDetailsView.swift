@@ -35,13 +35,16 @@ struct RecipeDetailsView: View {
                         VStack {
                             Text("Step \(i+1):").padding([.top])
                             Text(recipe.instructions.steps![i].step!)
-                                .padding([.leading, .bottom, .trailing]).onChange(of: recipe.instructions.steps![i].step!, perform: {_ in
-                                    print("Something changed")
-                                })
-                        }
+                                .padding([.leading, .bottom, .trailing])
+                        }.onChange(of: recipe.instructions, perform: {_ in
+                            print("Something changed")
+                        })
                     }
                 }
             }.onAppear(perform: {
+                withUnsafePointer(to: recipe) {
+                    print(" This recipe object \(recipe) has address: \($0)")
+                }
                 recipe.getInstructions()
             })
         }.navigationBarTitleDisplayMode(.inline).navigationTitle(recipe.name).toolbar(content: {

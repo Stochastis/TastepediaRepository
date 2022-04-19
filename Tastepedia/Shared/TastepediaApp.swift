@@ -54,16 +54,61 @@ class ObservableRecipe: ObservableObject {
     }
     
     func getInstructions(){
-        print("here")
         if (self.instructions.steps![0].step == "Loading Recipe Instructions...") {
-            let temp = InstructionSearchViewModel(id: self.id)
-            temp.group.wait()
-            self.instructions = temp.instructions[0]
+            withUnsafePointer(to: self) {
+                print(" This recipe object \(self) has address: \($0)")
+            }
+            self.grabInstructions(id: self.id, completion: {
+                
+            })
+            objectWillChange.send()
+            withUnsafePointer(to: self) {
+                print(" This recipe object \(self) has address: \($0)")
+            }
+            print(self.instructions)
             return
         }
         else {
             return
         }
+    }
+    
+    func grabInstructions(id: Int, completion: @escaping () -> () = {}){
+        self.instructions = [InstructionSearchElement(name: "", steps: [Step(number: 1, step: "Loading Recipe Instructions...")])][0]
+        
+        // Create custom URL with desired recipe ID from id parameter
+        let url: URL! = URL(string: "https://api.spoonacular.com/recipes/" + String(id) + "/analyzedInstructions?apiKey=af2da9210db04a9d8bb691d2f4166632")
+        print("Grabbing Instructions from: \(url.absoluteString)")
+        
+        let request = URLRequest(url: url)
+        
+        // Make the API call
+        let session = URLSession.shared.dataTask(with: request) { data, response, error in
+            DispatchQueue.main.async {
+                if data == nil {
+                    print("No data recieved.")
+                    completion()
+                    return
+                }
+                do {
+                    let result = try JSONDecoder().decode([InstructionSearchElement].self, from: data!)
+                    if result.isEmpty {
+                        print("Instruction model is empty.")
+                        self.instructions = InstructionSearchElement(name: "", steps: [Step(number: 1, step: "No Instructions Found")])
+                    } else {
+                        self.instructions = result[0]
+                    }
+                    print("Successfully decoded JSON")
+                    print("Step 1: \(self.instructions.steps![0].step ?? "Placeholder")")
+                    completion()
+                } catch {
+                    print("Trouble decoding JSON. Error below.")
+                    print("Error: \(error)")
+                    completion()
+                }
+            }
+        }
+        session.resume()
     }
 }
 

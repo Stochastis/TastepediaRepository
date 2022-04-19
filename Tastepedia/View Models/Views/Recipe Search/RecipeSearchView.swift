@@ -45,16 +45,16 @@ struct RecipeSearchView: View {
             ForEach(0 ..< model.foundRecipes.count, id: \.self) { i in
                 if (oneSquare(loop: i, count: model.foundRecipes.count)) {
                     // TO-DO: Look at simplifying this view call. Maybe create another initializer for Recipe class.
-                    RecipeButtonView(i: i, recipeID: model.foundRecipes[i].id ?? 777).environmentObject(ObservableRecipe(model.foundRecipes[i].id!, model.foundRecipes[i].title!, IngredientsInformation(recipe: model.foundRecipes[i]), InstructionSearchElement(name: "", steps: [Step(number: 1, step: "Loading Recipe Instructions...")])))
+                    RecipeButtonView(recipe: ObservableRecipe(model.foundRecipes[i].id!, model.foundRecipes[i].title!, IngredientsInformation(recipe: model.foundRecipes[i]), InstructionSearchElement(name: "", steps: [Step(number: 1, step: "Loading Recipe Instructions...")])))
                 }
                 
                 else {
                     if (twoSquares(loop: i)) {
                         HStack {
                             // TO-DO: Look at simplifying this view call. Maybe create another initializer for Recipe class.
-                            RecipeButtonView(i: i, recipeID: model.foundRecipes[i].id ?? 777).environmentObject(ObservableRecipe(model.foundRecipes[i].id!, model.foundRecipes[i].title!, IngredientsInformation(recipe: model.foundRecipes[i]), InstructionSearchElement(name: "", steps: [Step(number: 1, step: "Loading Recipe Instructions...")])))
+                            RecipeButtonView(recipe: ObservableRecipe(model.foundRecipes[i].id!, model.foundRecipes[i].title!, IngredientsInformation(recipe: model.foundRecipes[i]), InstructionSearchElement(name: "", steps: [Step(number: 1, step: "Loading Recipe Instructions...")])))
                             // TO-DO: Look at simplifying this view call. Maybe create another initializer for Recipe class.
-                            RecipeButtonView(i: i-1, recipeID: model.foundRecipes[i-1].id ?? 777).environmentObject(ObservableRecipe(model.foundRecipes[i-1].id!, model.foundRecipes[i-1].title!, IngredientsInformation(recipe: model.foundRecipes[i-1]), InstructionSearchElement(name: "", steps: [Step(number: 1, step: "Loading Recipe Instructions...")])))
+                            RecipeButtonView(recipe: ObservableRecipe(model.foundRecipes[i-1].id!, model.foundRecipes[i-1].title!, IngredientsInformation(recipe: model.foundRecipes[i-1]), InstructionSearchElement(name: "", steps: [Step(number: 1, step: "Loading Recipe Instructions...")])))
                         }
                     } else {
                         EmptyView()

@@ -12,14 +12,8 @@ struct RecipeButtonView: View {
     // A variable for keeping track of the phone's current color scheme
     @Environment(\.colorScheme) var colorScheme
     
-    @EnvironmentObject var recipe: ObservableRecipe
-    
-    @EnvironmentObject var cookbook: Cookbook
-        
-    let i: Int
-    
-    let recipeID: Int
-    
+    @StateObject var recipe: ObservableRecipe
+                    
     var body: some View {
         NavigationLink(destination: RecipeDetailsView(recipe: recipe), label: {
                         ZStack {

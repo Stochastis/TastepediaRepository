@@ -23,7 +23,7 @@ struct RecipeDetailsView: View {
             LazyVStack(pinnedViews: .sectionHeaders) {
                 Section(header: Text("Ingredients").frame(width: 350, height: 25, alignment: .center).background(Color.orange)) {
                     ForEach(0 ..< recipe.ingredients.names.count, id: \.self) { i in
-                        Text("\(formattedAmount(unformatted: recipe.ingredients.amounts[i])) \(recipe.ingredients.units[i].capitalized) of \(recipe.ingredients.names[i].capitalized)").frame(width: 350, height: 50, alignment: .leading)
+                        Text("\(formattedIngredient(recipe.ingredients.amounts[i], recipe.ingredients.units[i], recipe.ingredients.names[i]))").frame(width: 350, height: 50, alignment: .leading)
                     }
                 }
             }
@@ -36,9 +36,7 @@ struct RecipeDetailsView: View {
                             Text("Step \(i+1):").padding([.top])
                             Text(recipe.instructions.steps![i].step!)
                                 .padding([.leading, .bottom, .trailing])
-                        }.onChange(of: recipe.instructions, perform: {_ in
-                            print("Something changed")
-                        })
+                        }
                     }
                 }
             }.onAppear(perform: {
@@ -54,7 +52,6 @@ struct RecipeDetailsView: View {
                 } else {
                     Image(systemName: "square.and.arrow.down").foregroundColor(colorScheme == .dark ? .white : .black).onTapGesture {
                         cookbook.addReipe(Recipe(id: recipe.id, name: recipe.name, ingredients: recipe.ingredients, instructions: recipe.instructions))
-                        print("Saved Recipe")
                     }
                 }
             })
@@ -62,7 +59,14 @@ struct RecipeDetailsView: View {
     }
 }
 
-func formattedAmount(unformatted: String) -> String {
+let specialIngredients = [
+    "String Cheese" : "Sticks",
+    "Lemons" : "",
+    "Eggs" : "",
+    "Onions" : ""
+]
+
+func formattedAmount(_ unformatted: String) -> String {
     let wholeDouble = Double(unformatted)?.rounded(.down)
     let wholeInt = Int(wholeDouble!)
     var fraction = ""
@@ -107,4 +111,11 @@ func formattedAmount(unformatted: String) -> String {
         fraction = ""
     }
     return (wholeInt == 0) ? fraction : String(String(wholeInt) + " " + fraction)
+}
+
+func formattedIngredient(_ unformattedAmount: String, _ units: String, _ name: String) -> String {
+    let finalAmount = formattedAmount(unformattedAmount)
+    let finalUnits = (specialIngredients.keys.contains(name.capitalized)) ? specialIngredients[name.capitalized] : units.capitalized
+    let finalName = name.capitalized
+    return "\(finalAmount) \(finalUnits!) \(finalUnits == "" ? "" : "of ")\(finalName)"
 }

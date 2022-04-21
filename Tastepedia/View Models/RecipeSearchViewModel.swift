@@ -22,7 +22,7 @@ class RecipeSearchViewModel: ObservableObject {
         }
         ingredientString = String(ingredientString.dropLast())
         let url: URL! = URL(string: "https://api.spoonacular.com/recipes/findByIngredients?ingredients=" + ingredientString + "&ranking=2&apiKey=af2da9210db04a9d8bb691d2f4166632")
-        print(url.absoluteString)
+        print("Grabbing recipe results from: " + url.absoluteString)
         
         let request = URLRequest(url: url)
         

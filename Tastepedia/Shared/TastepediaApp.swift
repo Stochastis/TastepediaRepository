@@ -55,17 +55,9 @@ class ObservableRecipe: ObservableObject {
     
     func getInstructions(){
         if (self.instructions.steps![0].step == "Loading Recipe Instructions...") {
-            withUnsafePointer(to: self) {
-                print(" This recipe object \(self) has address: \($0)")
-            }
             self.grabInstructions(id: self.id, completion: {
-                
+                // Put code in here that you want to run when the grabInstructions() function hits completed()
             })
-            objectWillChange.send()
-            withUnsafePointer(to: self) {
-                print(" This recipe object \(self) has address: \($0)")
-            }
-            print(self.instructions)
             return
         }
         else {
@@ -99,7 +91,6 @@ class ObservableRecipe: ObservableObject {
                         self.instructions = result[0]
                     }
                     print("Successfully decoded JSON")
-                    print("Step 1: \(self.instructions.steps![0].step ?? "Placeholder")")
                     completion()
                 } catch {
                     print("Trouble decoding JSON. Error below.")
@@ -180,6 +171,7 @@ class Cookbook: ObservableObject {
     // Adds a recipe to local and application storage
     func addReipe(_ recipeToAdd: Recipe){
         savedRecipes.append(recipeToAdd)
+        print("Saved Recipe to Cookbook")
         do {
             // Create JSON Encoder
             let encoder = JSONEncoder()
@@ -189,7 +181,7 @@ class Cookbook: ObservableObject {
             
             // Write/Set Data
             UserDefaults.standard.set(data, forKey: "savedRecipes")
-            print("Saved savedRecipes to local storage")
+            print("Saved Cookbook to local storage")
             
         } catch {
             print("Unable to Encode Array of Recipes (\(error))")

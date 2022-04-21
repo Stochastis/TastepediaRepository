@@ -31,17 +31,19 @@ class RecipeSearchViewModel: ObservableObject {
             DispatchQueue.main.async {
                 if data == nil {
                     print("No data recieved.")
-                }
-                do {
-                    self.foundRecipes = try JSONDecoder().decode([RecipeSearchElement].self, from: data!)
-                    print("Successfully decoded JSON")
-                } catch {
-                    print("Trouble decoding JSON. Error below.")
-                    print("Error: \(error)")
-                }
-                if self.foundRecipes.isEmpty {
-                    print("Model is empty.")
-                    self.foundRecipes.append(RecipeSearchElement(title: "No Recipes Found"))
+                    self.foundRecipes.append(RecipeSearchElement(id: -2, title: "No Recipes Found. Check your network connection.", missedIngredients: [SedIngredient](), usedIngredients: [SedIngredient]()))
+                } else {
+                    do {
+                        self.foundRecipes = try JSONDecoder().decode([RecipeSearchElement].self, from: data!)
+                        print("Successfully decoded JSON")
+                    } catch {
+                        print("Trouble decoding JSON. Error below.")
+                        print("Error: \(error)")
+                    }
+                    if self.foundRecipes.isEmpty {
+                        print("Model is empty.")
+                        self.foundRecipes.append(RecipeSearchElement(title: "No Recipes Found"))
+                    }
                 }
             }
         }

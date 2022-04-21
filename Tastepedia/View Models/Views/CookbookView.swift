@@ -20,14 +20,14 @@ struct CookbookView: View {
                 // Display each saved recipe in a grid
                 ForEach(0 ..< cookbook.savedRecipes.count, id: \.self) { i in
                     if (oneSquare(loop: i, count: cookbook.savedRecipes.count)) {
-                        RecipeButtonView(recipe: ObservableRecipe(cookbook.savedRecipes[i].id, cookbook.savedRecipes[i].name, cookbook.savedRecipes[i].ingredients, cookbook.savedRecipes[i].instructions))
+                        RecipeButtonView(tappable: true, recipe: ObservableRecipe(cookbook.savedRecipes[i].id, cookbook.savedRecipes[i].name, cookbook.savedRecipes[i].ingredients, cookbook.savedRecipes[i].instructions))
                     }
                     
                     else {
                         if (twoSquares(loop: i)) {
                             HStack {
-                                RecipeButtonView(recipe: ObservableRecipe(cookbook.savedRecipes[i].id, cookbook.savedRecipes[i].name, cookbook.savedRecipes[i].ingredients, cookbook.savedRecipes[i].instructions))
-                                RecipeButtonView(recipe: ObservableRecipe(cookbook.savedRecipes[i-1].id, cookbook.savedRecipes[i-1].name, cookbook.savedRecipes[i-1].ingredients, cookbook.savedRecipes[i-1].instructions))
+                                RecipeButtonView(tappable: true, recipe: ObservableRecipe(cookbook.savedRecipes[i].id, cookbook.savedRecipes[i].name, cookbook.savedRecipes[i].ingredients, cookbook.savedRecipes[i].instructions))
+                                RecipeButtonView(tappable: true, recipe: ObservableRecipe(cookbook.savedRecipes[i-1].id, cookbook.savedRecipes[i-1].name, cookbook.savedRecipes[i-1].ingredients, cookbook.savedRecipes[i-1].instructions))
                             }
                         } else {
                             EmptyView()

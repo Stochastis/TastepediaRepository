@@ -105,6 +105,7 @@
 				BCCE875027E954F7005C7184 /* Launch Screen.storyboard */,
 				BCAB55E727D1A63C00334443 /* Models */,
 				BCAB55EE27D1AA4A00334443 /* View Models */,
+				BC54BDF0280E34DE00E73F01 /* Views */,
 				BC95F0CE27BB0DB60057F68F /* Shared */,
 				BC95F0D827BB0DB70057F68F /* iOS */,
 				BC05599927E96614009DEBA1 /* Tastepedia.app */,
@@ -143,7 +144,6 @@
 			children = (
 				BCAB55EF27D1AA8100334443 /* RecipeSearchViewModel.swift */,
 				BCBDF9DE27FA589500836B0C /* InstructionSearchViewModel.swift */,
-				BC54BDF0280E34DE00E73F01 /* Views */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";

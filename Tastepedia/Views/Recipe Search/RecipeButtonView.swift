@@ -29,7 +29,7 @@ struct RecipeButtonView: View {
             ZStack {
                 Rectangle().aspectRatio(1, contentMode: .fill).foregroundColor(colorScheme == .dark ? .white : .black)
                 // Name of the recipe
-                Text("No recipes found. Check your network connection.").foregroundColor(.orange)
+                Text(recipe.name).foregroundColor(.orange)
             }
         }
     }

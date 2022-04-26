@@ -45,7 +45,7 @@ struct RecipeSearchView: View {
             ForEach(0 ..< model.foundRecipes.count, id: \.self) { i in
                 if (oneSquare(loop: i, count: model.foundRecipes.count)) {
                     // TO-DO: Look at simplifying this view call. Maybe create another initializer for Recipe class.
-                    RecipeButtonView(tappable: (model.foundRecipes[i].title != "No Recipes Found. Check your network connection."), recipe: ObservableRecipe(model.foundRecipes[i].id!, model.foundRecipes[i].title!, IngredientsInformation(recipe: model.foundRecipes[i]), InstructionSearchElement(name: "", steps: [Step(number: 1, step: "Loading Recipe Instructions...")])))
+                    RecipeButtonView(tappable: !(model.foundRecipes[i].title == "No Recipes Found. Check your network connection." || model.foundRecipes[i].title == "No Recipes Found. Make sure to add ingredients to your pantry."), recipe: ObservableRecipe(model.foundRecipes[i].id!, model.foundRecipes[i].title!, IngredientsInformation(recipe: model.foundRecipes[i]), InstructionSearchElement(name: "", steps: [Step(number: 1, step: "Loading Recipe Instructions...")])))
                 }
                 
                 else {

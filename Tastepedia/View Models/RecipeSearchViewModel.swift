@@ -15,6 +15,12 @@ class RecipeSearchViewModel: ObservableObject {
     // Creates a URL from a string containing all the ingredients stored in the Pantry and uses that URL to make an API call to Spoonacular
     func findRecipes(ingredients: [String]) {
         
+        if ingredients.count == 0 {
+            print("Empty pantry")
+            self.foundRecipes = [(RecipeSearchElement(id: -3, title: "No Recipes Found. Make sure to add ingredients to your pantry.", missedIngredients: [SedIngredient](), usedIngredients: [SedIngredient]()))]
+            return
+        }
+        
         // Create custom URL with desired ingredients from inputs parameter
         var ingredientString = ""
         for ingredient in ingredients {
@@ -31,7 +37,7 @@ class RecipeSearchViewModel: ObservableObject {
             DispatchQueue.main.async {
                 if data == nil {
                     print("No data recieved.")
-                    self.foundRecipes.append(RecipeSearchElement(id: -2, title: "No Recipes Found. Check your network connection.", missedIngredients: [SedIngredient](), usedIngredients: [SedIngredient]()))
+                    self.foundRecipes = [(RecipeSearchElement(id: -2, title: "No Recipes Found. Check your network connection.", missedIngredients: [SedIngredient](), usedIngredients: [SedIngredient]()))]
                 } else {
                     do {
                         self.foundRecipes = try JSONDecoder().decode([RecipeSearchElement].self, from: data!)

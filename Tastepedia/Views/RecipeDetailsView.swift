@@ -62,6 +62,7 @@ struct RecipeDetailsView: View {
 let specialIngredients = [
     "String Cheese" : "Sticks",
     "Lemons" : "",
+    "Lemon Rind" : "",
     "Eggs" : "",
     "Onions" : ""
 ]

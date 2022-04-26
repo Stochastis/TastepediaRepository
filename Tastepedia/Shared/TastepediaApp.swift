@@ -119,12 +119,14 @@ class Pantry: ObservableObject {
     // Adds an ingredient to local and application storage
     func addIngredient(_ ingredientToAdd: String){
         ingredients.append(ingredientToAdd)
+        ingredients.sort()
         UserDefaults.standard.set(ingredients, forKey: "savedIngredients")
     }
     
     // Removes an ingredient from local and applications storage
     func removeIngredient(_ ingredientToRemove: String){
         ingredients.remove(at: ingredients.firstIndex(where: {$0 == ingredientToRemove}) ?? 0)
+        ingredients.sort()
         UserDefaults.standard.set(ingredients, forKey: "savedIngredients")
     }
 }

@@ -26,8 +26,8 @@ struct CookbookView: View {
                     else {
                         if (twoSquares(loop: i)) {
                             HStack {
-                                RecipeButtonView(tappable: true, recipe: ObservableRecipe(cookbook.savedRecipes[i].id, cookbook.savedRecipes[i].name, cookbook.savedRecipes[i].ingredients, cookbook.savedRecipes[i].instructions))
                                 RecipeButtonView(tappable: true, recipe: ObservableRecipe(cookbook.savedRecipes[i-1].id, cookbook.savedRecipes[i-1].name, cookbook.savedRecipes[i-1].ingredients, cookbook.savedRecipes[i-1].instructions))
+                                RecipeButtonView(tappable: true, recipe: ObservableRecipe(cookbook.savedRecipes[i].id, cookbook.savedRecipes[i].name, cookbook.savedRecipes[i].ingredients, cookbook.savedRecipes[i].instructions))
                             }
                         } else {
                             EmptyView()

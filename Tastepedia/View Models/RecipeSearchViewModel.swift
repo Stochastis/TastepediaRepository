@@ -48,7 +48,7 @@ class RecipeSearchViewModel: ObservableObject {
                     }
                     if self.foundRecipes.isEmpty {
                         print("Model is empty.")
-                        self.foundRecipes.append(RecipeSearchElement(title: "No Recipes Found"))
+                        self.foundRecipes = [(RecipeSearchElement(id: -4, title: "No Recipes Found. Try updating your pantry.", missedIngredients: [SedIngredient](), usedIngredients: [SedIngredient]()))]
                     }
                 }
             }

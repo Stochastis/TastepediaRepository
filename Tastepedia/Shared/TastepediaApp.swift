@@ -175,12 +175,16 @@ class Cookbook: ObservableObject {
         savedRecipes.append(recipeToAdd)
         print("Saved Recipe to Cookbook")
         do {
+            savedRecipes.sort {
+                $0.name < $1.name
+            }
+            
             // Create JSON Encoder
             let encoder = JSONEncoder()
             
             // Encode Note
             let data = try encoder.encode(savedRecipes)
-            
+                        
             // Write/Set Data
             UserDefaults.standard.set(data, forKey: "savedRecipes")
             print("Saved Cookbook to local storage")
@@ -194,6 +198,10 @@ class Cookbook: ObservableObject {
     func removeRecipe(_ recipeToRemove: Int){
         savedRecipes.remove(at: savedRecipes.firstIndex(where: {$0.id == recipeToRemove}) ?? 0)
         do {
+            savedRecipes.sort {
+                $0.name < $1.name
+            }
+            
             // Create JSON Encoder
             let encoder = JSONEncoder()
             

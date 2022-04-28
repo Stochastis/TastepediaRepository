@@ -23,20 +23,29 @@ struct MainView: View {
                         NavigationLink(
                             destination: RecipeSearchView(),
                             label: {
-                                Image(systemName: "magnifyingglass").foregroundColor(.black)
+                                VStack {
+                                    Image(systemName: "magnifyingglass").resizable().frame(width: 32.0, height: 32.0).foregroundColor(.black)
+                                    Text("Search").foregroundColor(.black)
+                                }
                             })
                         Spacer()
                         NavigationLink(
                             destination: CookbookView(),
                             label: {
-                                Image(systemName: "text.book.closed").foregroundColor(.black)
+                                VStack {
+                                    Image(systemName: "text.book.closed").resizable().frame(width: 32.0, height: 40.0).foregroundColor(.black).foregroundColor(.black)
+                                    Text("Cookbook").foregroundColor(.black)
+                                }
                             }).offset(x: 0, y: -100)
                         Spacer()
                         // Essentially a button that uses the functionality of NavigationView to go between different views
                         NavigationLink(
                             destination: PantryView(),
                             label: {
-                                Image(systemName: "tray.2.fill").foregroundColor(.black)
+                                VStack {
+                                    Image(systemName: "tray.2.fill").resizable().frame(width: 32.0, height: 32.0).foregroundColor(.black).foregroundColor(.black)
+                                    Text("Pantry").foregroundColor(.black)
+                                }
                             })
                         Spacer()
                     }

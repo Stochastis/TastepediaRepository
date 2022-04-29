@@ -221,6 +221,9 @@ class Cookbook: Equatable, ObservableObject {
         if lhs.savedRecipes.count != rhs.savedRecipes.count {
             return false
         }
+        if lhs.savedRecipes.count == 0 && rhs.savedRecipes.count == 0 {
+            return true
+        }
         for k in 0...lhs.savedRecipes.count-1 {
             if lhs.savedRecipes[k].id != rhs.savedRecipes[k].id {
                 return false

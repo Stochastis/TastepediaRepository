@@ -17,47 +17,77 @@ struct RecipeDetailsView: View {
     // Access the application's cookbook environment object
     @EnvironmentObject var cookbook: Cookbook
     
+    @State private var showRemovedRecipeText = false
+    @State private var showSavedRecipeText = false
+    @State private var fadeInOut = true
+    
     var body: some View {
-        ScrollView {
-            // Recipe ingredients
-            LazyVStack(pinnedViews: .sectionHeaders) {
-                Section(header: Text("Ingredients").frame(width: 350, height: 25, alignment: .center).background(Color.orange)) {
-                    ForEach(0 ..< recipe.ingredients.names.count, id: \.self) { i in
-                        Text("\(formattedIngredient(recipe.ingredients.amounts[i], recipe.ingredients.units[i], recipe.ingredients.names[i]))").frame(width: 350, height: 50, alignment: .leading)
-                    }
-                }
-            }
-            
-            // Recipe instructions
-            LazyVStack(pinnedViews: .sectionHeaders) {
-                Section(header: Text("Instructions").frame(width: 350, height: 25, alignment: .center).background(Color.orange)) {
-                    ForEach(0 ..< recipe.instructions.steps!.count, id: \.self) { i in
-                        VStack {
-                            Text("Step \(i+1):").padding([.top])
-                            Text(recipe.instructions.steps![i].step!)
-                                .padding([.leading, .bottom, .trailing])
+        ZStack {
+            ScrollView {
+                // Recipe ingredients
+                LazyVStack(pinnedViews: .sectionHeaders) {
+                    Section(header: Text("Ingredients").frame(width: 350, height: 25, alignment: .center).background(Color.orange)) {
+                        ForEach(0 ..< recipe.ingredients.names.count, id: \.self) { i in
+                            Text("\(formattedIngredient(recipe.ingredients.amounts[i], recipe.ingredients.units[i], recipe.ingredients.names[i]))").frame(width: 350, height: 50, alignment: .leading)
                         }
                     }
                 }
-            }.onAppear(perform: {
-                recipe.getInstructions()
-            })
-        }.navigationBarTitleDisplayMode(.inline).navigationTitle(recipe.name).toolbar(content: {
-            NavbarBackButtonDisappearanceWorkaroundItem()
-            ToolbarItem(placement: .navigationBarTrailing, content: {
-                if cookbook.savedRecipes.contains(Recipe(id: recipe.id, name: recipe.name, ingredients: recipe.ingredients, instructions: recipe.instructions)) {
-                    Image(systemName: "square.and.arrow.down.fill").foregroundColor(colorScheme == .dark ? .white : .black).onTapGesture {
-                        print("Removing \(recipe.name)")
-                        cookbook.removeRecipe(recipe.name)
-                        print("Unsaved Recipe")
+                
+                // Recipe instructions
+                LazyVStack(pinnedViews: .sectionHeaders) {
+                    Section(header: Text("Instructions").frame(width: 350, height: 25, alignment: .center).background(Color.orange)) {
+                        ForEach(0 ..< recipe.instructions.steps!.count, id: \.self) { i in
+                            VStack {
+                                Text("Step \(i+1):").padding([.top])
+                                Text(recipe.instructions.steps![i].step!)
+                                    .padding([.leading, .bottom, .trailing])
+                            }
+                        }
                     }
-                } else {
-                    Image(systemName: "square.and.arrow.down").foregroundColor(colorScheme == .dark ? .white : .black).onTapGesture {
-                        cookbook.addReipe(Recipe(id: recipe.id, name: recipe.name, ingredients: recipe.ingredients, instructions: recipe.instructions))
+                }.onAppear(perform: {
+                    recipe.getInstructions()
+                })
+            }.navigationBarTitleDisplayMode(.inline).navigationTitle(recipe.name).toolbar(content: {
+                NavbarBackButtonDisappearanceWorkaroundItem()
+                ToolbarItem(placement: .navigationBarTrailing, content: {
+                    if cookbook.savedRecipes.contains(Recipe(id: recipe.id, name: recipe.name, ingredients: recipe.ingredients, instructions: recipe.instructions)) {
+                        Image(systemName: "square.and.arrow.down.fill").foregroundColor(colorScheme == .dark ? .white : .black).onTapGesture {
+                            print("Removing \(recipe.name)")
+                            cookbook.removeRecipe(recipe.name)
+                            print("Unsaved Recipe")
+                            showRemovedRecipeText = true
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                self.showRemovedRecipeText = false
+                            }
+                        }
+                    } else {
+                        Image(systemName: "square.and.arrow.down").foregroundColor(colorScheme == .dark ? .white : .black).onTapGesture {
+                            cookbook.addReipe(Recipe(id: recipe.id, name: recipe.name, ingredients: recipe.ingredients, instructions: recipe.instructions))
+                            showSavedRecipeText = true
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                self.showSavedRecipeText = false
+                            }
+                        }
                     }
-                }
+                })
             })
-        })
+            if showRemovedRecipeText {
+                RoundedRectangle(cornerRadius: 16).foregroundColor(Color.gray).frame(width: 150, height: 150).overlay(Text("Unsaved Recipe").font(.largeTitle).multilineTextAlignment(.center)).onAppear(perform: {
+                    fadeInOut.toggle()
+                    withAnimation(Animation.easeInOut(duration: 2.5)) {
+                        fadeInOut.toggle()
+                    }
+                }).opacity(fadeInOut ? 0 : 1)
+            }
+            if showSavedRecipeText {
+                RoundedRectangle(cornerRadius: 16).foregroundColor(Color.gray).frame(width: 150, height: 150).overlay(Text("Saved Recipe").font(.largeTitle).multilineTextAlignment(.center)).onAppear(perform: {
+                    fadeInOut.toggle()
+                    withAnimation(Animation.easeInOut(duration: 2.5)) {
+                        fadeInOut.toggle()
+                    }
+                }).opacity(fadeInOut ? 0 : 1)
+            }
+        }
     }
 }
 

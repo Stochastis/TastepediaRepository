@@ -29,7 +29,7 @@ struct Tastepedia: App {
     }
 }
 
-struct Recipe: Equatable, Codable {
+struct Recipe: Equatable, Codable, Identifiable {
     let id: Int
     let name: String
     let ingredients: IngredientsInformation
@@ -131,7 +131,8 @@ class Pantry: ObservableObject {
     }
 }
 
-class Cookbook: ObservableObject {
+class Cookbook: Equatable, ObservableObject {
+    
     @Published var savedRecipes: [Recipe]
     
     init() {
@@ -195,8 +196,8 @@ class Cookbook: ObservableObject {
     }
     
     // Removes recipe from local and application storage
-    func removeRecipe(_ recipeToRemove: Int){
-        savedRecipes.remove(at: savedRecipes.firstIndex(where: {$0.id == recipeToRemove}) ?? 0)
+    func removeRecipe(_ recipeToRemove: String){
+        savedRecipes.remove(at: savedRecipes.firstIndex(where: {$0.name == recipeToRemove}) ?? 0)
         do {
             savedRecipes.sort {
                 $0.name < $1.name
@@ -216,6 +217,17 @@ class Cookbook: ObservableObject {
         }
     }
     
+    static func == (lhs: Cookbook, rhs: Cookbook) -> Bool {
+        if lhs.savedRecipes.count != rhs.savedRecipes.count {
+            return false
+        }
+        for k in 0...lhs.savedRecipes.count-1 {
+            if lhs.savedRecipes[k].id != rhs.savedRecipes[k].id {
+                return false
+            }
+        }
+        return true
+    }
 }
 
 // Grabs Master Ingredients List from external txt file and compiles them into an array

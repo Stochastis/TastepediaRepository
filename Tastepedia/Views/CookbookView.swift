@@ -12,29 +12,8 @@ struct CookbookView: View {
     @EnvironmentObject var cookbook: Cookbook
     
     var body: some View {
-        ScrollView {
-            if cookbook.savedRecipes.count == 0 {
-                Text("No Recipes Saved")
-            }
-            else {
-                // Display each saved recipe in a grid
-                ForEach(0 ..< cookbook.savedRecipes.count, id: \.self) { i in
-                    if (oneSquare(loop: i, count: cookbook.savedRecipes.count)) {
-                        RecipeButtonView(tappable: true, recipe: ObservableRecipe(cookbook.savedRecipes[i].id, cookbook.savedRecipes[i].name, cookbook.savedRecipes[i].ingredients, cookbook.savedRecipes[i].instructions))
-                    }
-                    
-                    else {
-                        if (twoSquares(loop: i)) {
-                            HStack {
-                                RecipeButtonView(tappable: true, recipe: ObservableRecipe(cookbook.savedRecipes[i-1].id, cookbook.savedRecipes[i-1].name, cookbook.savedRecipes[i-1].ingredients, cookbook.savedRecipes[i-1].instructions))
-                                RecipeButtonView(tappable: true, recipe: ObservableRecipe(cookbook.savedRecipes[i].id, cookbook.savedRecipes[i].name, cookbook.savedRecipes[i].ingredients, cookbook.savedRecipes[i].instructions))
-                            }
-                        } else {
-                            EmptyView()
-                        }
-                    }
-                }
-            }
+        List(cookbook.savedRecipes) {
+            NavigationLink($0.name, destination: RecipeDetailsView(recipe: ObservableRecipe($0.id, $0.name, $0.ingredients, $0.instructions)))
         }.navigationTitle("Your Cookbook") // Title at the top of the page
     }
 }

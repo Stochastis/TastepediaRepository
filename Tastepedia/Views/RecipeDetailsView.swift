@@ -43,10 +43,12 @@ struct RecipeDetailsView: View {
                 recipe.getInstructions()
             })
         }.navigationBarTitleDisplayMode(.inline).navigationTitle(recipe.name).toolbar(content: {
+            NavbarBackButtonDisappearanceWorkaroundItem()
             ToolbarItem(placement: .navigationBarTrailing, content: {
                 if cookbook.savedRecipes.contains(Recipe(id: recipe.id, name: recipe.name, ingredients: recipe.ingredients, instructions: recipe.instructions)) {
                     Image(systemName: "square.and.arrow.down.fill").foregroundColor(colorScheme == .dark ? .white : .black).onTapGesture {
-                        cookbook.removeRecipe(recipe.id)
+                        print("Removing \(recipe.name)")
+                        cookbook.removeRecipe(recipe.name)
                         print("Unsaved Recipe")
                     }
                 } else {
@@ -56,6 +58,15 @@ struct RecipeDetailsView: View {
                 }
             })
         })
+    }
+}
+
+/// A ToolbarItem wrapper to work around the back button disappearance bug in SwiftUI 2.
+struct NavbarBackButtonDisappearanceWorkaroundItem: ToolbarContent {
+    var body: some ToolbarContent {
+        ToolbarItem(placement: .navigationBarLeading) {
+            Color.clear
+        }
     }
 }
 
